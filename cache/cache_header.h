@@ -1,0 +1,8 @@
+#include "hhvm_lru_cache.h"
+#include "lfu.h"
+#include "hhvm_lru_cache_FH.h"
+#include "redis_lru.h"
+#include "FIFO.h"
+#include "strict_lru.h"
+#include "lfu_FH.h"
+#include "FIFO_FH.h"
