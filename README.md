@@ -10,7 +10,7 @@ We use utils in `ssdlogging/` from SPDK, e.g. random generator, current time, di
 
 The framework of this benchmark is organized by `traceloader/client.h`, `traceloader/trace_loader.h`, and `test_trace.cpp`.
 
-## Employment & Usage
+## Deployment & Usage
 
 ```
 git clone this_repo
@@ -38,7 +38,9 @@ To satisfy hardware requirements (up to 72 cores in the same socket), enable hyp
 echo on > /sys/devices/system/cpu/smt/control
 ```
 
-See `#define XEONR8360` in `traceloader/client.h`. Change those codes to use the correct CPU ids. It is not hardware-aware now.
+See `#define XEONR8360` in `traceloader/client.h`. Change those codes to use the correct CPU ids. It is not hardware-aware now. The goal is to set client threads on each cpu within single socket.
+
+### Additional Instruction
 
 Run MSR Cambridge traces in the original format, but better run Twitter traces in binary format (to save time and memory overhead). If you are going to run Twitter traces in the original format, you need to change this call `loader_1 = new TraceLoader(request_num, param, work_type, twitter_start, twitter_end, true);` (traceloader/client.h).
 
