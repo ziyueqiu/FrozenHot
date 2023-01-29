@@ -54,9 +54,7 @@ Note that we assume the machine has at least 100 GiB memory (see `traceloader/tr
 - Figure 14: LRU vs. FIFO, before and after enabling FH
 - Figure 15: Sensitivity analysis with Zipf 0.99 at 72 threads.
 
-(TODO)
-
-You can run the full-length experiment by `python evaluation/run.py`. After running the experiments, all the raw results will be stored in the `evaluation/` folder. Figures can be generated using the `plot_*.py` Python scripts in each experiment folder.
+See details in `evaluation` folder.
 
 The experiments might take hours to tens of hours.
 
