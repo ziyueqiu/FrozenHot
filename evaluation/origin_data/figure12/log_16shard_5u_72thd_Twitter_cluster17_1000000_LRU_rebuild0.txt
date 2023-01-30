@@ -1,0 +1,2538 @@
+Warmup
+using Twitter binary as test trace!
+loading workload (36000000000)...
+
+per request size: 8
+Total RAM: 251 GB	Free: 247 GB
+file 0 length: 1001584758
+open file :/disk/cluster17.0.bin
+file 1 length: 1013418919
+open file :/disk/cluster17.1.bin
+file 2 length: 1003047003
+open file :/disk/cluster17.2.bin
+file 3 length: 1002657515
+open file :/disk/cluster17.3.bin
+file 4 length: 1002463513
+open file :/disk/cluster17.4.bin
+file 5 length: 1001174374
+open file :/disk/cluster17.5.bin
+file 6 length: 1004097204
+open file :/disk/cluster17.6.bin
+file 7 length: 1002060638
+open file :/disk/cluster17.7.bin
+file 8 length: 1000581139
+open file :/disk/cluster17.8.bin
+file 9 length: 741914101
+open file :/disk/cluster17.9.bin
+origin data size :9772999164
+
+loading workload finished in 113.957 s
+62500 items per shard
+client2 have monitor!
+granularity: 72 and large granularity: 72000
+use cpu - xeonr8360
+client coreid: 0
+client coreid: 2
+client coreid: 4
+client coreid: 6
+client coreid: 8
+client coreid: 10
+client coreid: 12
+client coreid: 14
+client coreid: 16
+client coreid: 18
+client coreid: 20
+client coreid: 22
+client coreid: 24
+client coreid: 26
+client coreid: 28
+client coreid: 30
+client coreid: 32
+client coreid: 34
+client coreid: 36
+client coreid: 38
+client coreid: 40
+client coreid: 42
+client coreid: 44
+client coreid: 46
+client coreid: 48
+client coreid: 50
+client coreid: 52
+client coreid: 54
+client coreid: 56
+client coreid: 58
+client coreid: 60
+client coreid: 62
+client coreid: 64
+client coreid: 66
+client coreid: 68
+client coreid: 70
+client coreid: 72
+client coreid: 74
+client coreid: 76
+client coreid: 78
+client coreid: 80
+client coreid: 82
+client coreid: 84
+client coreid: 86
+client coreid: 88
+client coreid: 90
+client coreid: 92
+client coreid: 94
+client coreid: 96
+client coreid: 98
+client coreid: 100
+client coreid: 102
+client coreid: 104
+client coreid: 106
+client coreid: 108
+client coreid: 110
+client coreid: 112
+client coreid: 114
+client coreid: 116
+client coreid: 118
+client coreid: 120
+client coreid: 122
+client coreid: 124
+client coreid: 126
+client coreid: 128
+client coreid: 130
+client coreid: 132
+client coreid: 134
+client coreid: 136
+client coreid: 138
+client coreid: 140
+client coreid: 142
+client coreid: 1
+wait stable interval: 500000 us (0.500 s)
+
+data pass 0
+Total miss rate: 0.2585, hit num: 370, miss num: 129
+- Hit Avg: 1.147 (stat size: 44, size: 0 -> 44)
+- Other Avg: 97.835 (stat size: 28, size: 0 -> 28)
+Total Avg Lat: 38.748 (size: 72, duration: 0.00002 s, approx miss rate: 0.3889)
+- miss ratio = 1.50000 -> 0.25852, with m_size = 9669 (max = 1000000)
+
+data pass 1
+Total miss rate: 0.0352, hit num: 266311, miss num: 9724
+- Hit Avg: 1.070 (stat size: 350, size: 45 -> 395)
+- Other Avg: 9.617 (stat size: 8, size: 29 -> 37)
+Total Avg Lat: 1.261 (size: 358, duration: 0.50008 s, approx miss rate: 0.0223)
+- miss ratio = 0.25852 -> 0.03523, with m_size = 531863 (max = 1000000)
+
+data pass 2
+Total miss rate: 0.0106, hit num: 350373, miss num: 3743
+- Hit Avg: 1.029 (stat size: 471, size: 396 -> 867)
+- Other Avg: 15.838 (stat size: 4, size: 38 -> 42)
+Total Avg Lat: 1.154 (size: 475, duration: 0.50008 s, approx miss rate: 0.0084)
+- miss ratio = 0.03523 -> 0.01057, with m_size = 766264 (max = 1000000)
+
+data pass 3
+Total miss rate: 0.0070, hit num: 377669, miss num: 2656
+- Hit Avg: 0.999 (stat size: 540, size: 868 -> 1408)
+- Other Avg: 6.944 (stat size: 1, size: 43 -> 44)
+Total Avg Lat: 1.010 (size: 541, duration: 0.50008 s, approx miss rate: 0.0018)
+- miss ratio = 0.01057 -> 0.00698, with m_size = 936634 (max = 1000000)
+
+data pass 4
+Total miss rate: 0.0057, hit num: 375309, miss num: 2138
+- Hit Avg: 0.917 (stat size: 508, size: 1409 -> 1917)
+- Other Avg: 14.885 (stat size: 5, size: 45 -> 50)
+Total Avg Lat: 1.053 (size: 513, duration: 0.50008 s, approx miss rate: 0.0097)
+- miss ratio = 0.00698 -> 0.00566, with m_size = 1000000 (max = 1000000)
+
+data pass 5
+Total miss rate: 0.0075, hit num: 358730, miss num: 2715
+- Hit Avg: 0.972 (stat size: 501, size: 1918 -> 2419)
+- Other Avg: 24.077 (stat size: 4, size: 51 -> 55)
+Total Avg Lat: 1.155 (size: 505, duration: 0.50008 s, approx miss rate: 0.0079)
+- miss ratio = 0.00566 -> 0.00751, with m_size = 1000000 (max = 1000000)
+
+data pass 6
+Total miss rate: 0.0046, hit num: 383398, miss num: 1754
+- Hit Avg: 0.942 (stat size: 536, size: 2420 -> 2956)
+- Other None
+Total Avg Lat: 0.942 (size: 536, duration: 0.50009 s, approx miss rate: 0.0000)
+- miss ratio = 0.00751 -> 0.00455, with m_size = 1000000 (max = 1000000)
+
+data pass 7
+Total miss rate: 0.0032, hit num: 396472, miss num: 1258
+- Hit Avg: 0.927 (stat size: 542, size: 2957 -> 3499)
+- Other Avg: 23.008 (stat size: 2, size: 56 -> 58)
+Total Avg Lat: 1.008 (size: 544, duration: 0.50007 s, approx miss rate: 0.0037)
+- miss ratio = 0.00455 -> 0.00316, with m_size = 1000000 (max = 1000000)
+
+data pass 8
+Total miss rate: 0.0034, hit num: 396115, miss num: 1336
+- Hit Avg: 0.875 (stat size: 543, size: 3500 -> 4043)
+- Other None
+Total Avg Lat: 0.875 (size: 543, duration: 0.50008 s, approx miss rate: 0.0000)
+- miss ratio = 0.00316 -> 0.00336, with m_size = 1000000 (max = 1000000)
+
+data pass 9
+Total miss rate: 0.0035, hit num: 400585, miss num: 1419
+- Hit Avg: 0.911 (stat size: 560, size: 4044 -> 4604)
+- Other None
+Total Avg Lat: 0.911 (size: 560, duration: 0.50007 s, approx miss rate: 0.0000)
+- miss ratio = 0.00336 -> 0.00353, with m_size = 1000000 (max = 1000000)
+
+the first wait stable
+clear stat for next stage:
+- Hit Avg: 0.956 (stat size: 4604, real size_: 4604), median: 0.848, p9999: 13.426, p999: 4.934, p99: 2.589, p90: 1.507
+- Other Avg: 54.635 (stat size: 59, real size_: 59), median: 35.275, p9999: 254.508, p999: 254.508, p99: 254.508, p90: 143.812
+Total Avg Lat: 1.635 (size: 4663, miss ratio: 0.012653)
+
+wait stable spend time: 4.501009 s
+
+data pass 10
+Total miss rate: 0.0034, hit num: 824729, miss num: 2827
+- Hit Avg: 0.877 (stat size: 1151, size: 0 -> 1151)
+- Other Avg: 13.699 (stat size: 5, size: 0 -> 5)
+Total Avg Lat: 0.932 (size: 1156, duration: 1.00008 s, approx miss rate: 0.0043)
+
+data pass 11
+Total miss rate: 0.0036, hit num: 874301, miss num: 3186
+- Hit Avg: 0.812 (stat size: 1210, size: 1152 -> 2362)
+- Other Avg: 14.928 (stat size: 5, size: 6 -> 11)
+Total Avg Lat: 0.870 (size: 1215, duration: 1.00009 s, approx miss rate: 0.0041)
+
+data pass 12
+Total miss rate: 0.0036, hit num: 888183, miss num: 3243
+- Hit Avg: 0.819 (stat size: 1229, size: 2363 -> 3592)
+- Other Avg: 9.892 (stat size: 3, size: 12 -> 15)
+Total Avg Lat: 0.841 (size: 1232, duration: 1.00007 s, approx miss rate: 0.0024)
+
+data pass 13
+Total miss rate: 0.0037, hit num: 843258, miss num: 3152
+- Hit Avg: 0.846 (stat size: 1181, size: 3593 -> 4774)
+- Other Avg: 15.685 (stat size: 1, size: 16 -> 17)
+Total Avg Lat: 0.858 (size: 1182, duration: 1.00007 s, approx miss rate: 0.0008)
+
+data pass 14
+Total miss rate: 0.0036, hit num: 862743, miss num: 3143
+- Hit Avg: 0.808 (stat size: 1184, size: 4775 -> 5959)
+- Other Avg: 12.948 (stat size: 3, size: 18 -> 21)
+Total Avg Lat: 0.838 (size: 1187, duration: 1.00009 s, approx miss rate: 0.0025)
+
+data pass 15
+Total miss rate: 0.0035, hit num: 888639, miss num: 3153
+- Hit Avg: 0.801 (stat size: 1225, size: 5960 -> 7185)
+- Other Avg: 13.836 (stat size: 1, size: 22 -> 23)
+Total Avg Lat: 0.812 (size: 1226, duration: 1.00009 s, approx miss rate: 0.0008)
+
+data pass 16
+Total miss rate: 0.0034, hit num: 901825, miss num: 3056
+- Hit Avg: 0.785 (stat size: 1270, size: 7186 -> 8456)
+- Other Avg: 12.318 (stat size: 4, size: 24 -> 28)
+Total Avg Lat: 0.821 (size: 1274, duration: 1.00008 s, approx miss rate: 0.0031)
+
+data pass 17
+Total miss rate: 0.0033, hit num: 889173, miss num: 2980
+- Hit Avg: 0.804 (stat size: 1226, size: 8457 -> 9683)
+- Other Avg: 13.659 (stat size: 2, size: 29 -> 31)
+Total Avg Lat: 0.825 (size: 1228, duration: 1.00007 s, approx miss rate: 0.0016)
+
+data pass 18
+Total miss rate: 0.0032, hit num: 889605, miss num: 2881
+- Hit Avg: 0.816 (stat size: 1245, size: 9684 -> 10929)
+- Other Avg: 19.103 (stat size: 8, size: 32 -> 40)
+Total Avg Lat: 0.933 (size: 1253, duration: 1.00009 s, approx miss rate: 0.0064)
+
+data pass 19
+Total miss rate: 0.0034, hit num: 889909, miss num: 3008
+- Hit Avg: 0.787 (stat size: 1238, size: 10930 -> 12168)
+- Other Avg: 28.889 (stat size: 4, size: 41 -> 45)
+Total Avg Lat: 0.877 (size: 1242, duration: 1.00008 s, approx miss rate: 0.0032)
+
+data pass 20
+Total miss rate: 0.0033, hit num: 894253, miss num: 2940
+- Hit Avg: 0.823 (stat size: 1224, size: 12169 -> 13393)
+- Other Avg: 14.420 (stat size: 5, size: 46 -> 51)
+Total Avg Lat: 0.878 (size: 1229, duration: 1.00008 s, approx miss rate: 0.0041)
+
+data pass 21
+Total miss rate: 0.0033, hit num: 892760, miss num: 2922
+- Hit Avg: 0.792 (stat size: 1254, size: 13394 -> 14648)
+- Other Avg: 11.966 (stat size: 1, size: 52 -> 53)
+Total Avg Lat: 0.801 (size: 1255, duration: 1.00008 s, approx miss rate: 0.0008)
+
+data pass 22
+Total miss rate: 0.0032, hit num: 895383, miss num: 2884
+- Hit Avg: 0.819 (stat size: 1231, size: 14649 -> 15880)
+- Other Avg: 21.440 (stat size: 2, size: 54 -> 56)
+Total Avg Lat: 0.852 (size: 1233, duration: 1.00008 s, approx miss rate: 0.0016)
+
+data pass 23
+Total miss rate: 0.0034, hit num: 892892, miss num: 3085
+- Hit Avg: 0.809 (stat size: 1257, size: 15881 -> 17138)
+- Other Avg: 11.295 (stat size: 3, size: 57 -> 60)
+Total Avg Lat: 0.834 (size: 1260, duration: 1.00008 s, approx miss rate: 0.0024)
+
+data pass 24
+Total miss rate: 0.0035, hit num: 891105, miss num: 3143
+- Hit Avg: 0.805 (stat size: 1226, size: 17139 -> 18365)
+- Other Avg: 14.075 (stat size: 1, size: 61 -> 62)
+Total Avg Lat: 0.816 (size: 1227, duration: 1.00007 s, approx miss rate: 0.0008)
+
+data pass 25
+Total miss rate: 0.0037, hit num: 886984, miss num: 3286
+- Hit Avg: 0.814 (stat size: 1217, size: 18366 -> 19583)
+- Other Avg: 13.073 (stat size: 6, size: 63 -> 69)
+Total Avg Lat: 0.874 (size: 1223, duration: 1.00007 s, approx miss rate: 0.0049)
+
+data pass 26
+Total miss rate: 0.0039, hit num: 885119, miss num: 3464
+- Hit Avg: 0.807 (stat size: 1240, size: 19584 -> 20824)
+- Other None
+Total Avg Lat: 0.807 (size: 1240, duration: 1.00018 s, approx miss rate: 0.0000)
+
+data pass 27
+Total miss rate: 0.0043, hit num: 880428, miss num: 3824
+- Hit Avg: 0.776 (stat size: 1224, size: 20825 -> 22049)
+- Other Avg: 13.662 (stat size: 5, size: 70 -> 75)
+Total Avg Lat: 0.828 (size: 1229, duration: 1.00008 s, approx miss rate: 0.0041)
+
+data pass 28
+Total miss rate: 0.0044, hit num: 878009, miss num: 3862
+- Hit Avg: 0.804 (stat size: 1207, size: 22050 -> 23257)
+- Other Avg: 15.623 (stat size: 10, size: 76 -> 86)
+Total Avg Lat: 0.926 (size: 1217, duration: 1.00007 s, approx miss rate: 0.0082)
+
+data pass 29
+Total miss rate: 0.0049, hit num: 888315, miss num: 4392
+- Hit Avg: 0.768 (stat size: 1254, size: 23258 -> 24512)
+- Other Avg: 13.150 (stat size: 5, size: 87 -> 92)
+Total Avg Lat: 0.818 (size: 1259, duration: 1.00008 s, approx miss rate: 0.0040)
+
+data pass 30
+Total miss rate: 0.0056, hit num: 920849, miss num: 5212
+- Hit Avg: 0.742 (stat size: 1276, size: 24513 -> 25789)
+- Other Avg: 12.618 (stat size: 7, size: 93 -> 100)
+Total Avg Lat: 0.807 (size: 1283, duration: 1.00009 s, approx miss rate: 0.0055)
+
+data pass 31
+Total miss rate: 0.0060, hit num: 959603, miss num: 5806
+- Hit Avg: 0.704 (stat size: 1319, size: 25790 -> 27109)
+- Other Avg: 8.938 (stat size: 7, size: 101 -> 108)
+Total Avg Lat: 0.748 (size: 1326, duration: 1.00008 s, approx miss rate: 0.0053)
+
+data pass 32
+Total miss rate: 0.0062, hit num: 948614, miss num: 5927
+- Hit Avg: 0.710 (stat size: 1318, size: 27110 -> 28428)
+- Other Avg: 13.383 (stat size: 6, size: 109 -> 115)
+Total Avg Lat: 0.767 (size: 1324, duration: 1.00007 s, approx miss rate: 0.0045)
+
+data pass 33
+Total miss rate: 0.0064, hit num: 863981, miss num: 5528
+- Hit Avg: 0.784 (stat size: 1192, size: 28429 -> 29621)
+- Other Avg: 24.483 (stat size: 7, size: 116 -> 123)
+Total Avg Lat: 0.922 (size: 1199, duration: 1.00008 s, approx miss rate: 0.0058)
+
+data pass 34
+Total miss rate: 0.0060, hit num: 882925, miss num: 5361
+- Hit Avg: 0.761 (stat size: 1232, size: 29622 -> 30854)
+- Other Avg: 9.093 (stat size: 7, size: 124 -> 131)
+Total Avg Lat: 0.808 (size: 1239, duration: 1.00009 s, approx miss rate: 0.0056)
+
+data pass 35
+Total miss rate: 0.0061, hit num: 907883, miss num: 5551
+- Hit Avg: 0.762 (stat size: 1260, size: 30855 -> 32115)
+- Other Avg: 14.296 (stat size: 13, size: 132 -> 145)
+Total Avg Lat: 0.901 (size: 1273, duration: 1.00010 s, approx miss rate: 0.0102)
+
+data pass 36
+Total miss rate: 0.0057, hit num: 959966, miss num: 5466
+- Hit Avg: 0.714 (stat size: 1333, size: 32116 -> 33449)
+- Other Avg: 12.880 (stat size: 3, size: 146 -> 149)
+Total Avg Lat: 0.741 (size: 1336, duration: 1.00007 s, approx miss rate: 0.0022)
+
+data pass 37
+Total miss rate: 0.0055, hit num: 1009331, miss num: 5632
+- Hit Avg: 0.679 (stat size: 1403, size: 33450 -> 34853)
+- Other Avg: 10.059 (stat size: 8, size: 150 -> 158)
+Total Avg Lat: 0.732 (size: 1411, duration: 1.00007 s, approx miss rate: 0.0057)
+
+data pass 38
+Total miss rate: 0.0052, hit num: 1059241, miss num: 5512
+- Hit Avg: 0.665 (stat size: 1446, size: 34854 -> 36300)
+- Other Avg: 11.310 (stat size: 6, size: 159 -> 165)
+Total Avg Lat: 0.709 (size: 1452, duration: 1.00008 s, approx miss rate: 0.0041)
+
+data pass 39
+Total miss rate: 0.0050, hit num: 1115235, miss num: 5626
+- Hit Avg: 0.616 (stat size: 1559, size: 36301 -> 37860)
+- Other Avg: 10.899 (stat size: 14, size: 166 -> 180)
+Total Avg Lat: 0.707 (size: 1573, duration: 1.00008 s, approx miss rate: 0.0089)
+
+data pass 40
+Total miss rate: 0.0047, hit num: 1136898, miss num: 5412
+- Hit Avg: 0.601 (stat size: 1583, size: 37861 -> 39444)
+- Other Avg: 13.580 (stat size: 5, size: 181 -> 186)
+Total Avg Lat: 0.642 (size: 1588, duration: 1.00007 s, approx miss rate: 0.0031)
+
+data pass 41
+Total miss rate: 0.0047, hit num: 1125557, miss num: 5273
+- Hit Avg: 0.616 (stat size: 1570, size: 39445 -> 41015)
+- Other Avg: 11.346 (stat size: 7, size: 187 -> 194)
+Total Avg Lat: 0.663 (size: 1577, duration: 1.00008 s, approx miss rate: 0.0044)
+
+data pass 42
+Total miss rate: 0.0045, hit num: 1148945, miss num: 5162
+- Hit Avg: 0.616 (stat size: 1592, size: 41016 -> 42608)
+- Other Avg: 10.448 (stat size: 4, size: 195 -> 199)
+Total Avg Lat: 0.640 (size: 1596, duration: 1.00008 s, approx miss rate: 0.0025)
+
+data pass 43
+Total miss rate: 0.0048, hit num: 1151519, miss num: 5579
+- Hit Avg: 0.619 (stat size: 1575, size: 42609 -> 44184)
+- Other Avg: 11.410 (stat size: 11, size: 200 -> 211)
+Total Avg Lat: 0.694 (size: 1586, duration: 1.00008 s, approx miss rate: 0.0069)
+
+data pass 44
+Total miss rate: 0.0045, hit num: 1153655, miss num: 5193
+- Hit Avg: 0.595 (stat size: 1593, size: 44185 -> 45778)
+- Other Avg: 12.676 (stat size: 7, size: 212 -> 219)
+Total Avg Lat: 0.648 (size: 1600, duration: 1.00007 s, approx miss rate: 0.0044)
+
+data pass 45
+Total miss rate: 0.0046, hit num: 1141993, miss num: 5305
+- Hit Avg: 0.596 (stat size: 1592, size: 45779 -> 47371)
+- Other Avg: 12.387 (stat size: 7, size: 220 -> 227)
+Total Avg Lat: 0.647 (size: 1599, duration: 1.00007 s, approx miss rate: 0.0044)
+
+data pass 46
+Total miss rate: 0.0043, hit num: 954811, miss num: 4163
+- Hit Avg: 0.744 (stat size: 1338, size: 47372 -> 48710)
+- Other Avg: 9.494 (stat size: 1, size: 228 -> 229)
+Total Avg Lat: 0.751 (size: 1339, duration: 1.00009 s, approx miss rate: 0.0007)
+
+data pass 47
+Total miss rate: 0.0045, hit num: 949047, miss num: 4292
+- Hit Avg: 0.737 (stat size: 1308, size: 48711 -> 50019)
+- Other Avg: 13.257 (stat size: 1, size: 230 -> 231)
+Total Avg Lat: 0.746 (size: 1309, duration: 1.00008 s, approx miss rate: 0.0008)
+
+data pass 48
+Total miss rate: 0.0055, hit num: 979680, miss num: 5446
+- Hit Avg: 0.709 (stat size: 1362, size: 50020 -> 51382)
+- Other Avg: 14.202 (stat size: 9, size: 232 -> 241)
+Total Avg Lat: 0.797 (size: 1371, duration: 1.00007 s, approx miss rate: 0.0066)
+
+data pass 49
+Total miss rate: 0.0067, hit num: 994936, miss num: 6754
+- Hit Avg: 0.675 (stat size: 1389, size: 51383 -> 52772)
+- Other Avg: 12.277 (stat size: 7, size: 242 -> 249)
+Total Avg Lat: 0.733 (size: 1396, duration: 1.00007 s, approx miss rate: 0.0050)
+
+data pass 50
+Total miss rate: 0.0059, hit num: 1044719, miss num: 6170
+- Hit Avg: 0.671 (stat size: 1442, size: 52773 -> 54215)
+- Other Avg: 10.990 (stat size: 8, size: 250 -> 258)
+Total Avg Lat: 0.728 (size: 1450, duration: 1.00008 s, approx miss rate: 0.0055)
+
+data pass 51
+Total miss rate: 0.0050, hit num: 1131207, miss num: 5709
+- Hit Avg: 0.610 (stat size: 1576, size: 54216 -> 55792)
+- Other Avg: 14.973 (stat size: 4, size: 259 -> 263)
+Total Avg Lat: 0.646 (size: 1580, duration: 1.00009 s, approx miss rate: 0.0025)
+
+data pass 52
+Total miss rate: 0.0052, hit num: 1129618, miss num: 5943
+- Hit Avg: 0.621 (stat size: 1575, size: 55793 -> 57368)
+- Other Avg: 16.612 (stat size: 10, size: 264 -> 274)
+Total Avg Lat: 0.722 (size: 1585, duration: 1.00007 s, approx miss rate: 0.0063)
+
+data pass 53
+Total miss rate: 0.0063, hit num: 1107018, miss num: 7067
+- Hit Avg: 0.609 (stat size: 1528, size: 57369 -> 58897)
+- Other Avg: 14.849 (stat size: 9, size: 275 -> 284)
+Total Avg Lat: 0.693 (size: 1537, duration: 1.00007 s, approx miss rate: 0.0059)
+
+data pass 54
+Total miss rate: 0.0073, hit num: 1076546, miss num: 7965
+- Hit Avg: 0.611 (stat size: 1506, size: 58898 -> 60404)
+- Other Avg: 10.237 (stat size: 1, size: 285 -> 286)
+Total Avg Lat: 0.617 (size: 1507, duration: 1.00008 s, approx miss rate: 0.0007)
+
+data pass 55
+Total miss rate: 0.0060, hit num: 1105339, miss num: 6715
+- Hit Avg: 0.633 (stat size: 1532, size: 60405 -> 61937)
+- Other Avg: 9.989 (stat size: 6, size: 287 -> 293)
+Total Avg Lat: 0.669 (size: 1538, duration: 1.00007 s, approx miss rate: 0.0039)
+
+data pass 56
+Total miss rate: 0.0048, hit num: 1123327, miss num: 5467
+- Hit Avg: 0.620 (stat size: 1568, size: 61938 -> 63506)
+- Other Avg: 10.667 (stat size: 11, size: 294 -> 305)
+Total Avg Lat: 0.690 (size: 1579, duration: 1.00008 s, approx miss rate: 0.0070)
+
+data pass 57
+Total miss rate: 0.0049, hit num: 1131982, miss num: 5582
+- Hit Avg: 0.618 (stat size: 1557, size: 63507 -> 65064)
+- Other Avg: 10.246 (stat size: 3, size: 306 -> 309)
+Total Avg Lat: 0.636 (size: 1560, duration: 1.00007 s, approx miss rate: 0.0019)
+
+data pass 58
+Total miss rate: 0.0049, hit num: 1125549, miss num: 5581
+- Hit Avg: 0.618 (stat size: 1561, size: 65065 -> 66626)
+- Other Avg: 14.600 (stat size: 2, size: 310 -> 312)
+Total Avg Lat: 0.635 (size: 1563, duration: 1.00008 s, approx miss rate: 0.0013)
+
+data pass 59
+Total miss rate: 0.0050, hit num: 1117697, miss num: 5641
+- Hit Avg: 0.618 (stat size: 1571, size: 66627 -> 68198)
+- Other Avg: 9.529 (stat size: 5, size: 313 -> 318)
+Total Avg Lat: 0.646 (size: 1576, duration: 1.00008 s, approx miss rate: 0.0032)
+
+data pass 60
+Total miss rate: 0.0051, hit num: 1130615, miss num: 5742
+- Hit Avg: 0.620 (stat size: 1573, size: 68199 -> 69772)
+- Other Avg: 11.946 (stat size: 5, size: 319 -> 324)
+Total Avg Lat: 0.655 (size: 1578, duration: 1.00007 s, approx miss rate: 0.0032)
+
+data pass 61
+Total miss rate: 0.0049, hit num: 1020863, miss num: 5067
+- Hit Avg: 0.692 (stat size: 1412, size: 69773 -> 71185)
+- Other Avg: 24.240 (stat size: 2, size: 325 -> 327)
+Total Avg Lat: 0.725 (size: 1414, duration: 1.00008 s, approx miss rate: 0.0014)
+
+data pass 62
+Total miss rate: 0.0050, hit num: 1016514, miss num: 5092
+- Hit Avg: 0.697 (stat size: 1413, size: 71186 -> 72599)
+- Other Avg: 7.857 (stat size: 5, size: 328 -> 333)
+Total Avg Lat: 0.722 (size: 1418, duration: 1.00008 s, approx miss rate: 0.0035)
+
+data pass 63
+Total miss rate: 0.0048, hit num: 1057094, miss num: 5077
+- Hit Avg: 0.667 (stat size: 1469, size: 72600 -> 74069)
+- Other Avg: 8.565 (stat size: 6, size: 334 -> 340)
+Total Avg Lat: 0.699 (size: 1475, duration: 1.00008 s, approx miss rate: 0.0041)
+
+data pass 64
+Total miss rate: 0.0050, hit num: 1107685, miss num: 5531
+- Hit Avg: 0.619 (stat size: 1543, size: 74070 -> 75613)
+- Other Avg: 10.022 (stat size: 8, size: 341 -> 349)
+Total Avg Lat: 0.667 (size: 1551, duration: 1.00007 s, approx miss rate: 0.0052)
+
+data pass 65
+Total miss rate: 0.0052, hit num: 1111975, miss num: 5781
+- Hit Avg: 0.617 (stat size: 1528, size: 75614 -> 77142)
+- Other Avg: 12.520 (stat size: 7, size: 350 -> 357)
+Total Avg Lat: 0.672 (size: 1535, duration: 1.00007 s, approx miss rate: 0.0046)
+
+data pass 66
+Total miss rate: 0.0054, hit num: 1117062, miss num: 6026
+- Hit Avg: 0.622 (stat size: 1545, size: 77143 -> 78688)
+- Other Avg: 9.502 (stat size: 10, size: 358 -> 368)
+Total Avg Lat: 0.679 (size: 1555, duration: 1.00017 s, approx miss rate: 0.0064)
+
+data pass 67
+Total miss rate: 0.0057, hit num: 1099118, miss num: 6267
+- Hit Avg: 0.623 (stat size: 1522, size: 78689 -> 80211)
+- Other Avg: 9.904 (stat size: 9, size: 369 -> 378)
+Total Avg Lat: 0.677 (size: 1531, duration: 1.00009 s, approx miss rate: 0.0059)
+
+data pass 68
+Total miss rate: 0.0061, hit num: 1098794, miss num: 6773
+- Hit Avg: 0.629 (stat size: 1545, size: 80212 -> 81757)
+- Other Avg: 11.700 (stat size: 6, size: 379 -> 385)
+Total Avg Lat: 0.672 (size: 1551, duration: 1.00007 s, approx miss rate: 0.0039)
+
+data pass 69
+Total miss rate: 0.0058, hit num: 1099723, miss num: 6439
+- Hit Avg: 0.612 (stat size: 1517, size: 81758 -> 83275)
+- Other Avg: 11.599 (stat size: 7, size: 386 -> 393)
+Total Avg Lat: 0.663 (size: 1524, duration: 1.00007 s, approx miss rate: 0.0046)
+
+data pass 70
+Total miss rate: 0.0058, hit num: 1101017, miss num: 6368
+- Hit Avg: 0.631 (stat size: 1545, size: 83276 -> 84821)
+- Other Avg: 8.287 (stat size: 4, size: 394 -> 398)
+Total Avg Lat: 0.651 (size: 1549, duration: 1.00008 s, approx miss rate: 0.0026)
+
+data pass 71
+Total miss rate: 0.0056, hit num: 1100696, miss num: 6213
+- Hit Avg: 0.646 (stat size: 1490, size: 84822 -> 86312)
+- Other Avg: 9.841 (stat size: 13, size: 399 -> 412)
+Total Avg Lat: 0.725 (size: 1503, duration: 1.00008 s, approx miss rate: 0.0086)
+
+data pass 72
+Total miss rate: 0.0060, hit num: 1051373, miss num: 6351
+- Hit Avg: 0.650 (stat size: 1470, size: 86313 -> 87783)
+- Other Avg: 10.919 (stat size: 9, size: 413 -> 422)
+Total Avg Lat: 0.712 (size: 1479, duration: 1.00007 s, approx miss rate: 0.0061)
+
+data pass 73
+Total miss rate: 0.0058, hit num: 896688, miss num: 5276
+- Hit Avg: 0.764 (stat size: 1234, size: 87784 -> 89018)
+- Other Avg: 9.977 (stat size: 6, size: 423 -> 429)
+Total Avg Lat: 0.808 (size: 1240, duration: 1.00008 s, approx miss rate: 0.0048)
+
+data pass 74
+Total miss rate: 0.0059, hit num: 890835, miss num: 5295
+- Hit Avg: 0.778 (stat size: 1259, size: 89019 -> 90278)
+- Other Avg: 11.201 (stat size: 5, size: 430 -> 435)
+Total Avg Lat: 0.820 (size: 1264, duration: 1.00009 s, approx miss rate: 0.0040)
+
+data pass 75
+Total miss rate: 0.0058, hit num: 890469, miss num: 5219
+- Hit Avg: 0.786 (stat size: 1230, size: 90279 -> 91509)
+- Other Avg: 13.555 (stat size: 3, size: 436 -> 439)
+Total Avg Lat: 0.817 (size: 1233, duration: 1.00009 s, approx miss rate: 0.0024)
+
+data pass 76
+Total miss rate: 0.0060, hit num: 911162, miss num: 5492
+- Hit Avg: 0.773 (stat size: 1257, size: 91510 -> 92767)
+- Other Avg: 11.888 (stat size: 7, size: 440 -> 447)
+Total Avg Lat: 0.835 (size: 1264, duration: 1.00017 s, approx miss rate: 0.0055)
+
+data pass 77
+Total miss rate: 0.0060, hit num: 903771, miss num: 5427
+- Hit Avg: 0.756 (stat size: 1287, size: 92768 -> 94055)
+- Other Avg: 15.286 (stat size: 8, size: 448 -> 456)
+Total Avg Lat: 0.846 (size: 1295, duration: 1.00008 s, approx miss rate: 0.0062)
+
+data pass 78
+Total miss rate: 0.0058, hit num: 892412, miss num: 5210
+- Hit Avg: 0.775 (stat size: 1226, size: 94056 -> 95282)
+- Other Avg: 16.176 (stat size: 1, size: 457 -> 458)
+Total Avg Lat: 0.788 (size: 1227, duration: 1.00009 s, approx miss rate: 0.0008)
+
+data pass 79
+Total miss rate: 0.0055, hit num: 896367, miss num: 4930
+- Hit Avg: 0.763 (stat size: 1230, size: 95283 -> 96513)
+- Other Avg: 20.398 (stat size: 3, size: 459 -> 462)
+Total Avg Lat: 0.811 (size: 1233, duration: 1.00009 s, approx miss rate: 0.0024)
+
+data pass 80
+Total miss rate: 0.0053, hit num: 904505, miss num: 4844
+- Hit Avg: 0.779 (stat size: 1256, size: 96514 -> 97770)
+- Other Avg: 12.014 (stat size: 6, size: 463 -> 469)
+Total Avg Lat: 0.832 (size: 1262, duration: 1.00008 s, approx miss rate: 0.0048)
+
+data pass 81
+Total miss rate: 0.0057, hit num: 894711, miss num: 5086
+- Hit Avg: 0.778 (stat size: 1259, size: 97771 -> 99030)
+- Other Avg: 10.078 (stat size: 3, size: 470 -> 473)
+Total Avg Lat: 0.800 (size: 1262, duration: 1.00022 s, approx miss rate: 0.0024)
+
+data pass 82
+Total miss rate: 0.0054, hit num: 898734, miss num: 4878
+- Hit Avg: 0.788 (stat size: 1260, size: 99031 -> 100291)
+- Other Avg: 13.011 (stat size: 3, size: 474 -> 477)
+Total Avg Lat: 0.817 (size: 1263, duration: 1.00009 s, approx miss rate: 0.0024)
+
+data pass 83
+Total miss rate: 0.0051, hit num: 902915, miss num: 4636
+- Hit Avg: 0.750 (stat size: 1234, size: 100292 -> 101526)
+- Other Avg: 21.268 (stat size: 3, size: 478 -> 481)
+Total Avg Lat: 0.800 (size: 1237, duration: 1.00009 s, approx miss rate: 0.0024)
+
+data pass 84
+Total miss rate: 0.0050, hit num: 905798, miss num: 4581
+- Hit Avg: 0.763 (stat size: 1257, size: 101527 -> 102784)
+- Other Avg: 12.795 (stat size: 4, size: 482 -> 486)
+Total Avg Lat: 0.802 (size: 1261, duration: 1.00007 s, approx miss rate: 0.0032)
+
+data pass 85
+Total miss rate: 0.0047, hit num: 913408, miss num: 4357
+- Hit Avg: 0.744 (stat size: 1266, size: 102785 -> 104051)
+- Other Avg: 10.774 (stat size: 5, size: 487 -> 492)
+Total Avg Lat: 0.783 (size: 1271, duration: 1.00008 s, approx miss rate: 0.0039)
+
+data pass 86
+Total miss rate: 0.0047, hit num: 911342, miss num: 4345
+- Hit Avg: 0.765 (stat size: 1289, size: 104052 -> 105341)
+- Other Avg: 10.598 (stat size: 6, size: 493 -> 499)
+Total Avg Lat: 0.810 (size: 1295, duration: 1.00009 s, approx miss rate: 0.0046)
+
+data pass 87
+Total miss rate: 0.0059, hit num: 883040, miss num: 5215
+- Hit Avg: 0.773 (stat size: 1209, size: 105342 -> 106551)
+- Other Avg: 14.075 (stat size: 8, size: 500 -> 508)
+Total Avg Lat: 0.861 (size: 1217, duration: 1.00009 s, approx miss rate: 0.0066)
+
+data pass 88
+Total miss rate: 0.0067, hit num: 867956, miss num: 5859
+- Hit Avg: 0.773 (stat size: 1195, size: 106552 -> 107747)
+- Other Avg: 11.783 (stat size: 6, size: 509 -> 515)
+Total Avg Lat: 0.828 (size: 1201, duration: 1.00008 s, approx miss rate: 0.0050)
+
+data pass 89
+Total miss rate: 0.0057, hit num: 885469, miss num: 5097
+- Hit Avg: 0.787 (stat size: 1252, size: 107748 -> 109000)
+- Other Avg: 15.421 (stat size: 4, size: 516 -> 520)
+Total Avg Lat: 0.834 (size: 1256, duration: 1.00008 s, approx miss rate: 0.0032)
+
+data pass 90
+Total miss rate: 0.0050, hit num: 899127, miss num: 4474
+- Hit Avg: 0.778 (stat size: 1259, size: 109001 -> 110260)
+- Other Avg: 10.502 (stat size: 4, size: 521 -> 525)
+Total Avg Lat: 0.809 (size: 1263, duration: 1.00009 s, approx miss rate: 0.0032)
+
+data pass 91
+Total miss rate: 0.0052, hit num: 895197, miss num: 4672
+- Hit Avg: 0.785 (stat size: 1215, size: 110261 -> 111476)
+- Other Avg: 19.496 (stat size: 4, size: 526 -> 530)
+Total Avg Lat: 0.847 (size: 1219, duration: 1.00009 s, approx miss rate: 0.0033)
+
+data pass 92
+Total miss rate: 0.0050, hit num: 894421, miss num: 4502
+- Hit Avg: 0.770 (stat size: 1257, size: 111477 -> 112734)
+- Other Avg: 17.273 (stat size: 5, size: 531 -> 536)
+Total Avg Lat: 0.836 (size: 1262, duration: 1.00008 s, approx miss rate: 0.0040)
+
+data pass 93
+Total miss rate: 0.0051, hit num: 902679, miss num: 4597
+- Hit Avg: 0.774 (stat size: 1259, size: 112735 -> 113994)
+- Other Avg: 12.469 (stat size: 6, size: 537 -> 543)
+Total Avg Lat: 0.829 (size: 1265, duration: 1.00008 s, approx miss rate: 0.0047)
+
+data pass 94
+Total miss rate: 0.0051, hit num: 947763, miss num: 4878
+- Hit Avg: 0.733 (stat size: 1306, size: 113995 -> 115301)
+- Other Avg: 16.079 (stat size: 5, size: 544 -> 549)
+Total Avg Lat: 0.791 (size: 1311, duration: 1.00008 s, approx miss rate: 0.0038)
+
+data pass 95
+Total miss rate: 0.0051, hit num: 989933, miss num: 5115
+- Hit Avg: 0.711 (stat size: 1373, size: 115302 -> 116675)
+- Other Avg: 10.784 (stat size: 2, size: 550 -> 552)
+Total Avg Lat: 0.725 (size: 1375, duration: 1.00009 s, approx miss rate: 0.0015)
+
+data pass 96
+Total miss rate: 0.0051, hit num: 1032576, miss num: 5325
+- Hit Avg: 0.690 (stat size: 1430, size: 116676 -> 118106)
+- Other Avg: 9.644 (stat size: 11, size: 553 -> 564)
+Total Avg Lat: 0.759 (size: 1441, duration: 1.00007 s, approx miss rate: 0.0076)
+
+data pass 97
+Total miss rate: 0.0050, hit num: 1073612, miss num: 5409
+- Hit Avg: 0.651 (stat size: 1486, size: 118107 -> 119593)
+- Other Avg: 20.481 (stat size: 2, size: 565 -> 567)
+Total Avg Lat: 0.677 (size: 1488, duration: 1.00007 s, approx miss rate: 0.0013)
+
+data pass 98
+Total miss rate: 0.0061, hit num: 1086506, miss num: 6686
+- Hit Avg: 0.631 (stat size: 1510, size: 119594 -> 121104)
+- Other Avg: 16.905 (stat size: 5, size: 568 -> 573)
+Total Avg Lat: 0.685 (size: 1515, duration: 1.00009 s, approx miss rate: 0.0033)
+
+data pass 99
+Total miss rate: 0.0069, hit num: 915036, miss num: 6383
+- Hit Avg: 0.720 (stat size: 1272, size: 121105 -> 122377)
+- Other Avg: 14.887 (stat size: 4, size: 574 -> 578)
+Total Avg Lat: 0.764 (size: 1276, duration: 1.00009 s, approx miss rate: 0.0031)
+
+data pass 100
+Total miss rate: 0.0060, hit num: 880465, miss num: 5279
+- Hit Avg: 0.803 (stat size: 1231, size: 122378 -> 123609)
+- Other Avg: 12.507 (stat size: 3, size: 579 -> 582)
+Total Avg Lat: 0.832 (size: 1234, duration: 1.00008 s, approx miss rate: 0.0024)
+
+data pass 101
+Total miss rate: 0.0052, hit num: 876151, miss num: 4573
+- Hit Avg: 0.795 (stat size: 1218, size: 123610 -> 124828)
+- Other Avg: 14.896 (stat size: 7, size: 583 -> 590)
+Total Avg Lat: 0.876 (size: 1225, duration: 1.00008 s, approx miss rate: 0.0057)
+
+data pass 102
+Total miss rate: 0.0053, hit num: 911226, miss num: 4851
+- Hit Avg: 0.737 (stat size: 1258, size: 124829 -> 126087)
+- Other Avg: 16.757 (stat size: 8, size: 591 -> 599)
+Total Avg Lat: 0.838 (size: 1266, duration: 1.00008 s, approx miss rate: 0.0063)
+
+data pass 103
+Total miss rate: 0.0055, hit num: 888811, miss num: 4954
+- Hit Avg: 0.771 (stat size: 1227, size: 126088 -> 127315)
+- Other Avg: 9.253 (stat size: 7, size: 600 -> 607)
+Total Avg Lat: 0.819 (size: 1234, duration: 1.00009 s, approx miss rate: 0.0057)
+
+data pass 104
+Total miss rate: 0.0052, hit num: 873302, miss num: 4608
+- Hit Avg: 0.790 (stat size: 1223, size: 127316 -> 128539)
+- Other Avg: 14.819 (stat size: 8, size: 608 -> 616)
+Total Avg Lat: 0.881 (size: 1231, duration: 1.00008 s, approx miss rate: 0.0065)
+
+data pass 105
+Total miss rate: 0.0054, hit num: 868449, miss num: 4729
+- Hit Avg: 0.790 (stat size: 1199, size: 128540 -> 129739)
+- Other Avg: 11.774 (stat size: 8, size: 617 -> 625)
+Total Avg Lat: 0.863 (size: 1207, duration: 1.00008 s, approx miss rate: 0.0066)
+
+data pass 106
+Total miss rate: 0.0055, hit num: 867416, miss num: 4816
+- Hit Avg: 0.821 (stat size: 1199, size: 129740 -> 130939)
+- Other Avg: 14.677 (stat size: 5, size: 626 -> 631)
+Total Avg Lat: 0.879 (size: 1204, duration: 1.00019 s, approx miss rate: 0.0042)
+
+data pass 107
+Total miss rate: 0.0058, hit num: 864477, miss num: 5044
+- Hit Avg: 0.790 (stat size: 1224, size: 130940 -> 132164)
+- Other Avg: 15.322 (stat size: 6, size: 632 -> 638)
+Total Avg Lat: 0.861 (size: 1230, duration: 1.00009 s, approx miss rate: 0.0049)
+
+data pass 108
+Total miss rate: 0.0059, hit num: 878423, miss num: 5182
+- Hit Avg: 0.777 (stat size: 1206, size: 132165 -> 133371)
+- Other Avg: 13.943 (stat size: 4, size: 639 -> 643)
+Total Avg Lat: 0.821 (size: 1210, duration: 1.00007 s, approx miss rate: 0.0033)
+
+data pass 109
+Total miss rate: 0.0060, hit num: 898377, miss num: 5440
+- Hit Avg: 0.788 (stat size: 1258, size: 133372 -> 134630)
+- Other Avg: 17.537 (stat size: 10, size: 644 -> 654)
+Total Avg Lat: 0.920 (size: 1268, duration: 1.00007 s, approx miss rate: 0.0079)
+
+data pass 110
+Total miss rate: 0.0062, hit num: 860380, miss num: 5411
+- Hit Avg: 0.798 (stat size: 1166, size: 134631 -> 135797)
+- Other Avg: 15.375 (stat size: 8, size: 655 -> 663)
+Total Avg Lat: 0.897 (size: 1174, duration: 1.00009 s, approx miss rate: 0.0068)
+
+data pass 111
+Total miss rate: 0.0062, hit num: 861461, miss num: 5408
+- Hit Avg: 0.797 (stat size: 1195, size: 135798 -> 136993)
+- Other Avg: 16.840 (stat size: 7, size: 664 -> 671)
+Total Avg Lat: 0.890 (size: 1202, duration: 1.00018 s, approx miss rate: 0.0058)
+
+data pass 112
+Total miss rate: 0.0058, hit num: 874163, miss num: 5074
+- Hit Avg: 0.773 (stat size: 1234, size: 136994 -> 138228)
+- Other Avg: 12.097 (stat size: 4, size: 672 -> 676)
+Total Avg Lat: 0.809 (size: 1238, duration: 1.00007 s, approx miss rate: 0.0032)
+
+data pass 113
+Total miss rate: 0.0055, hit num: 921876, miss num: 5124
+- Hit Avg: 0.727 (stat size: 1269, size: 138229 -> 139498)
+- Other Avg: 12.943 (stat size: 7, size: 677 -> 684)
+Total Avg Lat: 0.794 (size: 1276, duration: 1.00008 s, approx miss rate: 0.0055)
+
+data pass 114
+Total miss rate: 0.0055, hit num: 973235, miss num: 5337
+- Hit Avg: 0.709 (stat size: 1345, size: 139499 -> 140844)
+- Other Avg: 10.519 (stat size: 4, size: 685 -> 689)
+Total Avg Lat: 0.738 (size: 1349, duration: 1.00008 s, approx miss rate: 0.0030)
+
+data pass 115
+Total miss rate: 0.0056, hit num: 1009059, miss num: 5692
+- Hit Avg: 0.668 (stat size: 1408, size: 140845 -> 142253)
+- Other Avg: 14.443 (stat size: 9, size: 690 -> 699)
+Total Avg Lat: 0.756 (size: 1417, duration: 1.00008 s, approx miss rate: 0.0064)
+
+data pass 116
+Total miss rate: 0.0054, hit num: 1056311, miss num: 5718
+- Hit Avg: 0.641 (stat size: 1442, size: 142254 -> 143696)
+- Other Avg: 12.084 (stat size: 8, size: 700 -> 708)
+Total Avg Lat: 0.704 (size: 1450, duration: 1.00008 s, approx miss rate: 0.0055)
+
+data pass 117
+Total miss rate: 0.0053, hit num: 1076077, miss num: 5708
+- Hit Avg: 0.640 (stat size: 1504, size: 143697 -> 145201)
+- Other Avg: 13.393 (stat size: 10, size: 709 -> 719)
+Total Avg Lat: 0.724 (size: 1514, duration: 1.00007 s, approx miss rate: 0.0066)
+
+data pass 118
+Total miss rate: 0.0049, hit num: 927007, miss num: 4526
+- Hit Avg: 0.733 (stat size: 1273, size: 145202 -> 146475)
+- Other Avg: 15.830 (stat size: 7, size: 720 -> 727)
+Total Avg Lat: 0.816 (size: 1280, duration: 1.00009 s, approx miss rate: 0.0055)
+
+data pass 119
+Total miss rate: 0.0051, hit num: 911676, miss num: 4641
+- Hit Avg: 0.753 (stat size: 1298, size: 146476 -> 147774)
+- Other Avg: 40.949 (stat size: 3, size: 728 -> 731)
+Total Avg Lat: 0.845 (size: 1301, duration: 1.00009 s, approx miss rate: 0.0023)
+
+data pass 120
+Total miss rate: 0.0054, hit num: 912202, miss num: 4974
+- Hit Avg: 0.771 (stat size: 1260, size: 147775 -> 149035)
+- Other Avg: 14.561 (stat size: 10, size: 732 -> 742)
+Total Avg Lat: 0.880 (size: 1270, duration: 1.00008 s, approx miss rate: 0.0079)
+
+data pass 121
+Total miss rate: 0.0054, hit num: 912678, miss num: 4947
+- Hit Avg: 0.770 (stat size: 1264, size: 149036 -> 150300)
+- Other Avg: 14.806 (stat size: 7, size: 743 -> 750)
+Total Avg Lat: 0.847 (size: 1271, duration: 1.00008 s, approx miss rate: 0.0055)
+
+data pass 122
+Total miss rate: 0.0055, hit num: 908035, miss num: 5063
+- Hit Avg: 0.767 (stat size: 1233, size: 150301 -> 151534)
+- Other Avg: 14.909 (stat size: 10, size: 751 -> 761)
+Total Avg Lat: 0.881 (size: 1243, duration: 1.00009 s, approx miss rate: 0.0080)
+
+data pass 123
+Total miss rate: 0.0058, hit num: 902703, miss num: 5232
+- Hit Avg: 0.755 (stat size: 1261, size: 151535 -> 152796)
+- Other Avg: 15.908 (stat size: 9, size: 762 -> 771)
+Total Avg Lat: 0.863 (size: 1270, duration: 1.00009 s, approx miss rate: 0.0071)
+
+data pass 124
+Total miss rate: 0.0065, hit num: 891956, miss num: 5820
+- Hit Avg: 0.787 (stat size: 1259, size: 152797 -> 154056)
+- Other Avg: 24.096 (stat size: 8, size: 772 -> 780)
+Total Avg Lat: 0.934 (size: 1267, duration: 1.00008 s, approx miss rate: 0.0063)
+
+data pass 125
+Total miss rate: 0.0061, hit num: 898375, miss num: 5485
+- Hit Avg: 0.748 (stat size: 1235, size: 154057 -> 155292)
+- Other Avg: 22.688 (stat size: 4, size: 781 -> 785)
+Total Avg Lat: 0.819 (size: 1239, duration: 1.00008 s, approx miss rate: 0.0032)
+
+data pass 126
+Total miss rate: 0.0061, hit num: 899256, miss num: 5518
+- Hit Avg: 0.772 (stat size: 1254, size: 155293 -> 156547)
+- Other Avg: 12.324 (stat size: 10, size: 786 -> 796)
+Total Avg Lat: 0.863 (size: 1264, duration: 1.00009 s, approx miss rate: 0.0079)
+
+data pass 127
+Total miss rate: 0.0058, hit num: 904589, miss num: 5251
+- Hit Avg: 0.764 (stat size: 1232, size: 156548 -> 157780)
+- Other Avg: 13.971 (stat size: 7, size: 797 -> 804)
+Total Avg Lat: 0.839 (size: 1239, duration: 1.00009 s, approx miss rate: 0.0056)
+
+data pass 128
+Total miss rate: 0.0061, hit num: 903874, miss num: 5514
+- Hit Avg: 0.764 (stat size: 1289, size: 157781 -> 159070)
+- Other Avg: 8.107 (stat size: 5, size: 805 -> 810)
+Total Avg Lat: 0.793 (size: 1294, duration: 1.00008 s, approx miss rate: 0.0039)
+
+data pass 129
+Total miss rate: 0.0057, hit num: 913211, miss num: 5243
+- Hit Avg: 0.766 (stat size: 1227, size: 159071 -> 160298)
+- Other Avg: 17.036 (stat size: 5, size: 811 -> 816)
+Total Avg Lat: 0.832 (size: 1232, duration: 1.00008 s, approx miss rate: 0.0041)
+
+data pass 130
+Total miss rate: 0.0074, hit num: 882261, miss num: 6611
+- Hit Avg: 0.739 (stat size: 1261, size: 160299 -> 161560)
+- Other Avg: 11.602 (stat size: 11, size: 817 -> 828)
+Total Avg Lat: 0.833 (size: 1272, duration: 1.00009 s, approx miss rate: 0.0086)
+
+data pass 131
+Total miss rate: 0.0071, hit num: 884506, miss num: 6304
+- Hit Avg: 0.772 (stat size: 1225, size: 161561 -> 162786)
+- Other Avg: 22.484 (stat size: 6, size: 829 -> 835)
+Total Avg Lat: 0.878 (size: 1231, duration: 1.00010 s, approx miss rate: 0.0049)
+
+data pass 132
+Total miss rate: 0.0053, hit num: 923333, miss num: 4910
+- Hit Avg: 0.749 (stat size: 1290, size: 162787 -> 164077)
+- Other Avg: 16.843 (stat size: 2, size: 836 -> 838)
+Total Avg Lat: 0.774 (size: 1292, duration: 1.00008 s, approx miss rate: 0.0015)
+
+data pass 133
+Total miss rate: 0.0052, hit num: 922649, miss num: 4839
+- Hit Avg: 0.765 (stat size: 1270, size: 164078 -> 165348)
+- Other Avg: 17.082 (stat size: 3, size: 839 -> 842)
+Total Avg Lat: 0.803 (size: 1273, duration: 1.00008 s, approx miss rate: 0.0024)
+
+data pass 134
+Total miss rate: 0.0049, hit num: 927967, miss num: 4604
+- Hit Avg: 0.753 (stat size: 1295, size: 165349 -> 166644)
+- Other Avg: 15.875 (stat size: 5, size: 843 -> 848)
+Total Avg Lat: 0.811 (size: 1300, duration: 1.00009 s, approx miss rate: 0.0038)
+
+data pass 135
+Total miss rate: 0.0053, hit num: 926423, miss num: 4941
+- Hit Avg: 0.761 (stat size: 1268, size: 166645 -> 167913)
+- Other Avg: 11.881 (stat size: 6, size: 849 -> 855)
+Total Avg Lat: 0.814 (size: 1274, duration: 1.00009 s, approx miss rate: 0.0047)
+
+data pass 136
+Total miss rate: 0.0053, hit num: 928873, miss num: 4953
+- Hit Avg: 0.750 (stat size: 1300, size: 167914 -> 169214)
+- Other Avg: 18.237 (stat size: 1, size: 856 -> 857)
+Total Avg Lat: 0.764 (size: 1301, duration: 1.00008 s, approx miss rate: 0.0008)
+
+data pass 137
+Total miss rate: 0.0054, hit num: 926528, miss num: 5021
+- Hit Avg: 0.728 (stat size: 1297, size: 169215 -> 170512)
+- Other Avg: 15.013 (stat size: 10, size: 858 -> 868)
+Total Avg Lat: 0.837 (size: 1307, duration: 1.00008 s, approx miss rate: 0.0077)
+
+data pass 138
+Total miss rate: 0.0052, hit num: 932805, miss num: 4896
+- Hit Avg: 0.751 (stat size: 1264, size: 170513 -> 171777)
+- Other Avg: 12.371 (stat size: 9, size: 869 -> 878)
+Total Avg Lat: 0.833 (size: 1273, duration: 1.00008 s, approx miss rate: 0.0071)
+
+data pass 139
+Total miss rate: 0.0050, hit num: 935134, miss num: 4728
+- Hit Avg: 0.753 (stat size: 1299, size: 171778 -> 173077)
+- Other Avg: 8.062 (stat size: 4, size: 879 -> 883)
+Total Avg Lat: 0.775 (size: 1303, duration: 1.00008 s, approx miss rate: 0.0031)
+
+data pass 140
+Total miss rate: 0.0052, hit num: 941600, miss num: 4919
+- Hit Avg: 0.737 (stat size: 1333, size: 173078 -> 174411)
+- Other Avg: 22.853 (stat size: 3, size: 884 -> 887)
+Total Avg Lat: 0.787 (size: 1336, duration: 1.00007 s, approx miss rate: 0.0022)
+
+data pass 141
+Total miss rate: 0.0052, hit num: 976603, miss num: 5151
+- Hit Avg: 0.717 (stat size: 1330, size: 174412 -> 175742)
+- Other Avg: 11.342 (stat size: 13, size: 888 -> 901)
+Total Avg Lat: 0.820 (size: 1343, duration: 1.00008 s, approx miss rate: 0.0097)
+
+data pass 142
+Total miss rate: 0.0052, hit num: 940712, miss num: 4871
+- Hit Avg: 0.722 (stat size: 1300, size: 175743 -> 177043)
+- Other Avg: 11.592 (stat size: 8, size: 902 -> 910)
+Total Avg Lat: 0.789 (size: 1308, duration: 1.00009 s, approx miss rate: 0.0061)
+
+data pass 143
+Total miss rate: 0.0052, hit num: 935980, miss num: 4920
+- Hit Avg: 0.758 (stat size: 1295, size: 177044 -> 178339)
+- Other Avg: 11.632 (stat size: 9, size: 911 -> 920)
+Total Avg Lat: 0.833 (size: 1304, duration: 1.00008 s, approx miss rate: 0.0069)
+
+data pass 144
+Total miss rate: 0.0053, hit num: 932966, miss num: 4926
+- Hit Avg: 0.734 (stat size: 1303, size: 178340 -> 179643)
+- Other Avg: 14.696 (stat size: 6, size: 921 -> 927)
+Total Avg Lat: 0.798 (size: 1309, duration: 1.00008 s, approx miss rate: 0.0046)
+
+data pass 145
+Total miss rate: 0.0052, hit num: 935979, miss num: 4888
+- Hit Avg: 0.752 (stat size: 1292, size: 179644 -> 180936)
+- Other Avg: 17.023 (stat size: 10, size: 928 -> 938)
+Total Avg Lat: 0.877 (size: 1302, duration: 1.00008 s, approx miss rate: 0.0077)
+
+data pass 146
+Total miss rate: 0.0053, hit num: 936962, miss num: 4946
+- Hit Avg: 0.744 (stat size: 1302, size: 180937 -> 182239)
+- Other Avg: 10.980 (stat size: 8, size: 939 -> 947)
+Total Avg Lat: 0.806 (size: 1310, duration: 1.00009 s, approx miss rate: 0.0061)
+
+data pass 147
+Total miss rate: 0.0064, hit num: 913851, miss num: 5847
+- Hit Avg: 0.735 (stat size: 1266, size: 182240 -> 183506)
+- Other Avg: 9.855 (stat size: 7, size: 948 -> 955)
+Total Avg Lat: 0.785 (size: 1273, duration: 1.00009 s, approx miss rate: 0.0055)
+
+data pass 148
+Total miss rate: 0.0072, hit num: 901112, miss num: 6570
+- Hit Avg: 0.748 (stat size: 1238, size: 183507 -> 184745)
+- Other Avg: 10.933 (stat size: 10, size: 956 -> 966)
+Total Avg Lat: 0.830 (size: 1248, duration: 1.00007 s, approx miss rate: 0.0080)
+
+data pass 149
+Total miss rate: 0.0068, hit num: 901784, miss num: 6186
+- Hit Avg: 0.745 (stat size: 1259, size: 184746 -> 186005)
+- Other Avg: 17.488 (stat size: 7, size: 967 -> 974)
+Total Avg Lat: 0.838 (size: 1266, duration: 1.00008 s, approx miss rate: 0.0055)
+
+data pass 150
+Total miss rate: 0.0058, hit num: 917824, miss num: 5392
+- Hit Avg: 0.743 (stat size: 1285, size: 186006 -> 187291)
+- Other Avg: 12.497 (stat size: 8, size: 975 -> 983)
+Total Avg Lat: 0.816 (size: 1293, duration: 1.00009 s, approx miss rate: 0.0062)
+
+data pass 151
+Total miss rate: 0.0062, hit num: 926515, miss num: 5807
+- Hit Avg: 0.734 (stat size: 1276, size: 187292 -> 188568)
+- Other Avg: 9.414 (stat size: 3, size: 984 -> 987)
+Total Avg Lat: 0.754 (size: 1279, duration: 1.00008 s, approx miss rate: 0.0023)
+
+data pass 152
+Total miss rate: 0.0067, hit num: 956370, miss num: 6486
+- Hit Avg: 0.692 (stat size: 1338, size: 188569 -> 189907)
+- Other Avg: 19.849 (stat size: 4, size: 988 -> 992)
+Total Avg Lat: 0.749 (size: 1342, duration: 1.00007 s, approx miss rate: 0.0030)
+
+data pass 153
+Total miss rate: 0.0068, hit num: 994567, miss num: 6781
+- Hit Avg: 0.687 (stat size: 1371, size: 189908 -> 191279)
+- Other Avg: 9.626 (stat size: 7, size: 993 -> 1000)
+Total Avg Lat: 0.733 (size: 1378, duration: 1.00008 s, approx miss rate: 0.0051)
+
+data pass 154
+Total miss rate: 0.0066, hit num: 1043275, miss num: 6950
+- Hit Avg: 0.644 (stat size: 1462, size: 191280 -> 192742)
+- Other Avg: 13.879 (stat size: 11, size: 1001 -> 1012)
+Total Avg Lat: 0.742 (size: 1473, duration: 1.00008 s, approx miss rate: 0.0075)
+
+data pass 155
+Total miss rate: 0.0063, hit num: 1095920, miss num: 6922
+- Hit Avg: 0.605 (stat size: 1513, size: 192743 -> 194256)
+- Other Avg: 17.312 (stat size: 9, size: 1013 -> 1022)
+Total Avg Lat: 0.704 (size: 1522, duration: 1.00008 s, approx miss rate: 0.0059)
+
+data pass 156
+Total miss rate: 0.0062, hit num: 1099208, miss num: 6823
+- Hit Avg: 0.621 (stat size: 1536, size: 194257 -> 195793)
+- Other Avg: 11.184 (stat size: 5, size: 1023 -> 1028)
+Total Avg Lat: 0.655 (size: 1541, duration: 1.00007 s, approx miss rate: 0.0032)
+
+data pass 157
+Total miss rate: 0.0057, hit num: 1102247, miss num: 6360
+- Hit Avg: 0.624 (stat size: 1515, size: 195794 -> 197309)
+- Other Avg: 10.485 (stat size: 6, size: 1029 -> 1035)
+Total Avg Lat: 0.663 (size: 1521, duration: 1.00007 s, approx miss rate: 0.0039)
+
+data pass 158
+Total miss rate: 0.0054, hit num: 1056496, miss num: 5760
+- Hit Avg: 0.654 (stat size: 1470, size: 197310 -> 198780)
+- Other Avg: 17.019 (stat size: 4, size: 1036 -> 1040)
+Total Avg Lat: 0.698 (size: 1474, duration: 1.00008 s, approx miss rate: 0.0027)
+
+data pass 159
+Total miss rate: 0.0051, hit num: 944361, miss num: 4796
+- Hit Avg: 0.728 (stat size: 1303, size: 198781 -> 200084)
+- Other Avg: 17.075 (stat size: 4, size: 1041 -> 1045)
+Total Avg Lat: 0.778 (size: 1307, duration: 1.00009 s, approx miss rate: 0.0031)
+
+data pass 160
+Total miss rate: 0.0050, hit num: 927659, miss num: 4673
+- Hit Avg: 0.760 (stat size: 1294, size: 200085 -> 201379)
+- Other Avg: 11.631 (stat size: 6, size: 1046 -> 1052)
+Total Avg Lat: 0.810 (size: 1300, duration: 1.00007 s, approx miss rate: 0.0046)
+
+data pass 161
+Total miss rate: 0.0053, hit num: 915541, miss num: 4833
+- Hit Avg: 0.757 (stat size: 1259, size: 201380 -> 202639)
+- Other Avg: 17.551 (stat size: 9, size: 1053 -> 1062)
+Total Avg Lat: 0.876 (size: 1268, duration: 1.00008 s, approx miss rate: 0.0071)
+
+data pass 162
+Total miss rate: 0.0053, hit num: 948261, miss num: 5034
+- Hit Avg: 0.713 (stat size: 1344, size: 202640 -> 203984)
+- Other Avg: 13.012 (stat size: 11, size: 1063 -> 1074)
+Total Avg Lat: 0.813 (size: 1355, duration: 1.00008 s, approx miss rate: 0.0081)
+
+data pass 163
+Total miss rate: 0.0050, hit num: 993829, miss num: 5026
+- Hit Avg: 0.679 (stat size: 1375, size: 203985 -> 205360)
+- Other Avg: 11.602 (stat size: 5, size: 1075 -> 1080)
+Total Avg Lat: 0.719 (size: 1380, duration: 1.00008 s, approx miss rate: 0.0036)
+
+data pass 164
+Total miss rate: 0.0053, hit num: 979512, miss num: 5195
+- Hit Avg: 0.704 (stat size: 1366, size: 205361 -> 206727)
+- Other Avg: 12.478 (stat size: 3, size: 1081 -> 1084)
+Total Avg Lat: 0.730 (size: 1369, duration: 1.00007 s, approx miss rate: 0.0022)
+
+data pass 165
+Total miss rate: 0.0053, hit num: 928297, miss num: 4987
+- Hit Avg: 0.747 (stat size: 1267, size: 206728 -> 207995)
+- Other Avg: 12.791 (stat size: 4, size: 1085 -> 1089)
+Total Avg Lat: 0.785 (size: 1271, duration: 1.00008 s, approx miss rate: 0.0031)
+
+data pass 166
+Total miss rate: 0.0054, hit num: 935659, miss num: 5058
+- Hit Avg: 0.765 (stat size: 1303, size: 207996 -> 209299)
+- Other Avg: 16.558 (stat size: 2, size: 1090 -> 1092)
+Total Avg Lat: 0.789 (size: 1305, duration: 1.00018 s, approx miss rate: 0.0015)
+
+data pass 167
+Total miss rate: 0.0055, hit num: 947749, miss num: 5215
+- Hit Avg: 0.724 (stat size: 1301, size: 209300 -> 210601)
+- Other Avg: 10.903 (stat size: 3, size: 1093 -> 1096)
+Total Avg Lat: 0.747 (size: 1304, duration: 1.00009 s, approx miss rate: 0.0023)
+
+data pass 168
+Total miss rate: 0.0056, hit num: 980924, miss num: 5508
+- Hit Avg: 0.718 (stat size: 1373, size: 210602 -> 211975)
+- Other Avg: 9.885 (stat size: 5, size: 1097 -> 1102)
+Total Avg Lat: 0.752 (size: 1378, duration: 1.00008 s, approx miss rate: 0.0036)
+
+data pass 169
+Total miss rate: 0.0056, hit num: 1023805, miss num: 5801
+- Hit Avg: 0.651 (stat size: 1429, size: 211976 -> 213405)
+- Other Avg: 12.764 (stat size: 12, size: 1103 -> 1115)
+Total Avg Lat: 0.751 (size: 1441, duration: 1.00007 s, approx miss rate: 0.0083)
+
+data pass 170
+Total miss rate: 0.0061, hit num: 1029135, miss num: 6285
+- Hit Avg: 0.659 (stat size: 1409, size: 213406 -> 214815)
+- Other Avg: 8.065 (stat size: 6, size: 1116 -> 1122)
+Total Avg Lat: 0.690 (size: 1415, duration: 1.00009 s, approx miss rate: 0.0042)
+
+data pass 171
+Total miss rate: 0.0077, hit num: 907097, miss num: 7024
+- Hit Avg: 0.724 (stat size: 1276, size: 214816 -> 216092)
+- Other Avg: 12.569 (stat size: 5, size: 1123 -> 1128)
+Total Avg Lat: 0.771 (size: 1281, duration: 1.00009 s, approx miss rate: 0.0039)
+
+data pass 172
+Total miss rate: 0.0081, hit num: 897004, miss num: 7344
+- Hit Avg: 0.734 (stat size: 1268, size: 216093 -> 217361)
+- Other Avg: 13.576 (stat size: 8, size: 1129 -> 1137)
+Total Avg Lat: 0.814 (size: 1276, duration: 1.00008 s, approx miss rate: 0.0063)
+
+data pass 173
+Total miss rate: 0.0063, hit num: 934938, miss num: 5907
+- Hit Avg: 0.711 (stat size: 1292, size: 217362 -> 218654)
+- Other Avg: 13.872 (stat size: 5, size: 1138 -> 1143)
+Total Avg Lat: 0.761 (size: 1297, duration: 1.00008 s, approx miss rate: 0.0039)
+
+data pass 174
+Total miss rate: 0.0063, hit num: 969270, miss num: 6146
+- Hit Avg: 0.688 (stat size: 1336, size: 218655 -> 219991)
+- Other Avg: 14.878 (stat size: 6, size: 1144 -> 1150)
+Total Avg Lat: 0.751 (size: 1342, duration: 1.00008 s, approx miss rate: 0.0045)
+
+data pass 175
+Total miss rate: 0.0063, hit num: 1010491, miss num: 6373
+- Hit Avg: 0.651 (stat size: 1420, size: 219992 -> 221412)
+- Other Avg: 12.388 (stat size: 10, size: 1151 -> 1161)
+Total Avg Lat: 0.733 (size: 1430, duration: 1.00010 s, approx miss rate: 0.0070)
+
+data pass 176
+Total miss rate: 0.0061, hit num: 1065043, miss num: 6572
+- Hit Avg: 0.631 (stat size: 1439, size: 221413 -> 222852)
+- Other Avg: 13.759 (stat size: 11, size: 1162 -> 1173)
+Total Avg Lat: 0.731 (size: 1450, duration: 1.00008 s, approx miss rate: 0.0076)
+
+data pass 177
+Total miss rate: 0.0064, hit num: 1091560, miss num: 7037
+- Hit Avg: 0.625 (stat size: 1532, size: 222853 -> 224385)
+- Other Avg: 13.545 (stat size: 8, size: 1174 -> 1182)
+Total Avg Lat: 0.692 (size: 1540, duration: 1.00007 s, approx miss rate: 0.0052)
+
+data pass 178
+Total miss rate: 0.0059, hit num: 1102186, miss num: 6549
+- Hit Avg: 0.624 (stat size: 1527, size: 224386 -> 225913)
+- Other Avg: 10.170 (stat size: 10, size: 1183 -> 1193)
+Total Avg Lat: 0.686 (size: 1537, duration: 1.00008 s, approx miss rate: 0.0065)
+
+data pass 179
+Total miss rate: 0.0055, hit num: 1108529, miss num: 6092
+- Hit Avg: 0.605 (stat size: 1536, size: 225914 -> 227450)
+- Other Avg: 11.450 (stat size: 8, size: 1194 -> 1202)
+Total Avg Lat: 0.661 (size: 1544, duration: 1.00008 s, approx miss rate: 0.0052)
+
+data pass 180
+Total miss rate: 0.0053, hit num: 1115284, miss num: 5948
+- Hit Avg: 0.624 (stat size: 1538, size: 227451 -> 228989)
+- Other Avg: 12.848 (stat size: 4, size: 1203 -> 1207)
+Total Avg Lat: 0.655 (size: 1542, duration: 1.00007 s, approx miss rate: 0.0026)
+
+data pass 181
+Total miss rate: 0.0053, hit num: 1115958, miss num: 5970
+- Hit Avg: 0.602 (stat size: 1567, size: 228990 -> 230557)
+- Other Avg: 9.369 (stat size: 6, size: 1208 -> 1214)
+Total Avg Lat: 0.635 (size: 1573, duration: 1.00017 s, approx miss rate: 0.0038)
+
+data pass 182
+Total miss rate: 0.0054, hit num: 1116708, miss num: 6074
+- Hit Avg: 0.623 (stat size: 1570, size: 230558 -> 232128)
+- Other Avg: 14.013 (stat size: 7, size: 1215 -> 1222)
+Total Avg Lat: 0.682 (size: 1577, duration: 1.00008 s, approx miss rate: 0.0044)
+
+data pass 183
+Total miss rate: 0.0054, hit num: 1117676, miss num: 6071
+- Hit Avg: 0.611 (stat size: 1544, size: 232129 -> 233673)
+- Other Avg: 11.165 (stat size: 3, size: 1223 -> 1226)
+Total Avg Lat: 0.631 (size: 1547, duration: 1.00008 s, approx miss rate: 0.0019)
+
+data pass 184
+Total miss rate: 0.0053, hit num: 1119039, miss num: 5977
+- Hit Avg: 0.623 (stat size: 1567, size: 233674 -> 235241)
+- Other Avg: 12.684 (stat size: 7, size: 1227 -> 1234)
+Total Avg Lat: 0.676 (size: 1574, duration: 1.00007 s, approx miss rate: 0.0044)
+
+data pass 185
+Total miss rate: 0.0055, hit num: 1114653, miss num: 6153
+- Hit Avg: 0.614 (stat size: 1529, size: 235242 -> 236771)
+- Other Avg: 14.091 (stat size: 13, size: 1235 -> 1248)
+Total Avg Lat: 0.728 (size: 1542, duration: 1.00007 s, approx miss rate: 0.0084)
+
+data pass 186
+Total miss rate: 0.0055, hit num: 1041767, miss num: 5711
+- Hit Avg: 0.684 (stat size: 1470, size: 236772 -> 238242)
+- Other Avg: 12.899 (stat size: 9, size: 1249 -> 1258)
+Total Avg Lat: 0.758 (size: 1479, duration: 1.00018 s, approx miss rate: 0.0061)
+
+data pass 187
+Total miss rate: 0.0056, hit num: 929752, miss num: 5224
+- Hit Avg: 0.726 (stat size: 1267, size: 238243 -> 239510)
+- Other Avg: 13.223 (stat size: 5, size: 1259 -> 1264)
+Total Avg Lat: 0.775 (size: 1272, duration: 1.00009 s, approx miss rate: 0.0039)
+
+data pass 188
+Total miss rate: 0.0058, hit num: 939342, miss num: 5490
+- Hit Avg: 0.728 (stat size: 1307, size: 239511 -> 240818)
+- Other Avg: 14.941 (stat size: 3, size: 1265 -> 1268)
+Total Avg Lat: 0.760 (size: 1310, duration: 1.00008 s, approx miss rate: 0.0023)
+
+data pass 189
+Total miss rate: 0.0060, hit num: 961829, miss num: 5776
+- Hit Avg: 0.719 (stat size: 1328, size: 240819 -> 242147)
+- Other Avg: 14.089 (stat size: 12, size: 1269 -> 1281)
+Total Avg Lat: 0.839 (size: 1340, duration: 1.00008 s, approx miss rate: 0.0090)
+
+data pass 190
+Total miss rate: 0.0062, hit num: 999120, miss num: 6200
+- Hit Avg: 0.673 (stat size: 1379, size: 242148 -> 243527)
+- Other Avg: 14.121 (stat size: 6, size: 1282 -> 1288)
+Total Avg Lat: 0.732 (size: 1385, duration: 1.00009 s, approx miss rate: 0.0043)
+
+data pass 191
+Total miss rate: 0.0067, hit num: 1031799, miss num: 6977
+- Hit Avg: 0.649 (stat size: 1442, size: 243528 -> 244970)
+- Other Avg: 11.969 (stat size: 8, size: 1289 -> 1297)
+Total Avg Lat: 0.712 (size: 1450, duration: 1.00009 s, approx miss rate: 0.0055)
+
+data pass 192
+Total miss rate: 0.0081, hit num: 1056328, miss num: 8599
+- Hit Avg: 0.616 (stat size: 1491, size: 244971 -> 246462)
+- Other Avg: 11.283 (stat size: 4, size: 1298 -> 1302)
+Total Avg Lat: 0.645 (size: 1495, duration: 1.00007 s, approx miss rate: 0.0027)
+
+data pass 193
+Total miss rate: 0.0077, hit num: 1066736, miss num: 8322
+- Hit Avg: 0.616 (stat size: 1479, size: 246463 -> 247942)
+- Other Avg: 13.085 (stat size: 5, size: 1303 -> 1308)
+Total Avg Lat: 0.658 (size: 1484, duration: 1.00007 s, approx miss rate: 0.0034)
+
+data pass 194
+Total miss rate: 0.0060, hit num: 1100936, miss num: 6638
+- Hit Avg: 0.614 (stat size: 1519, size: 247943 -> 249462)
+- Other Avg: 9.670 (stat size: 3, size: 1309 -> 1312)
+Total Avg Lat: 0.632 (size: 1522, duration: 1.00008 s, approx miss rate: 0.0020)
+
+data pass 195
+Total miss rate: 0.0061, hit num: 1081322, miss num: 6676
+- Hit Avg: 0.642 (stat size: 1531, size: 249463 -> 250994)
+- Other Avg: 9.233 (stat size: 5, size: 1313 -> 1318)
+Total Avg Lat: 0.670 (size: 1536, duration: 1.00009 s, approx miss rate: 0.0033)
+
+data pass 196
+Total miss rate: 0.0060, hit num: 947586, miss num: 5696
+- Hit Avg: 0.711 (stat size: 1300, size: 250995 -> 252295)
+- Other Avg: 11.470 (stat size: 3, size: 1319 -> 1322)
+Total Avg Lat: 0.736 (size: 1303, duration: 1.00008 s, approx miss rate: 0.0023)
+
+data pass 197
+Total miss rate: 0.0057, hit num: 925256, miss num: 5348
+- Hit Avg: 0.742 (stat size: 1273, size: 252296 -> 253569)
+- Other Avg: 16.541 (stat size: 2, size: 1323 -> 1325)
+Total Avg Lat: 0.767 (size: 1275, duration: 1.00008 s, approx miss rate: 0.0016)
+
+data pass 198
+Total miss rate: 0.0054, hit num: 934009, miss num: 5069
+- Hit Avg: 0.748 (stat size: 1324, size: 253570 -> 254894)
+- Other Avg: 14.374 (stat size: 5, size: 1326 -> 1331)
+Total Avg Lat: 0.799 (size: 1329, duration: 1.00009 s, approx miss rate: 0.0038)
+
+data pass 199
+Total miss rate: 0.0057, hit num: 953131, miss num: 5432
+- Hit Avg: 0.734 (stat size: 1320, size: 254895 -> 256215)
+- Other Avg: 8.519 (stat size: 4, size: 1332 -> 1336)
+Total Avg Lat: 0.758 (size: 1324, duration: 1.00008 s, approx miss rate: 0.0030)
+
+data pass 200
+Total miss rate: 0.0060, hit num: 997644, miss num: 6001
+- Hit Avg: 0.674 (stat size: 1396, size: 256216 -> 257612)
+- Other Avg: 10.547 (stat size: 5, size: 1337 -> 1342)
+Total Avg Lat: 0.709 (size: 1401, duration: 1.00007 s, approx miss rate: 0.0036)
+
+data pass 201
+Total miss rate: 0.0053, hit num: 1044030, miss num: 5604
+- Hit Avg: 0.649 (stat size: 1430, size: 257613 -> 259043)
+- Other Avg: 12.413 (stat size: 9, size: 1343 -> 1352)
+Total Avg Lat: 0.722 (size: 1439, duration: 1.00008 s, approx miss rate: 0.0063)
+
+data pass 202
+Total miss rate: 0.0053, hit num: 1106988, miss num: 5866
+- Hit Avg: 0.644 (stat size: 1527, size: 259044 -> 260571)
+- Other Avg: 11.910 (stat size: 12, size: 1353 -> 1365)
+Total Avg Lat: 0.732 (size: 1539, duration: 1.00008 s, approx miss rate: 0.0078)
+
+data pass 203
+Total miss rate: 0.0054, hit num: 1119346, miss num: 6094
+- Hit Avg: 0.609 (stat size: 1551, size: 260572 -> 262123)
+- Other Avg: 9.865 (stat size: 4, size: 1366 -> 1370)
+Total Avg Lat: 0.633 (size: 1555, duration: 1.00008 s, approx miss rate: 0.0026)
+
+data pass 204
+Total miss rate: 0.0054, hit num: 1119216, miss num: 6094
+- Hit Avg: 0.610 (stat size: 1567, size: 262124 -> 263691)
+- Other Avg: 12.805 (stat size: 2, size: 1371 -> 1373)
+Total Avg Lat: 0.626 (size: 1569, duration: 1.00007 s, approx miss rate: 0.0013)
+
+data pass 205
+Total miss rate: 0.0055, hit num: 1119245, miss num: 6139
+- Hit Avg: 0.624 (stat size: 1570, size: 263692 -> 265262)
+- Other Avg: 15.377 (stat size: 9, size: 1374 -> 1383)
+Total Avg Lat: 0.708 (size: 1579, duration: 1.00009 s, approx miss rate: 0.0057)
+
+data pass 206
+Total miss rate: 0.0055, hit num: 1114254, miss num: 6172
+- Hit Avg: 0.608 (stat size: 1531, size: 265263 -> 266794)
+- Other Avg: 9.835 (stat size: 14, size: 1384 -> 1398)
+Total Avg Lat: 0.692 (size: 1545, duration: 1.00008 s, approx miss rate: 0.0091)
+
+data pass 207
+Total miss rate: 0.0054, hit num: 1119361, miss num: 6124
+- Hit Avg: 0.594 (stat size: 1545, size: 266795 -> 268340)
+- Other Avg: 12.067 (stat size: 5, size: 1399 -> 1404)
+Total Avg Lat: 0.631 (size: 1550, duration: 1.00008 s, approx miss rate: 0.0032)
+
+data pass 208
+Total miss rate: 0.0062, hit num: 1100994, miss num: 6873
+- Hit Avg: 0.614 (stat size: 1535, size: 268341 -> 269876)
+- Other Avg: 10.399 (stat size: 10, size: 1405 -> 1415)
+Total Avg Lat: 0.677 (size: 1545, duration: 1.00007 s, approx miss rate: 0.0065)
+
+data pass 209
+Total miss rate: 0.0070, hit num: 972715, miss num: 6874
+- Hit Avg: 0.711 (stat size: 1346, size: 269877 -> 271223)
+- Other Avg: 20.898 (stat size: 4, size: 1416 -> 1420)
+Total Avg Lat: 0.771 (size: 1350, duration: 1.00008 s, approx miss rate: 0.0030)
+
+data pass 210
+Total miss rate: 0.0064, hit num: 912343, miss num: 5841
+- Hit Avg: 0.758 (stat size: 1266, size: 271224 -> 272490)
+- Other Avg: 10.412 (stat size: 6, size: 1421 -> 1427)
+Total Avg Lat: 0.804 (size: 1272, duration: 1.00009 s, approx miss rate: 0.0047)
+
+data pass 211
+Total miss rate: 0.0057, hit num: 921246, miss num: 5263
+- Hit Avg: 0.745 (stat size: 1301, size: 272491 -> 273792)
+- Other Avg: 10.699 (stat size: 3, size: 1428 -> 1431)
+Total Avg Lat: 0.768 (size: 1304, duration: 1.00009 s, approx miss rate: 0.0023)
+
+data pass 212
+Total miss rate: 0.0057, hit num: 926452, miss num: 5352
+- Hit Avg: 0.739 (stat size: 1267, size: 273793 -> 275060)
+- Other Avg: 10.408 (stat size: 5, size: 1432 -> 1437)
+Total Avg Lat: 0.777 (size: 1272, duration: 1.00008 s, approx miss rate: 0.0039)
+
+data pass 213
+Total miss rate: 0.0060, hit num: 966548, miss num: 5790
+- Hit Avg: 0.699 (stat size: 1364, size: 275061 -> 276425)
+- Other Avg: 13.009 (stat size: 10, size: 1438 -> 1448)
+Total Avg Lat: 0.789 (size: 1374, duration: 1.00008 s, approx miss rate: 0.0073)
+
+data pass 214
+Total miss rate: 0.0064, hit num: 1000984, miss num: 6475
+- Hit Avg: 0.678 (stat size: 1380, size: 276426 -> 277806)
+- Other Avg: 22.422 (stat size: 3, size: 1449 -> 1452)
+Total Avg Lat: 0.725 (size: 1383, duration: 1.00009 s, approx miss rate: 0.0022)
+
+data pass 215
+Total miss rate: 0.0068, hit num: 1035446, miss num: 7091
+- Hit Avg: 0.653 (stat size: 1437, size: 277807 -> 279244)
+- Other Avg: 12.608 (stat size: 12, size: 1453 -> 1465)
+Total Avg Lat: 0.752 (size: 1449, duration: 1.00008 s, approx miss rate: 0.0083)
+
+data pass 216
+Total miss rate: 0.0065, hit num: 1079439, miss num: 7116
+- Hit Avg: 0.620 (stat size: 1504, size: 279245 -> 280749)
+- Other Avg: 9.138 (stat size: 3, size: 1466 -> 1469)
+Total Avg Lat: 0.637 (size: 1507, duration: 1.00007 s, approx miss rate: 0.0020)
+
+data pass 217
+Total miss rate: 0.0059, hit num: 1095252, miss num: 6517
+- Hit Avg: 0.631 (stat size: 1502, size: 280750 -> 282252)
+- Other Avg: 10.776 (stat size: 18, size: 1470 -> 1488)
+Total Avg Lat: 0.752 (size: 1520, duration: 1.00007 s, approx miss rate: 0.0118)
+
+data pass 218
+Total miss rate: 0.0059, hit num: 1103025, miss num: 6563
+- Hit Avg: 0.617 (stat size: 1527, size: 282253 -> 283780)
+- Other Avg: 9.835 (stat size: 13, size: 1489 -> 1502)
+Total Avg Lat: 0.695 (size: 1540, duration: 1.00008 s, approx miss rate: 0.0084)
+
+data pass 219
+Total miss rate: 0.0058, hit num: 1104946, miss num: 6501
+- Hit Avg: 0.625 (stat size: 1540, size: 283781 -> 285321)
+- Other Avg: 10.851 (stat size: 8, size: 1503 -> 1511)
+Total Avg Lat: 0.678 (size: 1548, duration: 1.00008 s, approx miss rate: 0.0052)
+
+data pass 220
+Total miss rate: 0.0060, hit num: 1103746, miss num: 6664
+- Hit Avg: 0.619 (stat size: 1526, size: 285322 -> 286848)
+- Other Avg: 11.780 (stat size: 15, size: 1512 -> 1527)
+Total Avg Lat: 0.728 (size: 1541, duration: 1.00007 s, approx miss rate: 0.0097)
+
+data pass 221
+Total miss rate: 0.0055, hit num: 1114887, miss num: 6141
+- Hit Avg: 0.616 (stat size: 1540, size: 286849 -> 288389)
+- Other Avg: 9.195 (stat size: 2, size: 1528 -> 1530)
+Total Avg Lat: 0.627 (size: 1542, duration: 1.00008 s, approx miss rate: 0.0013)
+
+data pass 222
+Total miss rate: 0.0058, hit num: 1111697, miss num: 6435
+- Hit Avg: 0.618 (stat size: 1563, size: 288390 -> 289953)
+- Other Avg: 15.493 (stat size: 7, size: 1531 -> 1538)
+Total Avg Lat: 0.684 (size: 1570, duration: 1.00008 s, approx miss rate: 0.0045)
+
+data pass 223
+Total miss rate: 0.0056, hit num: 1119355, miss num: 6352
+- Hit Avg: 0.642 (stat size: 1566, size: 289954 -> 291520)
+- Other Avg: 15.787 (stat size: 4, size: 1539 -> 1543)
+Total Avg Lat: 0.681 (size: 1570, duration: 1.00008 s, approx miss rate: 0.0025)
+
+data pass 224
+Total miss rate: 0.0057, hit num: 1110387, miss num: 6312
+- Hit Avg: 0.605 (stat size: 1537, size: 291521 -> 293058)
+- Other Avg: 12.164 (stat size: 7, size: 1544 -> 1551)
+Total Avg Lat: 0.658 (size: 1544, duration: 1.00007 s, approx miss rate: 0.0045)
+
+data pass 225
+Total miss rate: 0.0060, hit num: 1112713, miss num: 6686
+- Hit Avg: 0.612 (stat size: 1565, size: 293059 -> 294624)
+- Other Avg: 12.034 (stat size: 6, size: 1552 -> 1558)
+Total Avg Lat: 0.656 (size: 1571, duration: 1.00007 s, approx miss rate: 0.0038)
+
+data pass 226
+Total miss rate: 0.0058, hit num: 1104222, miss num: 6471
+- Hit Avg: 0.613 (stat size: 1503, size: 294625 -> 296128)
+- Other Avg: 11.226 (stat size: 11, size: 1559 -> 1570)
+Total Avg Lat: 0.690 (size: 1514, duration: 1.00009 s, approx miss rate: 0.0073)
+
+data pass 227
+Total miss rate: 0.0062, hit num: 1105461, miss num: 6881
+- Hit Avg: 0.635 (stat size: 1539, size: 296129 -> 297668)
+- Other Avg: 9.385 (stat size: 7, size: 1571 -> 1578)
+Total Avg Lat: 0.674 (size: 1546, duration: 1.00008 s, approx miss rate: 0.0045)
+
+data pass 228
+Total miss rate: 0.0062, hit num: 1096074, miss num: 6871
+- Hit Avg: 0.606 (stat size: 1516, size: 297669 -> 299185)
+- Other Avg: 13.616 (stat size: 9, size: 1579 -> 1588)
+Total Avg Lat: 0.682 (size: 1525, duration: 1.00007 s, approx miss rate: 0.0059)
+
+data pass 229
+Total miss rate: 0.0061, hit num: 976488, miss num: 5967
+- Hit Avg: 0.698 (stat size: 1367, size: 299186 -> 300553)
+- Other Avg: 9.941 (stat size: 7, size: 1589 -> 1596)
+Total Avg Lat: 0.745 (size: 1374, duration: 1.00007 s, approx miss rate: 0.0051)
+
+data pass 230
+Total miss rate: 0.0056, hit num: 916991, miss num: 5132
+- Hit Avg: 0.735 (stat size: 1269, size: 300554 -> 301823)
+- Other Avg: 13.350 (stat size: 10, size: 1597 -> 1607)
+Total Avg Lat: 0.834 (size: 1279, duration: 1.00008 s, approx miss rate: 0.0078)
+
+data pass 231
+Total miss rate: 0.0059, hit num: 912740, miss num: 5393
+- Hit Avg: 0.739 (stat size: 1267, size: 301824 -> 303091)
+- Other Avg: 13.951 (stat size: 4, size: 1608 -> 1612)
+Total Avg Lat: 0.780 (size: 1271, duration: 1.00008 s, approx miss rate: 0.0031)
+
+data pass 232
+Total miss rate: 0.0056, hit num: 922774, miss num: 5209
+- Hit Avg: 0.738 (stat size: 1264, size: 303092 -> 304356)
+- Other Avg: 20.086 (stat size: 6, size: 1613 -> 1619)
+Total Avg Lat: 0.829 (size: 1270, duration: 1.00007 s, approx miss rate: 0.0047)
+
+data pass 233
+Total miss rate: 0.0058, hit num: 928644, miss num: 5463
+- Hit Avg: 0.730 (stat size: 1302, size: 304357 -> 305659)
+- Other Avg: 19.020 (stat size: 6, size: 1620 -> 1626)
+Total Avg Lat: 0.814 (size: 1308, duration: 1.00007 s, approx miss rate: 0.0046)
+
+data pass 234
+Total miss rate: 0.0054, hit num: 925739, miss num: 5016
+- Hit Avg: 0.747 (stat size: 1287, size: 305660 -> 306947)
+- Other Avg: 11.479 (stat size: 10, size: 1627 -> 1637)
+Total Avg Lat: 0.830 (size: 1297, duration: 1.00009 s, approx miss rate: 0.0077)
+
+data pass 235
+Total miss rate: 0.0068, hit num: 896914, miss num: 6176
+- Hit Avg: 0.774 (stat size: 1242, size: 306948 -> 308190)
+- Other Avg: 7.938 (stat size: 3, size: 1638 -> 1641)
+Total Avg Lat: 0.791 (size: 1245, duration: 1.00008 s, approx miss rate: 0.0024)
+
+data pass 236
+Total miss rate: 0.0067, hit num: 898927, miss num: 6066
+- Hit Avg: 0.757 (stat size: 1259, size: 308191 -> 309450)
+- Other Avg: 17.769 (stat size: 5, size: 1642 -> 1647)
+Total Avg Lat: 0.824 (size: 1264, duration: 1.00009 s, approx miss rate: 0.0040)
+
+data pass 237
+Total miss rate: 0.0056, hit num: 918251, miss num: 5159
+- Hit Avg: 0.757 (stat size: 1268, size: 309451 -> 310719)
+- Other Avg: 14.392 (stat size: 11, size: 1648 -> 1659)
+Total Avg Lat: 0.874 (size: 1279, duration: 1.00008 s, approx miss rate: 0.0086)
+
+data pass 238
+Total miss rate: 0.0051, hit num: 927839, miss num: 4727
+- Hit Avg: 0.744 (stat size: 1285, size: 310720 -> 312005)
+- Other Avg: 15.584 (stat size: 8, size: 1660 -> 1668)
+Total Avg Lat: 0.836 (size: 1293, duration: 1.00009 s, approx miss rate: 0.0062)
+
+data pass 239
+Total miss rate: 0.0055, hit num: 924372, miss num: 5081
+- Hit Avg: 0.749 (stat size: 1290, size: 312006 -> 313296)
+- Other Avg: 15.466 (stat size: 3, size: 1669 -> 1672)
+Total Avg Lat: 0.783 (size: 1293, duration: 1.00009 s, approx miss rate: 0.0023)
+
+data pass 240
+Total miss rate: 0.0052, hit num: 929935, miss num: 4837
+- Hit Avg: 0.742 (stat size: 1291, size: 313297 -> 314588)
+- Other Avg: 12.409 (stat size: 6, size: 1673 -> 1679)
+Total Avg Lat: 0.796 (size: 1297, duration: 1.00008 s, approx miss rate: 0.0046)
+
+data pass 241
+Total miss rate: 0.0053, hit num: 922094, miss num: 4917
+- Hit Avg: 0.768 (stat size: 1293, size: 314589 -> 315882)
+- Other Avg: 12.866 (stat size: 9, size: 1680 -> 1689)
+Total Avg Lat: 0.852 (size: 1302, duration: 1.00008 s, approx miss rate: 0.0069)
+
+data pass 242
+Total miss rate: 0.0055, hit num: 918246, miss num: 5060
+- Hit Avg: 0.775 (stat size: 1223, size: 315883 -> 317106)
+- Other Avg: 15.254 (stat size: 14, size: 1690 -> 1704)
+Total Avg Lat: 0.938 (size: 1237, duration: 1.00009 s, approx miss rate: 0.0113)
+
+data pass 243
+Total miss rate: 0.0055, hit num: 917970, miss num: 5075
+- Hit Avg: 0.774 (stat size: 1290, size: 317107 -> 318397)
+- Other Avg: 23.397 (stat size: 3, size: 1705 -> 1708)
+Total Avg Lat: 0.826 (size: 1293, duration: 1.00009 s, approx miss rate: 0.0023)
+
+data pass 244
+Total miss rate: 0.0055, hit num: 919451, miss num: 5082
+- Hit Avg: 0.742 (stat size: 1293, size: 318398 -> 319691)
+- Other Avg: 13.946 (stat size: 2, size: 1709 -> 1711)
+Total Avg Lat: 0.762 (size: 1295, duration: 1.00007 s, approx miss rate: 0.0015)
+
+data pass 245
+Total miss rate: 0.0056, hit num: 912043, miss num: 5125
+- Hit Avg: 0.768 (stat size: 1259, size: 319692 -> 320951)
+- Other Avg: 11.958 (stat size: 10, size: 1712 -> 1722)
+Total Avg Lat: 0.857 (size: 1269, duration: 1.00007 s, approx miss rate: 0.0079)
+
+data pass 246
+Total miss rate: 0.0053, hit num: 913779, miss num: 4890
+- Hit Avg: 0.748 (stat size: 1287, size: 320952 -> 322239)
+- Other Avg: 11.944 (stat size: 4, size: 1723 -> 1727)
+Total Avg Lat: 0.782 (size: 1291, duration: 1.00008 s, approx miss rate: 0.0031)
+
+data pass 247
+Total miss rate: 0.0055, hit num: 910950, miss num: 5000
+- Hit Avg: 0.759 (stat size: 1227, size: 322240 -> 323467)
+- Other Avg: 17.236 (stat size: 5, size: 1728 -> 1733)
+Total Avg Lat: 0.826 (size: 1232, duration: 1.00009 s, approx miss rate: 0.0041)
+
+data pass 248
+Total miss rate: 0.0066, hit num: 885144, miss num: 5925
+- Hit Avg: 0.783 (stat size: 1234, size: 323468 -> 324702)
+- Other Avg: 14.780 (stat size: 6, size: 1734 -> 1740)
+Total Avg Lat: 0.851 (size: 1240, duration: 1.00008 s, approx miss rate: 0.0048)
+
+data pass 249
+Total miss rate: 0.0070, hit num: 874859, miss num: 6125
+- Hit Avg: 0.761 (stat size: 1235, size: 324703 -> 325938)
+- Other Avg: 14.453 (stat size: 7, size: 1741 -> 1748)
+Total Avg Lat: 0.838 (size: 1242, duration: 1.00008 s, approx miss rate: 0.0056)
+
+data pass 250
+Total miss rate: 0.0054, hit num: 905876, miss num: 4931
+- Hit Avg: 0.753 (stat size: 1256, size: 325939 -> 327195)
+- Other Avg: 12.078 (stat size: 10, size: 1749 -> 1759)
+Total Avg Lat: 0.843 (size: 1266, duration: 1.00009 s, approx miss rate: 0.0079)
+
+data pass 251
+Total miss rate: 0.0054, hit num: 901420, miss num: 4891
+- Hit Avg: 0.764 (stat size: 1232, size: 327196 -> 328428)
+- Other Avg: 10.636 (stat size: 3, size: 1760 -> 1763)
+Total Avg Lat: 0.788 (size: 1235, duration: 1.00012 s, approx miss rate: 0.0024)
+
+data pass 252
+Total miss rate: 0.0055, hit num: 898733, miss num: 4997
+- Hit Avg: 0.760 (stat size: 1255, size: 328429 -> 329684)
+- Other Avg: 12.622 (stat size: 12, size: 1764 -> 1776)
+Total Avg Lat: 0.872 (size: 1267, duration: 1.00007 s, approx miss rate: 0.0095)
+
+data pass 253
+Total miss rate: 0.0057, hit num: 896470, miss num: 5181
+- Hit Avg: 0.772 (stat size: 1258, size: 329685 -> 330943)
+- Other Avg: 12.003 (stat size: 2, size: 1777 -> 1779)
+Total Avg Lat: 0.790 (size: 1260, duration: 1.00008 s, approx miss rate: 0.0016)
+
+data pass 254
+Total miss rate: 0.0055, hit num: 902415, miss num: 4967
+- Hit Avg: 0.761 (stat size: 1258, size: 330944 -> 332202)
+- Other Avg: 10.864 (stat size: 7, size: 1780 -> 1787)
+Total Avg Lat: 0.817 (size: 1265, duration: 1.00009 s, approx miss rate: 0.0055)
+
+data pass 255
+Total miss rate: 0.0049, hit num: 906561, miss num: 4440
+- Hit Avg: 0.758 (stat size: 1241, size: 332203 -> 333444)
+- Other Avg: 17.227 (stat size: 6, size: 1788 -> 1794)
+Total Avg Lat: 0.838 (size: 1247, duration: 1.00009 s, approx miss rate: 0.0048)
+
+data pass 256
+Total miss rate: 0.0049, hit num: 907254, miss num: 4479
+- Hit Avg: 0.764 (stat size: 1264, size: 333445 -> 334709)
+- Other Avg: 13.547 (stat size: 9, size: 1795 -> 1804)
+Total Avg Lat: 0.854 (size: 1273, duration: 1.00008 s, approx miss rate: 0.0071)
+
+data pass 257
+Total miss rate: 0.0047, hit num: 906373, miss num: 4314
+- Hit Avg: 0.785 (stat size: 1243, size: 334710 -> 335953)
+- Other Avg: 13.845 (stat size: 5, size: 1805 -> 1810)
+Total Avg Lat: 0.838 (size: 1248, duration: 1.00008 s, approx miss rate: 0.0040)
+
+data pass 258
+Total miss rate: 0.0049, hit num: 911293, miss num: 4473
+- Hit Avg: 0.757 (stat size: 1249, size: 335954 -> 337203)
+- Other Avg: 13.561 (stat size: 3, size: 1811 -> 1814)
+Total Avg Lat: 0.788 (size: 1252, duration: 1.00009 s, approx miss rate: 0.0024)
+
+data pass 259
+Total miss rate: 0.0051, hit num: 902109, miss num: 4638
+- Hit Avg: 0.769 (stat size: 1272, size: 337204 -> 338476)
+- Other Avg: 10.695 (stat size: 6, size: 1815 -> 1821)
+Total Avg Lat: 0.815 (size: 1278, duration: 1.00009 s, approx miss rate: 0.0047)
+
+data pass 260
+Total miss rate: 0.0056, hit num: 892759, miss num: 5001
+- Hit Avg: 0.776 (stat size: 1254, size: 338477 -> 339731)
+- Other Avg: 16.752 (stat size: 7, size: 1822 -> 1829)
+Total Avg Lat: 0.865 (size: 1261, duration: 1.00008 s, approx miss rate: 0.0056)
+
+data pass 261
+Total miss rate: 0.0058, hit num: 885038, miss num: 5205
+- Hit Avg: 0.838 (stat size: 1206, size: 339732 -> 340938)
+- Other Avg: 14.034 (stat size: 7, size: 1830 -> 1837)
+Total Avg Lat: 0.914 (size: 1213, duration: 1.00008 s, approx miss rate: 0.0058)
+
+data pass 262
+Total miss rate: 0.0058, hit num: 899981, miss num: 5223
+- Hit Avg: 0.765 (stat size: 1265, size: 340939 -> 342204)
+- Other Avg: 13.240 (stat size: 11, size: 1838 -> 1849)
+Total Avg Lat: 0.873 (size: 1276, duration: 1.00009 s, approx miss rate: 0.0086)
+
+data pass 263
+Total miss rate: 0.0055, hit num: 951191, miss num: 5281
+- Hit Avg: 0.728 (stat size: 1308, size: 342205 -> 343513)
+- Other Avg: 15.986 (stat size: 2, size: 1850 -> 1852)
+Total Avg Lat: 0.751 (size: 1310, duration: 1.00008 s, approx miss rate: 0.0015)
+
+data pass 264
+Total miss rate: 0.0054, hit num: 991153, miss num: 5415
+- Hit Avg: 0.679 (stat size: 1369, size: 343514 -> 344883)
+- Other Avg: 25.656 (stat size: 6, size: 1853 -> 1859)
+Total Avg Lat: 0.788 (size: 1375, duration: 1.00007 s, approx miss rate: 0.0044)
+
+data pass 265
+Total miss rate: 0.0056, hit num: 1028518, miss num: 5768
+- Hit Avg: 0.668 (stat size: 1437, size: 344884 -> 346321)
+- Other Avg: 13.626 (stat size: 9, size: 1860 -> 1869)
+Total Avg Lat: 0.748 (size: 1446, duration: 1.00008 s, approx miss rate: 0.0062)
+
+data pass 266
+Total miss rate: 0.0056, hit num: 1082455, miss num: 6139
+- Hit Avg: 0.633 (stat size: 1491, size: 346322 -> 347813)
+- Other Avg: 11.197 (stat size: 2, size: 1870 -> 1872)
+Total Avg Lat: 0.647 (size: 1493, duration: 1.00017 s, approx miss rate: 0.0013)
+
+data pass 267
+Total miss rate: 0.0058, hit num: 1099704, miss num: 6425
+- Hit Avg: 0.614 (stat size: 1537, size: 347814 -> 349351)
+- Other Avg: 11.340 (stat size: 4, size: 1873 -> 1877)
+Total Avg Lat: 0.641 (size: 1541, duration: 1.00008 s, approx miss rate: 0.0026)
+
+data pass 268
+Total miss rate: 0.0057, hit num: 1102205, miss num: 6271
+- Hit Avg: 0.627 (stat size: 1535, size: 349352 -> 350887)
+- Other Avg: 13.855 (stat size: 13, size: 1878 -> 1891)
+Total Avg Lat: 0.738 (size: 1548, duration: 1.00007 s, approx miss rate: 0.0084)
+
+data pass 269
+Total miss rate: 0.0058, hit num: 1098307, miss num: 6360
+- Hit Avg: 0.630 (stat size: 1538, size: 350888 -> 352426)
+- Other Avg: 11.826 (stat size: 14, size: 1892 -> 1906)
+Total Avg Lat: 0.731 (size: 1552, duration: 1.00007 s, approx miss rate: 0.0090)
+
+data pass 270
+Total miss rate: 0.0056, hit num: 1101883, miss num: 6189
+- Hit Avg: 0.625 (stat size: 1515, size: 352427 -> 353942)
+- Other Avg: 8.162 (stat size: 2, size: 1907 -> 1909)
+Total Avg Lat: 0.635 (size: 1517, duration: 1.00008 s, approx miss rate: 0.0013)
+
+data pass 271
+Total miss rate: 0.0056, hit num: 1115613, miss num: 6293
+- Hit Avg: 0.610 (stat size: 1540, size: 353943 -> 355483)
+- Other Avg: 11.692 (stat size: 13, size: 1910 -> 1923)
+Total Avg Lat: 0.703 (size: 1553, duration: 1.00007 s, approx miss rate: 0.0084)
+
+data pass 272
+Total miss rate: 0.0055, hit num: 1115937, miss num: 6190
+- Hit Avg: 0.611 (stat size: 1545, size: 355484 -> 357029)
+- Other Avg: 16.515 (stat size: 10, size: 1924 -> 1934)
+Total Avg Lat: 0.714 (size: 1555, duration: 1.00007 s, approx miss rate: 0.0064)
+
+data pass 273
+Total miss rate: 0.0052, hit num: 1124935, miss num: 5868
+- Hit Avg: 0.608 (stat size: 1540, size: 357030 -> 358570)
+- Other Avg: 11.820 (stat size: 11, size: 1935 -> 1946)
+Total Avg Lat: 0.688 (size: 1551, duration: 1.00007 s, approx miss rate: 0.0071)
+
+data pass 274
+Total miss rate: 0.0053, hit num: 1119983, miss num: 5968
+- Hit Avg: 0.610 (stat size: 1579, size: 358571 -> 360150)
+- Other Avg: 14.099 (stat size: 7, size: 1947 -> 1954)
+Total Avg Lat: 0.670 (size: 1586, duration: 1.00008 s, approx miss rate: 0.0044)
+
+data pass 275
+Total miss rate: 0.0050, hit num: 1133008, miss num: 5667
+- Hit Avg: 0.613 (stat size: 1573, size: 360151 -> 361724)
+- Other Avg: 12.973 (stat size: 15, size: 1955 -> 1970)
+Total Avg Lat: 0.730 (size: 1588, duration: 1.00008 s, approx miss rate: 0.0094)
+
+data pass 276
+Total miss rate: 0.0050, hit num: 1131193, miss num: 5643
+- Hit Avg: 0.623 (stat size: 1551, size: 361725 -> 363276)
+- Other Avg: 12.164 (stat size: 6, size: 1971 -> 1977)
+Total Avg Lat: 0.667 (size: 1557, duration: 1.00008 s, approx miss rate: 0.0039)
+
+data pass 277
+Total miss rate: 0.0047, hit num: 1045162, miss num: 4939
+- Hit Avg: 0.665 (stat size: 1473, size: 363277 -> 364750)
+- Other Avg: 13.070 (stat size: 6, size: 1978 -> 1984)
+Total Avg Lat: 0.715 (size: 1479, duration: 1.00008 s, approx miss rate: 0.0041)
+
+data pass 278
+Total miss rate: 0.0046, hit num: 919060, miss num: 4238
+- Hit Avg: 0.759 (stat size: 1261, size: 364751 -> 366012)
+- Other Avg: 10.925 (stat size: 11, size: 1985 -> 1996)
+Total Avg Lat: 0.847 (size: 1272, duration: 1.00009 s, approx miss rate: 0.0086)
+
+data pass 279
+Total miss rate: 0.0046, hit num: 920847, miss num: 4221
+- Hit Avg: 0.749 (stat size: 1265, size: 366013 -> 367278)
+- Other Avg: 13.876 (stat size: 6, size: 1997 -> 2003)
+Total Avg Lat: 0.811 (size: 1271, duration: 1.00009 s, approx miss rate: 0.0047)
+
+data pass 280
+Total miss rate: 0.0045, hit num: 924004, miss num: 4137
+- Hit Avg: 0.741 (stat size: 1275, size: 367279 -> 368554)
+- Other Avg: 10.184 (stat size: 5, size: 2004 -> 2009)
+Total Avg Lat: 0.778 (size: 1280, duration: 1.00008 s, approx miss rate: 0.0039)
+
+data pass 281
+Total miss rate: 0.0050, hit num: 911767, miss num: 4536
+- Hit Avg: 0.777 (stat size: 1293, size: 368555 -> 369848)
+- Other Avg: 9.763 (stat size: 1, size: 2010 -> 2011)
+Total Avg Lat: 0.784 (size: 1294, duration: 1.00008 s, approx miss rate: 0.0008)
+
+data pass 282
+Total miss rate: 0.0063, hit num: 882865, miss num: 5585
+- Hit Avg: 0.749 (stat size: 1201, size: 369849 -> 371050)
+- Other Avg: 11.726 (stat size: 8, size: 2012 -> 2020)
+Total Avg Lat: 0.822 (size: 1209, duration: 1.00009 s, approx miss rate: 0.0066)
+
+data pass 283
+Total miss rate: 0.0069, hit num: 872737, miss num: 6034
+- Hit Avg: 0.761 (stat size: 1230, size: 371051 -> 372281)
+- Other Avg: 17.112 (stat size: 7, size: 2021 -> 2028)
+Total Avg Lat: 0.854 (size: 1237, duration: 1.00009 s, approx miss rate: 0.0057)
+
+data pass 284
+Total miss rate: 0.0053, hit num: 899224, miss num: 4791
+- Hit Avg: 0.784 (stat size: 1223, size: 372282 -> 373505)
+- Other Avg: 19.424 (stat size: 8, size: 2029 -> 2037)
+Total Avg Lat: 0.906 (size: 1231, duration: 1.00008 s, approx miss rate: 0.0065)
+
+data pass 285
+Total miss rate: 0.0052, hit num: 899402, miss num: 4741
+- Hit Avg: 0.780 (stat size: 1289, size: 373506 -> 374795)
+- Other Avg: 16.321 (stat size: 5, size: 2038 -> 2043)
+Total Avg Lat: 0.840 (size: 1294, duration: 1.00008 s, approx miss rate: 0.0039)
+
+data pass 286
+Total miss rate: 0.0053, hit num: 897809, miss num: 4809
+- Hit Avg: 0.767 (stat size: 1230, size: 374796 -> 376026)
+- Other Avg: 9.258 (stat size: 4, size: 2044 -> 2048)
+Total Avg Lat: 0.795 (size: 1234, duration: 1.00008 s, approx miss rate: 0.0032)
+
+data pass 287
+Total miss rate: 0.0052, hit num: 902389, miss num: 4733
+- Hit Avg: 0.780 (stat size: 1260, size: 376027 -> 377287)
+- Other Avg: 12.988 (stat size: 3, size: 2049 -> 2052)
+Total Avg Lat: 0.809 (size: 1263, duration: 1.00009 s, approx miss rate: 0.0024)
+
+data pass 288
+Total miss rate: 0.0061, hit num: 879676, miss num: 5361
+- Hit Avg: 0.783 (stat size: 1199, size: 377288 -> 378487)
+- Other Avg: 12.802 (stat size: 8, size: 2053 -> 2061)
+Total Avg Lat: 0.863 (size: 1207, duration: 1.00008 s, approx miss rate: 0.0066)
+
+data pass 289
+Total miss rate: 0.0066, hit num: 866543, miss num: 5776
+- Hit Avg: 0.783 (stat size: 1205, size: 378488 -> 379693)
+- Other Avg: 17.821 (stat size: 7, size: 2062 -> 2069)
+Total Avg Lat: 0.882 (size: 1212, duration: 1.00008 s, approx miss rate: 0.0058)
+
+data pass 290
+Total miss rate: 0.0068, hit num: 862945, miss num: 5913
+- Hit Avg: 0.776 (stat size: 1195, size: 379694 -> 380889)
+- Other Avg: 10.068 (stat size: 11, size: 2070 -> 2081)
+Total Avg Lat: 0.860 (size: 1206, duration: 1.00009 s, approx miss rate: 0.0091)
+
+data pass 291
+Total miss rate: 0.0055, hit num: 884172, miss num: 4859
+- Hit Avg: 0.785 (stat size: 1228, size: 380890 -> 382118)
+- Other Avg: 16.171 (stat size: 4, size: 2082 -> 2086)
+Total Avg Lat: 0.835 (size: 1232, duration: 1.00019 s, approx miss rate: 0.0032)
+
+data pass 292
+Total miss rate: 0.0058, hit num: 877674, miss num: 5162
+- Hit Avg: 0.784 (stat size: 1222, size: 382119 -> 383341)
+- Other Avg: 14.380 (stat size: 8, size: 2087 -> 2095)
+Total Avg Lat: 0.872 (size: 1230, duration: 1.00008 s, approx miss rate: 0.0065)
+
+data pass 293
+Total miss rate: 0.0057, hit num: 877488, miss num: 5019
+- Hit Avg: 0.777 (stat size: 1218, size: 383342 -> 384560)
+- Other Avg: 18.154 (stat size: 3, size: 2096 -> 2099)
+Total Avg Lat: 0.820 (size: 1221, duration: 1.00008 s, approx miss rate: 0.0025)
+
+data pass 294
+Total miss rate: 0.0055, hit num: 875822, miss num: 4808
+- Hit Avg: 0.785 (stat size: 1227, size: 384561 -> 385788)
+- Other Avg: 12.616 (stat size: 5, size: 2100 -> 2105)
+Total Avg Lat: 0.833 (size: 1232, duration: 1.00009 s, approx miss rate: 0.0041)
+
+data pass 295
+Total miss rate: 0.0052, hit num: 878801, miss num: 4634
+- Hit Avg: 0.776 (stat size: 1201, size: 385789 -> 386990)
+- Other Avg: 9.977 (stat size: 3, size: 2106 -> 2109)
+Total Avg Lat: 0.799 (size: 1204, duration: 1.00009 s, approx miss rate: 0.0025)
+
+data pass 296
+Total miss rate: 0.0055, hit num: 871293, miss num: 4840
+- Hit Avg: 0.777 (stat size: 1225, size: 386991 -> 388216)
+- Other Avg: 16.087 (stat size: 6, size: 2110 -> 2116)
+Total Avg Lat: 0.851 (size: 1231, duration: 1.00008 s, approx miss rate: 0.0049)
+
+data pass 297
+Total miss rate: 0.0054, hit num: 872198, miss num: 4711
+- Hit Avg: 0.806 (stat size: 1218, size: 388217 -> 389435)
+- Other Avg: 15.168 (stat size: 8, size: 2117 -> 2125)
+Total Avg Lat: 0.899 (size: 1226, duration: 1.00009 s, approx miss rate: 0.0065)
+
+data pass 298
+Total miss rate: 0.0052, hit num: 873555, miss num: 4590
+- Hit Avg: 0.817 (stat size: 1192, size: 389436 -> 390628)
+- Other Avg: 13.501 (stat size: 6, size: 2126 -> 2132)
+Total Avg Lat: 0.881 (size: 1198, duration: 1.00009 s, approx miss rate: 0.0050)
+
+data pass 299
+Total miss rate: 0.0052, hit num: 872606, miss num: 4541
+- Hit Avg: 0.796 (stat size: 1226, size: 390629 -> 391855)
+- Other Avg: 16.449 (stat size: 3, size: 2133 -> 2136)
+Total Avg Lat: 0.834 (size: 1229, duration: 1.00009 s, approx miss rate: 0.0024)
+
+data pass 300
+Total miss rate: 0.0053, hit num: 870748, miss num: 4658
+- Hit Avg: 0.781 (stat size: 1197, size: 391856 -> 393053)
+- Other Avg: 17.317 (stat size: 3, size: 2137 -> 2140)
+Total Avg Lat: 0.823 (size: 1200, duration: 1.00008 s, approx miss rate: 0.0025)
+
+data pass 301
+Total miss rate: 0.0053, hit num: 868780, miss num: 4635
+- Hit Avg: 0.790 (stat size: 1188, size: 393054 -> 394242)
+- Other Avg: 19.242 (stat size: 8, size: 2141 -> 2149)
+Total Avg Lat: 0.913 (size: 1196, duration: 1.00008 s, approx miss rate: 0.0067)
+
+data pass 302
+Total miss rate: 0.0053, hit num: 867458, miss num: 4620
+- Hit Avg: 0.796 (stat size: 1217, size: 394243 -> 395460)
+- Other Avg: 13.932 (stat size: 8, size: 2150 -> 2158)
+Total Avg Lat: 0.881 (size: 1225, duration: 1.00008 s, approx miss rate: 0.0065)
+
+data pass 303
+Total miss rate: 0.0054, hit num: 863256, miss num: 4716
+- Hit Avg: 0.790 (stat size: 1195, size: 395461 -> 396656)
+- Other Avg: 15.013 (stat size: 8, size: 2159 -> 2167)
+Total Avg Lat: 0.884 (size: 1203, duration: 1.00009 s, approx miss rate: 0.0067)
+
+data pass 304
+Total miss rate: 0.0051, hit num: 863713, miss num: 4447
+- Hit Avg: 0.782 (stat size: 1219, size: 396657 -> 397876)
+- Other Avg: 11.106 (stat size: 5, size: 2168 -> 2173)
+Total Avg Lat: 0.825 (size: 1224, duration: 1.00008 s, approx miss rate: 0.0041)
+
+data pass 305
+Total miss rate: 0.0055, hit num: 863503, miss num: 4754
+- Hit Avg: 0.807 (stat size: 1195, size: 397877 -> 399072)
+- Other Avg: 10.984 (stat size: 5, size: 2174 -> 2179)
+Total Avg Lat: 0.850 (size: 1200, duration: 1.00008 s, approx miss rate: 0.0042)
+
+data pass 306
+Total miss rate: 0.0057, hit num: 905713, miss num: 5177
+- Hit Avg: 0.739 (stat size: 1238, size: 399073 -> 400311)
+- Other Avg: 16.147 (stat size: 4, size: 2180 -> 2184)
+Total Avg Lat: 0.789 (size: 1242, duration: 1.00018 s, approx miss rate: 0.0032)
+
+data pass 307
+Total miss rate: 0.0060, hit num: 943444, miss num: 5674
+- Hit Avg: 0.719 (stat size: 1308, size: 400312 -> 401620)
+- Other Avg: 11.953 (stat size: 2, size: 2185 -> 2187)
+Total Avg Lat: 0.736 (size: 1310, duration: 1.00008 s, approx miss rate: 0.0015)
+
+data pass 308
+Total miss rate: 0.0065, hit num: 972083, miss num: 6323
+- Hit Avg: 0.738 (stat size: 1368, size: 401621 -> 402989)
+- Other Avg: 17.827 (stat size: 8, size: 2188 -> 2196)
+Total Avg Lat: 0.837 (size: 1376, duration: 1.00007 s, approx miss rate: 0.0058)
+
+data pass 309
+Total miss rate: 0.0066, hit num: 1004101, miss num: 6694
+- Hit Avg: 0.676 (stat size: 1402, size: 402990 -> 404392)
+- Other Avg: 11.784 (stat size: 7, size: 2197 -> 2204)
+Total Avg Lat: 0.731 (size: 1409, duration: 1.00007 s, approx miss rate: 0.0050)
+
+data pass 310
+Total miss rate: 0.0068, hit num: 1039871, miss num: 7105
+- Hit Avg: 0.633 (stat size: 1443, size: 404393 -> 405836)
+- Other Avg: 7.984 (stat size: 9, size: 2205 -> 2214)
+Total Avg Lat: 0.678 (size: 1452, duration: 1.00008 s, approx miss rate: 0.0062)
+
+data pass 311
+Total miss rate: 0.0071, hit num: 1060310, miss num: 7536
+- Hit Avg: 0.616 (stat size: 1482, size: 405837 -> 407319)
+- Other Avg: 18.995 (stat size: 6, size: 2215 -> 2221)
+Total Avg Lat: 0.690 (size: 1488, duration: 1.00009 s, approx miss rate: 0.0040)
+
+data pass 312
+Total miss rate: 0.0067, hit num: 846875, miss num: 5726
+- Hit Avg: 0.825 (stat size: 1142, size: 407320 -> 408462)
+- Other Avg: 9.787 (stat size: 5, size: 2222 -> 2227)
+Total Avg Lat: 0.864 (size: 1147, duration: 1.00008 s, approx miss rate: 0.0044)
+
+data pass 313
+Total miss rate: 0.0064, hit num: 839677, miss num: 5371
+- Hit Avg: 0.788 (stat size: 1192, size: 408463 -> 409655)
+- Other Avg: 25.442 (stat size: 6, size: 2228 -> 2234)
+Total Avg Lat: 0.911 (size: 1198, duration: 1.00009 s, approx miss rate: 0.0050)
+
+data pass 314
+Total miss rate: 0.0064, hit num: 842412, miss num: 5424
+- Hit Avg: 0.812 (stat size: 1164, size: 409656 -> 410820)
+- Other Avg: 15.445 (stat size: 4, size: 2235 -> 2239)
+Total Avg Lat: 0.862 (size: 1168, duration: 1.00009 s, approx miss rate: 0.0034)
+
+data pass 315
+Total miss rate: 0.0062, hit num: 865116, miss num: 5430
+- Hit Avg: 0.828 (stat size: 1190, size: 410821 -> 412011)
+- Other Avg: 14.269 (stat size: 10, size: 2240 -> 2250)
+Total Avg Lat: 0.940 (size: 1200, duration: 1.00009 s, approx miss rate: 0.0083)
+
+data pass 316
+Total miss rate: 0.0058, hit num: 924509, miss num: 5413
+- Hit Avg: 0.755 (stat size: 1293, size: 412012 -> 413305)
+- Other Avg: 12.404 (stat size: 13, size: 2251 -> 2264)
+Total Avg Lat: 0.871 (size: 1306, duration: 1.00008 s, approx miss rate: 0.0100)
+
+data pass 317
+Total miss rate: 0.0057, hit num: 966519, miss num: 5579
+- Hit Avg: 0.709 (stat size: 1329, size: 413306 -> 414635)
+- Other Avg: 17.347 (stat size: 8, size: 2265 -> 2273)
+Total Avg Lat: 0.808 (size: 1337, duration: 1.00008 s, approx miss rate: 0.0060)
+
+data pass 318
+Total miss rate: 0.0054, hit num: 1012163, miss num: 5493
+- Hit Avg: 0.679 (stat size: 1423, size: 414636 -> 416059)
+- Other Avg: 13.552 (stat size: 9, size: 2274 -> 2283)
+Total Avg Lat: 0.760 (size: 1432, duration: 1.00008 s, approx miss rate: 0.0063)
+
+data pass 319
+Total miss rate: 0.0056, hit num: 1047616, miss num: 5875
+- Hit Avg: 0.651 (stat size: 1432, size: 416060 -> 417492)
+- Other Avg: 11.681 (stat size: 7, size: 2284 -> 2291)
+Total Avg Lat: 0.704 (size: 1439, duration: 1.00008 s, approx miss rate: 0.0049)
+
+data pass 320
+Total miss rate: 0.0055, hit num: 1102983, miss num: 6138
+- Hit Avg: 0.632 (stat size: 1532, size: 417493 -> 419025)
+- Other Avg: 12.365 (stat size: 3, size: 2292 -> 2295)
+Total Avg Lat: 0.655 (size: 1535, duration: 1.00007 s, approx miss rate: 0.0020)
+
+data pass 321
+Total miss rate: 0.0057, hit num: 1113850, miss num: 6380
+- Hit Avg: 0.607 (stat size: 1566, size: 419026 -> 420592)
+- Other Avg: 12.330 (stat size: 7, size: 2296 -> 2303)
+Total Avg Lat: 0.659 (size: 1573, duration: 1.00007 s, approx miss rate: 0.0045)
+
+data pass 322
+Total miss rate: 0.0052, hit num: 1126146, miss num: 5915
+- Hit Avg: 0.602 (stat size: 1567, size: 420593 -> 422160)
+- Other Avg: 10.597 (stat size: 1, size: 2304 -> 2305)
+Total Avg Lat: 0.608 (size: 1568, duration: 1.00008 s, approx miss rate: 0.0006)
+
+data pass 323
+Total miss rate: 0.0038, hit num: 1157320, miss num: 4434
+- Hit Avg: 0.628 (stat size: 1619, size: 422161 -> 423780)
+- Other Avg: 13.067 (stat size: 2, size: 2306 -> 2308)
+Total Avg Lat: 0.643 (size: 1621, duration: 1.00008 s, approx miss rate: 0.0012)
+
+data pass 324
+Total miss rate: 0.0040, hit num: 1154611, miss num: 4656
+- Hit Avg: 0.609 (stat size: 1578, size: 423781 -> 425359)
+- Other Avg: 16.483 (stat size: 4, size: 2309 -> 2313)
+Total Avg Lat: 0.649 (size: 1582, duration: 1.00007 s, approx miss rate: 0.0025)
+
+data pass 325
+Total miss rate: 0.0038, hit num: 1156126, miss num: 4463
+- Hit Avg: 0.609 (stat size: 1611, size: 425360 -> 426971)
+- Other Avg: 9.792 (stat size: 3, size: 2314 -> 2317)
+Total Avg Lat: 0.626 (size: 1614, duration: 1.00007 s, approx miss rate: 0.0019)
+
+data pass 326
+Total miss rate: 0.0039, hit num: 1154991, miss num: 4500
+- Hit Avg: 0.616 (stat size: 1609, size: 426972 -> 428581)
+- Other Avg: 12.615 (stat size: 6, size: 2318 -> 2324)
+Total Avg Lat: 0.660 (size: 1615, duration: 1.00018 s, approx miss rate: 0.0037)
+
+data pass 327
+Total miss rate: 0.0039, hit num: 1155465, miss num: 4515
+- Hit Avg: 0.617 (stat size: 1610, size: 428582 -> 430192)
+- Other Avg: 12.028 (stat size: 3, size: 2325 -> 2328)
+Total Avg Lat: 0.638 (size: 1613, duration: 1.00007 s, approx miss rate: 0.0019)
+
+data pass 328
+Total miss rate: 0.0040, hit num: 1151879, miss num: 4653
+- Hit Avg: 0.615 (stat size: 1590, size: 430193 -> 431783)
+- Other Avg: 11.336 (stat size: 7, size: 2329 -> 2336)
+Total Avg Lat: 0.662 (size: 1597, duration: 1.00008 s, approx miss rate: 0.0044)
+
+data pass 329
+Total miss rate: 0.0060, hit num: 1097860, miss num: 6655
+- Hit Avg: 0.611 (stat size: 1521, size: 431784 -> 433305)
+- Other Avg: 12.690 (stat size: 14, size: 2337 -> 2351)
+Total Avg Lat: 0.721 (size: 1535, duration: 1.00007 s, approx miss rate: 0.0091)
+
+data pass 330
+Total miss rate: 0.0071, hit num: 1070428, miss num: 7630
+- Hit Avg: 0.627 (stat size: 1476, size: 433306 -> 434782)
+- Other Avg: 12.880 (stat size: 13, size: 2352 -> 2365)
+Total Avg Lat: 0.734 (size: 1489, duration: 1.00008 s, approx miss rate: 0.0087)
+
+data pass 331
+Total miss rate: 0.0044, hit num: 1131737, miss num: 5033
+- Hit Avg: 0.615 (stat size: 1586, size: 434783 -> 436369)
+- Other Avg: 10.560 (stat size: 7, size: 2366 -> 2373)
+Total Avg Lat: 0.659 (size: 1593, duration: 1.00010 s, approx miss rate: 0.0044)
+
+data pass 332
+Total miss rate: 0.0043, hit num: 1137784, miss num: 4923
+- Hit Avg: 0.610 (stat size: 1573, size: 436370 -> 437943)
+- Other Avg: 15.684 (stat size: 7, size: 2374 -> 2381)
+Total Avg Lat: 0.677 (size: 1580, duration: 1.00007 s, approx miss rate: 0.0044)
+
+data pass 333
+Total miss rate: 0.0045, hit num: 1131815, miss num: 5066
+- Hit Avg: 0.604 (stat size: 1566, size: 437944 -> 439510)
+- Other Avg: 12.170 (stat size: 4, size: 2382 -> 2386)
+Total Avg Lat: 0.634 (size: 1570, duration: 1.00007 s, approx miss rate: 0.0025)
+
+data pass 334
+Total miss rate: 0.0045, hit num: 1133950, miss num: 5081
+- Hit Avg: 0.624 (stat size: 1579, size: 439511 -> 441090)
+- Other Avg: 21.176 (stat size: 5, size: 2387 -> 2392)
+Total Avg Lat: 0.689 (size: 1584, duration: 1.00008 s, approx miss rate: 0.0032)
+
+data pass 335
+Total miss rate: 0.0047, hit num: 1127749, miss num: 5365
+- Hit Avg: 0.606 (stat size: 1579, size: 441091 -> 442670)
+- Other Avg: 10.049 (stat size: 3, size: 2393 -> 2396)
+Total Avg Lat: 0.624 (size: 1582, duration: 1.00008 s, approx miss rate: 0.0019)
+
+data pass 336
+Total miss rate: 0.0046, hit num: 1134019, miss num: 5237
+- Hit Avg: 0.610 (stat size: 1565, size: 442671 -> 444236)
+- Other Avg: 11.146 (stat size: 7, size: 2397 -> 2404)
+Total Avg Lat: 0.657 (size: 1572, duration: 1.00016 s, approx miss rate: 0.0045)
+
+data pass 337
+Total miss rate: 0.0044, hit num: 1137159, miss num: 4974
+- Hit Avg: 0.616 (stat size: 1571, size: 444237 -> 445808)
+- Other Avg: 20.724 (stat size: 4, size: 2405 -> 2409)
+Total Avg Lat: 0.667 (size: 1575, duration: 1.00007 s, approx miss rate: 0.0025)
+
+data pass 338
+Total miss rate: 0.0043, hit num: 1118691, miss num: 4805
+- Hit Avg: 0.620 (stat size: 1557, size: 445809 -> 447366)
+- Other Avg: 25.992 (stat size: 4, size: 2410 -> 2414)
+Total Avg Lat: 0.685 (size: 1561, duration: 1.00008 s, approx miss rate: 0.0026)
+
+data pass 339
+Total miss rate: 0.0046, hit num: 880645, miss num: 4051
+- Hit Avg: 0.790 (stat size: 1228, size: 447367 -> 448595)
+- Other None
+Total Avg Lat: 0.790 (size: 1228, duration: 1.00009 s, approx miss rate: 0.0000)
+
+data pass 340
+Total miss rate: 0.0047, hit num: 875122, miss num: 4105
+- Hit Avg: 0.819 (stat size: 1227, size: 448596 -> 449823)
+- Other Avg: 16.621 (stat size: 6, size: 2415 -> 2421)
+Total Avg Lat: 0.896 (size: 1233, duration: 1.00008 s, approx miss rate: 0.0049)
+
+data pass 341
+Total miss rate: 0.0045, hit num: 874044, miss num: 3936
+- Hit Avg: 0.790 (stat size: 1203, size: 449824 -> 451027)
+- Other Avg: 13.581 (stat size: 4, size: 2422 -> 2426)
+Total Avg Lat: 0.832 (size: 1207, duration: 1.00008 s, approx miss rate: 0.0033)
+
+data pass 342
+Total miss rate: 0.0043, hit num: 875653, miss num: 3753
+- Hit Avg: 0.812 (stat size: 1224, size: 451028 -> 452252)
+- Other Avg: 15.371 (stat size: 6, size: 2427 -> 2433)
+Total Avg Lat: 0.883 (size: 1230, duration: 1.00009 s, approx miss rate: 0.0049)
+
+data pass 343
+Total miss rate: 0.0045, hit num: 855668, miss num: 3859
+- Hit Avg: 0.813 (stat size: 1178, size: 452253 -> 453431)
+- Other Avg: 16.767 (stat size: 6, size: 2434 -> 2440)
+Total Avg Lat: 0.894 (size: 1184, duration: 1.00009 s, approx miss rate: 0.0051)
+
+data pass 344
+Total miss rate: 0.0051, hit num: 601131, miss num: 3076
+- Hit Avg: 0.721 (stat size: 831, size: 453432 -> 454263)
+- Other Avg: 9.424 (stat size: 4, size: 2441 -> 2445)
+Total Avg Lat: 0.763 (size: 835, duration: 1.00008 s, approx miss rate: 0.0048)
+
+data pass 345
+Total miss rate: 0.0054, hit num: 588661, miss num: 3206
+- Hit Avg: 0.722 (stat size: 811, size: 454264 -> 455075)
+- Other Avg: 12.041 (stat size: 5, size: 2446 -> 2451)
+Total Avg Lat: 0.791 (size: 816, duration: 1.00008 s, approx miss rate: 0.0061)
+
+data pass 346
+Total miss rate: 0.0052, hit num: 588067, miss num: 3070
+- Hit Avg: 0.739 (stat size: 815, size: 455076 -> 455891)
+- Other Avg: 8.552 (stat size: 4, size: 2452 -> 2456)
+Total Avg Lat: 0.777 (size: 819, duration: 1.00009 s, approx miss rate: 0.0049)
+
+data pass 347
+Total miss rate: 0.0055, hit num: 585461, miss num: 3225
+- Hit Avg: 0.729 (stat size: 813, size: 455892 -> 456705)
+- Other Avg: 11.714 (stat size: 3, size: 2457 -> 2460)
+Total Avg Lat: 0.769 (size: 816, duration: 1.00009 s, approx miss rate: 0.0037)
+
+data pass 348
+Total miss rate: 0.0057, hit num: 581403, miss num: 3306
+- Hit Avg: 0.744 (stat size: 813, size: 456706 -> 457519)
+- Other Avg: 11.048 (stat size: 5, size: 2461 -> 2466)
+Total Avg Lat: 0.807 (size: 818, duration: 1.00008 s, approx miss rate: 0.0061)
+
+data pass 349
+Total miss rate: 0.0057, hit num: 580388, miss num: 3353
+- Hit Avg: 0.781 (stat size: 810, size: 457520 -> 458330)
+- Other Avg: 9.603 (stat size: 4, size: 2467 -> 2471)
+Total Avg Lat: 0.824 (size: 814, duration: 1.00008 s, approx miss rate: 0.0049)
+
+data pass 350
+Total miss rate: 0.0059, hit num: 578569, miss num: 3448
+- Hit Avg: 0.732 (stat size: 785, size: 458331 -> 459116)
+- Other Avg: 7.924 (stat size: 8, size: 2472 -> 2480)
+Total Avg Lat: 0.805 (size: 793, duration: 1.00009 s, approx miss rate: 0.0101)
+
+data pass 351
+Total miss rate: 0.0062, hit num: 575729, miss num: 3609
+- Hit Avg: 0.742 (stat size: 800, size: 459117 -> 459917)
+- Other Avg: 9.204 (stat size: 9, size: 2481 -> 2490)
+Total Avg Lat: 0.836 (size: 809, duration: 1.00009 s, approx miss rate: 0.0111)
+
+data pass 352
+Total miss rate: 0.0067, hit num: 569271, miss num: 3818
+- Hit Avg: 0.760 (stat size: 790, size: 459918 -> 460708)
+- Other Avg: 10.149 (stat size: 6, size: 2491 -> 2497)
+Total Avg Lat: 0.831 (size: 796, duration: 1.00008 s, approx miss rate: 0.0075)
+
+data pass 353
+Total miss rate: 0.0064, hit num: 569615, miss num: 3651
+- Hit Avg: 0.760 (stat size: 788, size: 460709 -> 461497)
+- Other Avg: 9.380 (stat size: 4, size: 2498 -> 2502)
+Total Avg Lat: 0.803 (size: 792, duration: 1.00008 s, approx miss rate: 0.0051)
+
+data pass 354
+Total miss rate: 0.0062, hit num: 569120, miss num: 3564
+- Hit Avg: 0.757 (stat size: 789, size: 461498 -> 462287)
+- Other Avg: 8.597 (stat size: 2, size: 2503 -> 2505)
+Total Avg Lat: 0.777 (size: 791, duration: 1.00009 s, approx miss rate: 0.0025)
+
+data pass 355
+Total miss rate: 0.0054, hit num: 572198, miss num: 3097
+- Hit Avg: 0.740 (stat size: 789, size: 462288 -> 463077)
+- Other Avg: 7.928 (stat size: 3, size: 2506 -> 2509)
+Total Avg Lat: 0.767 (size: 792, duration: 1.00009 s, approx miss rate: 0.0038)
+
+data pass 356
+Total miss rate: 0.0058, hit num: 570459, miss num: 3345
+- Hit Avg: 0.754 (stat size: 783, size: 463078 -> 463861)
+- Other Avg: 11.242 (stat size: 8, size: 2510 -> 2518)
+Total Avg Lat: 0.860 (size: 791, duration: 1.00008 s, approx miss rate: 0.0101)
+
+data pass 357
+Total miss rate: 0.0053, hit num: 571473, miss num: 3067
+- Hit Avg: 0.753 (stat size: 804, size: 463862 -> 464666)
+- Other Avg: 7.673 (stat size: 1, size: 2519 -> 2520)
+Total Avg Lat: 0.761 (size: 805, duration: 1.00008 s, approx miss rate: 0.0012)
+
+data pass 358
+Total miss rate: 0.0052, hit num: 570167, miss num: 2964
+- Hit Avg: 0.742 (stat size: 788, size: 464667 -> 465455)
+- Other Avg: 11.262 (stat size: 2, size: 2521 -> 2523)
+Total Avg Lat: 0.769 (size: 790, duration: 1.00008 s, approx miss rate: 0.0025)
+
+data pass 359
+Total miss rate: 0.0050, hit num: 552250, miss num: 2781
+- Hit Avg: 0.769 (stat size: 769, size: 465456 -> 466225)
+- Other None
+Total Avg Lat: 0.769 (size: 769, duration: 1.00009 s, approx miss rate: 0.0000)
+
+data pass 360
+Total miss rate: 0.0046, hit num: 550626, miss num: 2555
+- Hit Avg: 0.741 (stat size: 765, size: 466226 -> 466991)
+- Other Avg: 11.965 (stat size: 5, size: 2524 -> 2529)
+Total Avg Lat: 0.814 (size: 770, duration: 1.00008 s, approx miss rate: 0.0065)
+
+data pass 361
+Total miss rate: 0.0048, hit num: 553089, miss num: 2647
+- Hit Avg: 0.755 (stat size: 758, size: 466992 -> 467750)
+- Other Avg: 9.468 (stat size: 2, size: 2530 -> 2532)
+Total Avg Lat: 0.778 (size: 760, duration: 1.00009 s, approx miss rate: 0.0026)
+
+data pass 362
+Total miss rate: 0.0050, hit num: 551715, miss num: 2766
+- Hit Avg: 0.756 (stat size: 774, size: 467751 -> 468525)
+- Other None
+Total Avg Lat: 0.756 (size: 774, duration: 1.00009 s, approx miss rate: 0.0000)
+
+data pass 363
+Total miss rate: 0.0052, hit num: 549361, miss num: 2898
+- Hit Avg: 0.767 (stat size: 762, size: 468526 -> 469288)
+- Other Avg: 8.065 (stat size: 1, size: 2533 -> 2534)
+Total Avg Lat: 0.777 (size: 763, duration: 1.00008 s, approx miss rate: 0.0013)
+
+data pass 364
+Total miss rate: 0.0054, hit num: 548197, miss num: 2987
+- Hit Avg: 0.755 (stat size: 771, size: 469289 -> 470060)
+- Other Avg: 7.552 (stat size: 2, size: 2535 -> 2537)
+Total Avg Lat: 0.773 (size: 773, duration: 1.00008 s, approx miss rate: 0.0026)
+
+data pass 365
+Total miss rate: 0.0054, hit num: 545800, miss num: 2958
+- Hit Avg: 0.768 (stat size: 760, size: 470061 -> 470821)
+- Other Avg: 8.137 (stat size: 2, size: 2538 -> 2540)
+Total Avg Lat: 0.787 (size: 762, duration: 1.00008 s, approx miss rate: 0.0026)
+
+data pass 366
+Total miss rate: 0.0051, hit num: 546605, miss num: 2815
+- Hit Avg: 0.759 (stat size: 745, size: 470822 -> 471567)
+- Other Avg: 9.045 (stat size: 4, size: 2541 -> 2545)
+Total Avg Lat: 0.803 (size: 749, duration: 1.00009 s, approx miss rate: 0.0053)
+
+data pass 367
+Total miss rate: 0.0052, hit num: 567843, miss num: 2974
+- Hit Avg: 0.711 (stat size: 798, size: 471568 -> 472366)
+- Other Avg: 8.757 (stat size: 3, size: 2546 -> 2549)
+Total Avg Lat: 0.741 (size: 801, duration: 1.00009 s, approx miss rate: 0.0037)
+
+data pass 368
+Total miss rate: 0.0053, hit num: 596689, miss num: 3192
+- Hit Avg: 0.691 (stat size: 829, size: 472367 -> 473196)
+- Other Avg: 8.266 (stat size: 1, size: 2550 -> 2551)
+Total Avg Lat: 0.700 (size: 830, duration: 1.00008 s, approx miss rate: 0.0012)
+
+data pass 369
+Total miss rate: 0.0053, hit num: 621924, miss num: 3311
+- Hit Avg: 0.657 (stat size: 867, size: 473197 -> 474064)
+- Other Avg: 8.862 (stat size: 2, size: 2552 -> 2554)
+Total Avg Lat: 0.676 (size: 869, duration: 1.00007 s, approx miss rate: 0.0023)
+
+data pass 370
+Total miss rate: 0.0054, hit num: 657623, miss num: 3564
+- Hit Avg: 0.627 (stat size: 900, size: 474065 -> 474965)
+- Other None
+Total Avg Lat: 0.627 (size: 900, duration: 1.00008 s, approx miss rate: 0.0000)
+
+data pass 371
+Total miss rate: 0.0052, hit num: 661352, miss num: 3460
+- Hit Avg: 0.618 (stat size: 925, size: 474966 -> 475891)
+- Other Avg: 9.104 (stat size: 3, size: 2555 -> 2558)
+Total Avg Lat: 0.645 (size: 928, duration: 1.00008 s, approx miss rate: 0.0032)
+
+data pass 372
+Total miss rate: 0.0064, hit num: 648796, miss num: 4206
+- Hit Avg: 0.635 (stat size: 898, size: 475892 -> 476790)
+- Other Avg: 8.688 (stat size: 4, size: 2559 -> 2563)
+Total Avg Lat: 0.671 (size: 902, duration: 1.00007 s, approx miss rate: 0.0044)
+
+data pass 373
+Total miss rate: 0.0073, hit num: 642386, miss num: 4695
+- Hit Avg: 0.632 (stat size: 892, size: 476791 -> 477683)
+- Other Avg: 8.693 (stat size: 3, size: 2564 -> 2567)
+Total Avg Lat: 0.659 (size: 895, duration: 1.00007 s, approx miss rate: 0.0034)
+
+data pass 374
+Total miss rate: 0.0057, hit num: 657727, miss num: 3764
+- Hit Avg: 0.623 (stat size: 918, size: 477684 -> 478602)
+- Other Avg: 9.998 (stat size: 7, size: 2568 -> 2575)
+Total Avg Lat: 0.694 (size: 925, duration: 1.00007 s, approx miss rate: 0.0076)
+
+data pass 375
+Total miss rate: 0.0053, hit num: 663540, miss num: 3523
+- Hit Avg: 0.622 (stat size: 917, size: 478603 -> 479520)
+- Other Avg: 7.894 (stat size: 7, size: 2576 -> 2583)
+Total Avg Lat: 0.677 (size: 924, duration: 1.00009 s, approx miss rate: 0.0076)
+
+data pass 376
+Total miss rate: 0.0052, hit num: 660221, miss num: 3476
+- Hit Avg: 0.628 (stat size: 906, size: 479521 -> 480427)
+- Other Avg: 7.960 (stat size: 5, size: 2584 -> 2589)
+Total Avg Lat: 0.669 (size: 911, duration: 1.00008 s, approx miss rate: 0.0055)
+
+data pass 377
+Total miss rate: 0.0053, hit num: 639631, miss num: 3393
+- Hit Avg: 0.642 (stat size: 892, size: 480428 -> 481320)
+- Other Avg: 8.515 (stat size: 5, size: 2590 -> 2595)
+Total Avg Lat: 0.686 (size: 897, duration: 1.00007 s, approx miss rate: 0.0056)
+
+data pass 378
+Total miss rate: 0.0054, hit num: 530930, miss num: 2898
+- Hit Avg: 0.758 (stat size: 729, size: 481321 -> 482050)
+- Other Avg: 9.481 (stat size: 3, size: 2596 -> 2599)
+Total Avg Lat: 0.794 (size: 732, duration: 1.00008 s, approx miss rate: 0.0041)
+
+data pass 379
+Total miss rate: 0.0050, hit num: 514832, miss num: 2607
+- Hit Avg: 0.840 (stat size: 719, size: 482051 -> 482770)
+- Other Avg: 11.047 (stat size: 2, size: 2600 -> 2602)
+Total Avg Lat: 0.868 (size: 721, duration: 1.00008 s, approx miss rate: 0.0028)
+
+data pass 380
+Total miss rate: 0.0051, hit num: 509249, miss num: 2593
+- Hit Avg: 0.837 (stat size: 715, size: 482771 -> 483486)
+- Other Avg: 17.335 (stat size: 1, size: 2603 -> 2604)
+Total Avg Lat: 0.860 (size: 716, duration: 1.00007 s, approx miss rate: 0.0014)
+
+data pass 381
+Total miss rate: 0.0050, hit num: 532287, miss num: 2684
+- Hit Avg: 0.788 (stat size: 731, size: 483487 -> 484218)
+- Other Avg: 8.340 (stat size: 1, size: 2605 -> 2606)
+Total Avg Lat: 0.799 (size: 732, duration: 1.00007 s, approx miss rate: 0.0014)
+
+data pass 382
+Total miss rate: 0.0048, hit num: 564087, miss num: 2743
+- Hit Avg: 0.720 (stat size: 778, size: 484219 -> 484997)
+- Other Avg: 8.525 (stat size: 5, size: 2607 -> 2612)
+Total Avg Lat: 0.770 (size: 783, duration: 1.00008 s, approx miss rate: 0.0064)
+
+data pass 383
+Total miss rate: 0.0049, hit num: 592367, miss num: 2941
+- Hit Avg: 0.697 (stat size: 827, size: 484998 -> 485825)
+- Other None
+Total Avg Lat: 0.697 (size: 827, duration: 1.00008 s, approx miss rate: 0.0000)
+
+data pass 384
+Total miss rate: 0.0055, hit num: 613517, miss num: 3402
+- Hit Avg: 0.662 (stat size: 845, size: 485826 -> 486671)
+- Other Avg: 8.085 (stat size: 4, size: 2613 -> 2617)
+Total Avg Lat: 0.697 (size: 849, duration: 1.00007 s, approx miss rate: 0.0047)
+
+data pass 385
+Total miss rate: 0.0054, hit num: 544774, miss num: 2936
+- Hit Avg: 0.762 (stat size: 765, size: 486672 -> 487437)
+- Other Avg: 8.926 (stat size: 3, size: 2618 -> 2621)
+Total Avg Lat: 0.794 (size: 768, duration: 1.00008 s, approx miss rate: 0.0039)
+
+data pass 386
+Total miss rate: 0.0051, hit num: 519248, miss num: 2655
+- Hit Avg: 0.811 (stat size: 724, size: 487438 -> 488162)
+- Other None
+Total Avg Lat: 0.811 (size: 724, duration: 1.00009 s, approx miss rate: 0.0000)
+
+data pass 387
+Total miss rate: 0.0048, hit num: 524469, miss num: 2506
+- Hit Avg: 0.764 (stat size: 729, size: 488163 -> 488892)
+- Other Avg: 7.349 (stat size: 1, size: 2622 -> 2623)
+Total Avg Lat: 0.773 (size: 730, duration: 1.00009 s, approx miss rate: 0.0014)
+
+data pass 388
+Total miss rate: 0.0050, hit num: 395638, miss num: 1980
+- Hit Avg: 0.637 (stat size: 547, size: 488893 -> 489440)
+- Other Avg: 6.888 (stat size: 2, size: 2624 -> 2626)
+Total Avg Lat: 0.659 (size: 549, duration: 1.00008 s, approx miss rate: 0.0036)
+
+data pass 389
+Total miss rate: 0.0057, hit num: 291930, miss num: 1665
+- Hit Avg: 0.512 (stat size: 402, size: 489441 -> 489843)
+- Other Avg: 6.668 (stat size: 2, size: 2627 -> 2629)
+Total Avg Lat: 0.542 (size: 404, duration: 1.00007 s, approx miss rate: 0.0050)
+
+data pass 390
+Total miss rate: 0.0059, hit num: 266221, miss num: 1568
+- Hit Avg: 0.527 (stat size: 372, size: 489844 -> 490216)
+- Other Avg: 7.928 (stat size: 2, size: 2630 -> 2632)
+Total Avg Lat: 0.567 (size: 374, duration: 1.00008 s, approx miss rate: 0.0053)
+
+data pass 391
+Total miss rate: 0.0053, hit num: 261700, miss num: 1396
+- Hit Avg: 0.550 (stat size: 364, size: 490217 -> 490581)
+- Other None
+Total Avg Lat: 0.550 (size: 364, duration: 1.00009 s, approx miss rate: 0.0000)
+
+data pass 392
+Total miss rate: 0.0052, hit num: 259592, miss num: 1366
+- Hit Avg: 0.541 (stat size: 356, size: 490582 -> 490938)
+- Other Avg: 7.341 (stat size: 2, size: 2633 -> 2635)
+Total Avg Lat: 0.579 (size: 358, duration: 1.00007 s, approx miss rate: 0.0056)
+
+data pass 393
+Total miss rate: 0.0052, hit num: 256227, miss num: 1328
+- Hit Avg: 0.541 (stat size: 356, size: 490939 -> 491295)
+- Other None
+Total Avg Lat: 0.541 (size: 356, duration: 1.00007 s, approx miss rate: 0.0000)
+
+data pass 394
+Total miss rate: 0.0044, hit num: 246235, miss num: 1083
+- Hit Avg: 0.527 (stat size: 342, size: 491296 -> 491638)
+- Other None
+Total Avg Lat: 0.527 (size: 342, duration: 1.00008 s, approx miss rate: 0.0000)
+
+data pass 395
+Total miss rate: 0.0045, hit num: 234901, miss num: 1062
+- Hit Avg: 0.527 (stat size: 323, size: 491639 -> 491962)
+- Other None
+Total Avg Lat: 0.527 (size: 323, duration: 1.00008 s, approx miss rate: 0.0000)
+
+data pass 396
+Total miss rate: 0.0043, hit num: 210632, miss num: 910
+- Hit Avg: 0.493 (stat size: 292, size: 491963 -> 492255)
+- Other Avg: 6.580 (stat size: 2, size: 2636 -> 2638)
+Total Avg Lat: 0.535 (size: 294, duration: 1.00007 s, approx miss rate: 0.0068)
+
+data pass 397
+Total miss rate: 0.0044, hit num: 166174, miss num: 739
+- Hit Avg: 0.468 (stat size: 232, size: 492256 -> 492488)
+- Other None
+Total Avg Lat: 0.468 (size: 232, duration: 1.00007 s, approx miss rate: 0.0000)
+
+data pass 398
+Total miss rate: 0.0046, hit num: 95092, miss num: 440
+- Hit Avg: 0.404 (stat size: 133, size: 492489 -> 492622)
+- Other None
+Total Avg Lat: 0.404 (size: 133, duration: 1.00008 s, approx miss rate: 0.0000)
+
+data pass 399
+Total miss rate: 0.0045, hit num: 45424, miss num: 207
+- Hit Avg: 0.251 (stat size: 62, size: 492623 -> 492685)
+- Other None
+Total Avg Lat: 0.251 (size: 62, duration: 1.00007 s, approx miss rate: 0.0000)
+
+data pass 400
+
+should stop = true
+Total miss rate: 0.0044, hit num: 38547, miss num: 171
+- Hit Avg: 0.239 (stat size: 53, size: 492686 -> 492739)
+- Other None
+Total Avg Lat: 0.239 (size: 53, duration: 1.00007 s, approx miss rate: 0.0000)
+
+All threads run 395.377920 s
+- Hit Avg: 0.706 (stat size: 492739, real size_: 492739), median: 0.636, p9999: 9.451, p999: 3.718, p99: 1.862, p90: 1.111
+- Other Avg: 13.049 (stat size: 2638, real size_: 2638), median: 10.665, p9999: 80.274, p999: 60.468, p99: 37.006, p90: 21.573
+Total Avg Lat: 0.771 (size: 495377, miss ratio: 0.005325)

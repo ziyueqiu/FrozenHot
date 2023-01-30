@@ -3,10 +3,10 @@ import os
 import csv
 import sys
 
-g = os.walk("../origin_data/figure8" + sys.argv[1])
-order = ["trace", "thread", "algo type", "cachesize", "thput-a", "thput-b", "hit ratio"]
+g = os.walk("../origin_data/figure8/" + sys.argv[1])
+order = ["trace", "thread", "algo type", "cachesize", "thput-b", "hit ratio"]
 # Modify output file here!
-with open("%s.csv" % sys.argv[1], "w", newline="") as csvfile:
+with open("twitter.csv", "w", newline="") as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(order)
     for path, dir_list, file_list in g:
@@ -73,7 +73,6 @@ with open("%s.csv" % sys.argv[1], "w", newline="") as csvfile:
                     flag = re.match("Total Avg Lat: \d+\.\d+ \(size: \d+, duration: \d+\.\d+ s(.)*", line)
                     handled_request_size = int(flag.group(0).split(' ')[5].replace(',', ''))
                     duration_time = float(flag.group(0).split(' ')[7])
-                    request_avg = float(flag.group(0).split(' ')[3])
                     now_step += handled_request_size
                     if now_step >= max_step * 0.95 and thread_num != 1:
                         useless_req += handled_request_size
@@ -90,9 +89,7 @@ with open("%s.csv" % sys.argv[1], "w", newline="") as csvfile:
                     data_flag = False
                     flag = re.match("Total Avg Lat: \d+\.\d+ \(size: \d+, miss ratio: \d+\.\d+(.)*", line)
                     res["hit ratio"] = 1 - float(flag.group(0).split(" ")[8].replace(')', ''))
-                    request_avg = float(flag.group(0).split(' ')[3])
                     total_size = int(flag.group(0).split(' ')[5].replace(',', ''))
-                    res["thput-a"] = thread_num / request_avg * 1000 * 1000
                     print(wait_stable_time, all_thread_run_time)
                     print(useless_time)
                     res["thput-b"] = (total_size - useless_req) * large_gran * 1.0 / (all_thread_run_time - wait_stable_time - useless_time)

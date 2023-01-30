@@ -3,8 +3,8 @@ import os
 import csv
 import sys
 
-g = os.walk("../origin_data/figure8" + sys.argv[1])
-order = ["trace", "thread", "algo type", "cachesize", "thput-a", "thput-b", "hit ratio"]
+g = os.walk("../origin_data/figure8/" + sys.argv[1])
+order = ["trace", "thread", "algo type", "cachesize", "thput-b", "hit ratio"]
 # Modify output file here!
 with open("msr.csv", "w", newline="") as csvfile:
     writer = csv.writer(csvfile)
@@ -51,9 +51,6 @@ with open("msr.csv", "w", newline="") as csvfile:
             res['trace'] = file_name.split("_")[5] + "_" + file_name.split("_")[6]
             res['cachesize'] = file_name.split("size")[0].split("_")[-1]
             cut_ratio = 0.99
-            if res['trace'] == "prn_0" and res["cachesize"] == "0.1" and res["thread"] == 72 and res["algo type"] == "LFU FH":
-                cut_ratio = 0.95
-                print("aaaaaa")
             wait_stable_time = 0
             useless_time = 0
             useless_req = 0
@@ -78,7 +75,6 @@ with open("msr.csv", "w", newline="") as csvfile:
                     flag = re.match("Total Avg Lat: \d+\.\d+ \(size: \d+, duration: \d+\.\d+ s(.)*", line)
                     handled_request_size = int(flag.group(0).split(' ')[5].replace(',', ''))
                     duration_time = float(flag.group(0).split(' ')[7])
-                    request_avg = float(flag.group(0).split(' ')[3])
                     now_step += handled_request_size
                     if now_step >= max_step * cut_ratio:
                         useless_req += handled_request_size
@@ -94,9 +90,7 @@ with open("msr.csv", "w", newline="") as csvfile:
                 elif data_flag and re.match("Total Avg Lat: \d+\.\d+ \(size: \d+, miss ratio: \d+\.\d+(.)*", line):
                     data_flag = False
                     flag = re.match("Total Avg Lat: \d+\.\d+ \(size: \d+, miss ratio: \d+\.\d+(.)*", line)
-                    request_avg = float(flag.group(0).split(' ')[3])
                     total_size = int(flag.group(0).split(' ')[5].replace(',', ''))
-                    res["thput-a"] = thread_num / request_avg * 1000 * 1000
                     print(wait_stable_time, all_thread_run_time)
                     print(useless_time)
                     res["hit ratio"] = 1 - float(flag.group(0).split(' ')[8].replace(')', ''))
