@@ -12,8 +12,6 @@ def get_data_from_csv(algo_type: str):
         for csv_file in csv_files:
             df = pd.read_csv(csv_file)
             temp_algo = algo_type
-            if algo_type == "LRU FH" or algo_type == "LFU FH" or algo_type == "FIFO FH":
-                temp_algo = algo_type + "(20)"
             df = df[df["algo type"] == temp_algo]
             df = df[df["thread"] == thread]
             for x in df[["thput-b"]].values.flatten():
@@ -21,32 +19,6 @@ def get_data_from_csv(algo_type: str):
         res.append(np.array(li))
     return res
 
-def plot_single(algo):
-    plt.clf()
-    print("Twitter", algo)
-
-    mpl.rcParams["figure.figsize"] = (6, 4)
-    mpl.rcParams["font.size"] = 17
-    
-    speed_up = []
-    thput = get_data_from_csv(algo)
-    thput = [x / 1000000 for x in thput]
-    fh_thput = get_data_from_csv(algo + " FH")
-    fh_thput = [x / 1000000 for x in fh_thput]
-    for i in range(len(thput)):
-        if len(speed_up) == 5:
-            speed_up[i] = np.append(speed_up[i], fh_thput[i] / thput[i])
-        else:    
-            speed_up.append(fh_thput[i] / thput[i])
-        
-    for i in range(len(speed_up)):
-        speed_up[i] = [x - 1 for x in speed_up[i] if math.isnan(x) == False]
-    plt.boxplot(speed_up, labels=["1", "20", "40", "60", "72"], showfliers=True, showmeans=True)
-    plt.plot(np.arange(0.5, 6.5), np.zeros(6), linestyle="dashed")
-    speed_up = np.array(speed_up)
-    speed_up = speed_up.flatten()
-    print(np.percentile(speed_up, 25), np.median(speed_up), np.percentile(speed_up, 75), np.average(speed_up), np.min(speed_up), np.max(speed_up))
-    plt.savefig("boxplot-twitter-" + algo + ".pdf")
 
 def plot_trace():
     plt.clf()
@@ -102,5 +74,4 @@ csv_files = [
 ]
 
 if __name__ == "__main__":
-
     plot_trace()

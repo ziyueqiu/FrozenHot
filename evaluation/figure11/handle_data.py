@@ -35,12 +35,6 @@ with open("all.csv", "w", newline="") as csvfile:
                 res["algo type"] = "FIFO"
             else:
                 res['algo type'] = "LRU"
-            if res["algo type"] == "LRU FH" and file_name.find("rebuild20") != -1:
-                res["algo type"] += "(20)"
-            if res["algo type"] == "LRU FH" and file_name.find("rebuild100") != -1:
-                res["algo type"] += "(100)"
-            if res["algo type"] == "LRU FH" and file_name.find("rebuild10.txt") != -1:
-                res["algo type"] += "(10)"
             if file_name.find("LO") != -1:
                 res['algo type'] += "(LO)"
             if file_name.find("TBB") != -1:

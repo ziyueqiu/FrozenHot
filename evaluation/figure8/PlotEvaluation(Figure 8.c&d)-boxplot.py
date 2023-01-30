@@ -4,16 +4,18 @@ import numpy as np
 import pandas as pd
 
 def get_data_from_csv_by_algo_trace_thread(algo: str, trace: str, thread):
-    df = pd.read_csv("fig3.csv")
-    df = df[df["thread"] == str(thread)]
-    df = df[df["algo type"] == algo]
     trace_list_ = []
     if trace == "Twitter":
         trace_list_ = twitter_list
+        df = pd.read_csv("twitter.csv")
     elif trace == "MSR":
         trace_list_ = msr_list
+        df = pd.read_csv("msr.csv")
     else:
         return
+    # df = df[df["thread"] == str(thread)]
+    df = df[df["thread"] == thread]
+    df = df[df["algo type"] == algo]
     li = []
     for trace in trace_list_:
         tmp = df[df["trace"] == trace]

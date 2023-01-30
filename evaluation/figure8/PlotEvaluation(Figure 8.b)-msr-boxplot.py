@@ -84,13 +84,6 @@ trace_list = [
     "usr_1",
     "usr_2",
     "web_2",
-    # "twitter17",
-    # "twitter18",
-    # "twitter24",
-    # "twitter29",
-    # "twitter44",
-    # "twitter45",
-    # "twitter52",
 ]
 
 size_list = [

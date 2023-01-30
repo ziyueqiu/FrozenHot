@@ -7,7 +7,7 @@ g = os.walk("../origin_data/figure9")
 # fc req: request handled during frozen time / total req
 # hit_on_fc: fc hit / (fc hit + dc hit)
 order = ["trace", "thread", "thput", "hit lat", "miss lat", "hit ratio", "algo type", "fc hit", "fc req", "hit on fc"]
-with open("twitter.csv", "w", newline="") as csvfile:
+with open("figure9.csv", "w", newline="") as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(order)
     for path, dir_list, file_list in g:

@@ -4,7 +4,7 @@ import os
 import csv
 
 g = os.walk("../origin_data/figure15")
-order = ["trace", "thread", "algo_type", "disk lat", "refresh ratio", "cachesize", "thput-a", "thput-b", "total miss ratio", "hit latency"]
+order = ["trace", "thread", "algo_type", "disk lat", "refresh ratio", "cachesize", "thput-b", "total miss ratio", "hit latency"]
 with open("figure.csv", "w", newline="") as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(order)
@@ -80,7 +80,6 @@ with open("figure.csv", "w", newline="") as csvfile:
                     flag = re.match("Total Avg Lat: \d+\.\d+ \(size: \d+, duration: \d+\.\d+ s(.)*", line)
                     handled_request_size = int(flag.group(0).split(' ')[5].replace(',', ''))
                     duration_time = float(flag.group(0).split(' ')[7])
-                    request_avg = float(flag.group(0).split(' ')[3])
                     now_step += handled_request_size
                     if now_step >= max_step * 0.98 and thread_num != 1:
                         useless_req += handled_request_size
@@ -100,9 +99,7 @@ with open("figure.csv", "w", newline="") as csvfile:
                 elif data_flag and re.match("Total Avg Lat: \d+\.\d+ \(size: \d+, miss ratio: \d+\.\d+(.)*", line):
                     data_flag = False
                     flag = re.match("Total Avg Lat: \d+\.\d+ \(size: \d+, miss ratio: \d+\.\d+(.)*", line)
-                    request_avg = float(flag.group(0).split(' ')[3])
                     total_size = int(flag.group(0).split(' ')[5].replace(',', ''))
-                    res["thput-a"] = thread_num / request_avg * 1000 * 1000
                     res["total miss ratio"] = float(flag.group(0).split(' ')[8].replace(')', ''))
                     print(wait_stable_time, all_thread_run_time)
                     print(useless_time)

@@ -13,7 +13,7 @@ def cat_bar(lru_hit_lat, lru_fh_20_hit_lat, fifo_hit_lat, lfu_fh_hit_lat, fifo_f
     print(lfu_hit_lat[1] / tbb_lfu_fh_hit_lat[1])
     labels_right = ["FIFO", "LRU", "LFU", "FIFO", "LRU", "LFU"]
     label = ["", ""]
-    width = 0.8  # the width of the bars
+    width = 0.8
     x = np.arange(len(label)) * 11
     plt.figure()
     bar_1 = plt.bar(
@@ -124,32 +124,32 @@ if __name__ == "__main__":
     mpl.rcParams["font.size"] = 15
     mpl.rcParams["figure.figsize"] = (7, 2.8)
     cat_bar(
-        np.array(get_data_from_csv("twitter.csv", 72, "LRU", "hit lat")) + 0.12,
-        np.array(get_data_from_csv("twitter.csv", 72, "LRU FH", "hit lat")) + 0.12,
-        # np.array(get_data_from_csv("twitter.csv", 72, "Redis", "hit lat")) + 0.12,
-        np.array(get_data_from_csv("twitter.csv", 72, "FIFO", "hit lat")) + 0.12,
-        np.array(get_data_from_csv("twitter.csv", 72, "LFU FH", "hit lat")) + 0.12,
-        np.array(get_data_from_csv("twitter.csv", 72, "FIFO FH", "hit lat")) + 0.12,
-        np.array(get_data_from_csv("twitter.csv", 72, "LFU", "hit lat")) + 0.12,
-        # np.array(get_data_from_csv("twitter.csv", 72, "Strict LRU", "hit lat")) + 0.12,
+        np.array(get_data_from_csv("all.csv", 72, "LRU", "hit lat")) + 0.12,
+        np.array(get_data_from_csv("all.csv", 72, "LRU FH", "hit lat")) + 0.12,
+        # np.array(get_data_from_csv("all.csv", 72, "Redis", "hit lat")) + 0.12,
+        np.array(get_data_from_csv("all.csv", 72, "FIFO", "hit lat")) + 0.12,
+        np.array(get_data_from_csv("all.csv", 72, "LFU FH", "hit lat")) + 0.12,
+        np.array(get_data_from_csv("all.csv", 72, "FIFO FH", "hit lat")) + 0.12,
+        np.array(get_data_from_csv("all.csv", 72, "LFU", "hit lat")) + 0.12,
+        # np.array(get_data_from_csv("all.csv", 72, "Strict LRU", "hit lat")) + 0.12,
 
-        # np.array(get_data_from_csv("twitter.csv", 72, "LRU", "hit ratio")),
-        # np.array(get_data_from_csv("twitter.csv", 72, "LRU FH", "hit ratio")),
-        # np.array(get_data_from_csv("twitter.csv", 72, "Redis", "hit ratio")),
-        # np.array(get_data_from_csv("twitter.csv", 72, "FIFO", "hit ratio")),
-        # np.array(get_data_from_csv("twitter.csv", 72, "LFU FH", "hit ratio")),
-        # np.array(get_data_from_csv("twitter.csv", 72, "FIFO FH", "hit ratio")),
-        # np.array(get_data_from_csv("twitter.csv", 72, "LFU", "hit ratio")),
-        # np.array(get_data_from_csv("twitter.csv", 72, "Strict LRU", "hit ratio")),
+        # np.array(get_data_from_csv("all.csv", 72, "LRU", "hit ratio")),
+        # np.array(get_data_from_csv("all.csv", 72, "LRU FH", "hit ratio")),
+        # np.array(get_data_from_csv("all.csv", 72, "Redis", "hit ratio")),
+        # np.array(get_data_from_csv("all.csv", 72, "FIFO", "hit ratio")),
+        # np.array(get_data_from_csv("all.csv", 72, "LFU FH", "hit ratio")),
+        # np.array(get_data_from_csv("all.csv", 72, "FIFO FH", "hit ratio")),
+        # np.array(get_data_from_csv("all.csv", 72, "LFU", "hit ratio")),
+        # np.array(get_data_from_csv("all.csv", 72, "Strict LRU", "hit ratio")),
 
-        np.array(get_data_from_csv("twitter.csv", 72, "LRU FH", "hit on fc")),
-        np.array(get_data_from_csv("twitter.csv", 72, "LFU FH", "hit on fc")),
-        np.array(get_data_from_csv("twitter.csv", 72, "FIFO FH", "hit on fc")),
+        np.array(get_data_from_csv("all.csv", 72, "LRU FH", "hit on fc")),
+        np.array(get_data_from_csv("all.csv", 72, "LFU FH", "hit on fc")),
+        np.array(get_data_from_csv("all.csv", 72, "FIFO FH", "hit on fc")),
 
-        np.array(get_data_from_csv("twitter.csv", 72, "FIFO FH(LO)", "hit lat")) + 0.12,
-        np.array(get_data_from_csv("twitter.csv", 72, "LFU FH(LO)", "hit lat")) + 0.12,
-        np.array(get_data_from_csv("twitter.csv", 72, "LRU FH(LO)", "hit lat")) + 0.12,
-        np.array(get_data_from_csv("twitter.csv", 72, "FIFO FH(LO)", "hit on fc")),
-        np.array(get_data_from_csv("twitter.csv", 72, "LFU FH(LO)", "hit on fc")),
-        np.array(get_data_from_csv("twitter.csv", 72, "LRU FH(LO)", "hit on fc")),
+        np.array(get_data_from_csv("all.csv", 72, "FIFO FH(LO)", "hit lat")) + 0.12,
+        np.array(get_data_from_csv("all.csv", 72, "LFU FH(LO)", "hit lat")) + 0.12,
+        np.array(get_data_from_csv("all.csv", 72, "LRU FH(LO)", "hit lat")) + 0.12,
+        np.array(get_data_from_csv("all.csv", 72, "FIFO FH(LO)", "hit on fc")),
+        np.array(get_data_from_csv("all.csv", 72, "LFU FH(LO)", "hit on fc")),
+        np.array(get_data_from_csv("all.csv", 72, "LRU FH(LO)", "hit on fc")),
     )

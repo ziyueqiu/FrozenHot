@@ -2,10 +2,10 @@ import re
 import os
 import csv
 
-g = os.walk("../origin_data/figure10")
-order = ["step", "hit ratio", "hit laten", "th-put-a", "th-put-b", "type", "episode"]
-global_order = ["step", "global ratio", "hit laten", "th-put-a", "th-put-b", "type", "episode"]
-fh_oreder = ["step", "fh ratio", "hit laten", "th-put-a", "th-put-b", "type", "episode"]
+g = os.walk("../origin_data/figure12")
+order = ["step", "hit ratio", "hit laten", "thput", "type", "episode"]
+global_order = ["step", "global ratio", "hit laten", "thput", "type", "episode"]
+fh_oreder = ["step", "fh ratio", "hit laten", "thput", "type", "episode"]
 with open("evaluation-update.csv", "w", newline="") as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(order)
@@ -50,7 +50,6 @@ with open("evaluation-update.csv", "w", newline="") as csvfile:
             wait_stable_time = 0
             all_thread_run_time = 0
             useless_time = 0
-            shard = int(file_name.split("_")[1].replace("shard", ""))
             useless_req = 0
             wait_stable_req = 0
             for line in lines:
@@ -66,9 +65,6 @@ with open("evaluation-update.csv", "w", newline="") as csvfile:
                 elif re.match("wait stable spend time: \d+\.\d+ s", line):
                     flag = re.match("wait stable spend time: \d+\.\d+ s", line)
                     wait_stable_time = float(flag.group(0).split(' ')[4])
-                elif re.match("fail \d+ shard", line):
-                    flag = re.match("fail \d+ shard", line)
-                    failed_shard = int(flag.group(0).split(" ")[1])
                 elif re.match("data pass \d+", line):
                     flag = re.match("data pass \d+", line)
                     pass_ = int(flag.group(0).split(' ')[2])
@@ -127,9 +123,8 @@ with open("evaluation-update.csv", "w", newline="") as csvfile:
                     flag = re.match("Total Avg Lat: \d+\.\d+ \(size: \d+, miss ratio: \d+\.\d+(.)*", line)
                     request_avg = float(flag.group(0).split(' ')[3])
                     total_size = int(flag.group(0).split(' ')[5].replace(',', ''))
-                    res["th-put-a"] = thread_num / request_avg * 1000 * 1000
-                    print(wait_stable_time, all_thread_run_time)
-                    res["th-put-b"] = (total_size - useless_req) * large_gran * 1.0 / (all_thread_run_time - wait_stable_time - useless_time)
+                    # print(wait_stable_time, all_thread_run_time)
+                    res["thput"] = (total_size - useless_req) * large_gran * 1.0 / (all_thread_run_time - wait_stable_time - useless_time)
                     res["hit ratio"] = 1 - float(flag.group(0).split(' ')[8].replace(")", ""))
                     res["episode"] = best_sleep_ratio
                     li = []
@@ -154,8 +149,7 @@ with open("evaluation-update.csv", "w", newline="") as csvfile:
                         useless_time += duration_time
                         continue
                     else:
-                        res["th-put-a"] = thread_num / request_avg * 1000 * 1000
-                        res["th-put-b"] = handled_request_size * large_gran / duration_time
+                        res["thput"] = handled_request_size * large_gran / duration_time
                         if res_type == "LRU FH" or res_type == "LFU FH":
                             li = []
                             res["type"] = "global LRU FH" if res_type == "LRU FH" else "global LFU FH"
@@ -195,4 +189,3 @@ with open("evaluation-update.csv", "w", newline="") as csvfile:
                                 continue
                             writer.writerow(li)
                             res = {}
-        writer.writerow(['', '', '', '', failed_shard, "shard", shard])

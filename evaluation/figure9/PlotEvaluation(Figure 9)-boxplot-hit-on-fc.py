@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 def get_data_from_csv_by_algo_trace_thread(algo: str, trace: str, thread):
-    df = pd.read_csv("fig3-hit-on-fc.csv")
+    df = pd.read_csv("figure9.csv")
     df = df[df["thread"] == thread]
     df = df[df["algo type"] == algo]
     trace_list_ = []
