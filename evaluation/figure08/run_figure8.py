@@ -68,7 +68,7 @@ MSR_list = {
 
 workload_types = [
     "Twitter",
-    "Zipf",
+    # "Zipf",
     "MSR"
 ]
 seg = [

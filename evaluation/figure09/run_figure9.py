@@ -68,17 +68,17 @@ MSR_list = {
 
 workload_types = [
     "Twitter",
-    "Zipf",
+    # "Zipf",
     "MSR"
 ]
 seg = [
     16
 ]
 thread_num = [
-    1,
+    # 1,
     20,
-    40,
-    60,
+    # 40,
+    # 60,
     72,
 ]
 

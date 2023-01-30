@@ -9,31 +9,31 @@ Twitter_list = {
         }, [0, 9]],
 
     "cluster45": [{
-        30000000:150,
-        # 30000000:1050, # only for rebuild freq
+        # 30000000:150,
+        30000000:1050, # only for rebuild freq
         }, [0, 0]],
 
-    "cluster18": [{
-        2400000: 400,
-    }, [0, 12]],
+    # "cluster18": [{
+    #     2400000: 400,
+    # }, [0, 12]],
 
-    "cluster24": [{
-        2000000: 200,
-    }, [0, 3]],
+    # "cluster24": [{
+    #     2000000: 200,
+    # }, [0, 3]],
 
-    "cluster44": [{
-        40000000: 600,
-        # 40000000: 7500, # only for rebuild freq
-    }, [0, 5]],
+    # "cluster44": [{
+    #     40000000: 600,
+    #     # 40000000: 7500, # only for rebuild freq
+    # }, [0, 5]],
 
-    "cluster52": [{
-        88000000: 800,
-        # 88000000: 10000, # only for rebuild freq
-    }, [0, 6]],
+    # "cluster52": [{
+    #     88000000: 800,
+    #     # 88000000: 10000, # only for rebuild freq
+    # }, [0, 6]],
 
-    "cluster29": [{
-        900000: 100,
-    }, [0, 6]],
+    # "cluster29": [{
+    #     900000: 100,
+    # }, [0, 6]],
 }
 
 MSR_list = {
@@ -68,17 +68,17 @@ MSR_list = {
 
 workload_types = [
     "Twitter",
-    "Zipf",
-    "MSR"
+    # "Zipf",
+    # "MSR"
 ]
 seg = [
     16
 ]
 thread_num = [
-    1,
-    20,
-    40,
-    60,
+    # 1,
+    # 20,
+    # 40,
+    # 60,
     72,
 ]
 
@@ -115,9 +115,9 @@ disk_lat = [
 ]
 
 FH_rebuild_freq = [
-    # 100, # only for lifetime factor
+    100, # only for lifetime factor
     20, # by default (most experiments)
-    # 10, # only for lifetime factor
+    10, # only for lifetime factor
 ]
 
 for thread in thread_num:

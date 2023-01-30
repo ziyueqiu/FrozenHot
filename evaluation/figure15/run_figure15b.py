@@ -67,27 +67,28 @@ MSR_list = {
 }
 
 workload_types = [
-    "Twitter",
+    # "Twitter",
     "Zipf",
-    "MSR"
+    # "MSR"
 ]
 seg = [
     16
 ]
 thread_num = [
-    1,
-    20,
-    40,
-    60,
+    # 1,
+    # 20,
+    # 40,
+    # 60,
     72,
 ]
 
 # this can change in different machine
 Zipf_size_ratio = {
-    # TODO: note that 100% hit is not supported in FH
-    0.5:120, # 97.5%
-    0.25:60, # 90%
-    0.004:40, # 50%
+    # TODO: note that exactly 100% hit is not supported in FH
+    xx:120, # 99% depends on CPU
+    # 0.5:120, # 97.5%
+    # 0.25:60, # 90%
+    # 0.004:40, # 50%
 }
 MSR_size_ratio = {
     0.1,
@@ -96,14 +97,14 @@ cache_types = [
     "LRU_FH",
     "LRU",
 
-    "FIFO_FH",
-    "FIFO",
+    # "FIFO_FH",
+    # "FIFO",
 
-    "LFU_FH",
-    "LFU",
+    # "LFU_FH",
+    # "LFU",
 
-    # "Redis_LRU",
-    # "StrictLRU",
+    "Redis_LRU",
+    "StrictLRU",
 ]
 zipf = [
     0.99,
@@ -111,13 +112,14 @@ zipf = [
 
 disk_lat = [
     5,
-    # 15, 25, 35, 45, 55, 100, 500, # only for sensitivity analysis
+    15, 25, 35, 45, 55, 100, 500, # only for sensitivity analysis
 ]
 
 FH_rebuild_freq = [
     # 100, # only for lifetime factor
-    20, # by default (most experiments)
+    # 20, # by default (most experiments)
     # 10, # only for lifetime factor
+    100000, # no rebuild
 ]
 
 for thread in thread_num:
