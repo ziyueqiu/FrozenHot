@@ -186,13 +186,13 @@ namespace Cache
         virtual double print_fast_hash() override {
             double temp, global_miss, total;
             total = fast_find_hit.load()+tbb_find_miss.load()+end_to_end_find_succ.load();
-            if(total == 0){
+            if (total == 0){
                 temp = 1;
                 global_miss = 1;
             }
             else {
-                temp = 1 - fast_find_hit.load() * 1.0/total;
-                global_miss = tbb_find_miss.load()*1.0/total;
+                temp = 1 - fast_find_hit.load() * 1.0 / total;
+                global_miss = tbb_find_miss.load() * 1.0 / total;
             }
             printf("miss ratio: %.5f / %.5f\n", temp, global_miss);
             printf("fast find hit: %ld, global hit: %ld, global miss: %ld\n", 
@@ -201,12 +201,14 @@ namespace Cache
             return temp;
         }
 
-        virtual bool construct_from(const TKey& key) override { return false; }
+        //virtual bool construct_from(const TKey& key) override { return false; }
+
         virtual bool construct_ratio(double FC_ratio) override { return false; }
         virtual bool construct_tier() override { return false; }
+
         virtual void deconstruct() override {}
-        virtual bool get_curve(bool& should_stop) override { return false;}
-        virtual bool is_full() override { return false;}
+        virtual bool get_curve(bool& should_stop) override { return false; }
+        virtual bool is_full() override { return false; }
 
         virtual bool find_marker(TValue& ac, const TKey& key) override {
             return false;

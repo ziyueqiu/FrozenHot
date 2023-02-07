@@ -73,9 +73,14 @@ namespace Cache
 
         virtual bool find_marker(TValue& ac, const TKey& key) { return false; }
 
-        virtual bool construct_from(const TKey& key) { return false; }
+        //virtual bool construct_from(const TKey& key) { return false; }
+
+        /* this is a function to construct the FC cache from a given ratio */
         virtual bool construct_ratio(double FC_ratio) { return false; }
+
+        /* this is a function to construct the 100% FC */
         virtual bool construct_tier() { return false; }
+
         virtual void deconstruct() {}
         virtual bool get_curve(bool& should_stop) { return false;}
 

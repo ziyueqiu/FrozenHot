@@ -36,6 +36,9 @@
 #define TOMB_KEY 1
 //#define BASELINE_STAT
 //#define LOCK_P (double(1))
+
+
+/* in high concurrency, no need to be too accurate */
 #define FC_RELAXATION 20
 
 namespace Cache {
@@ -195,7 +198,7 @@ class LRU_FHCache : public FHCacheAPI<TKey, TValue, THash> {
 
   //void evict_key();
 
-  virtual bool construct_from(const TKey& key) override;
+  //virtual bool construct_from(const TKey& key) override;
   virtual bool construct_ratio(double FC_ratio) override;
   virtual bool construct_tier() override;
   virtual void deconstruct() override;
@@ -306,6 +309,8 @@ bool LRU_FHCache<TKey, TValue, THash>::construct_ratio(double FC_ratio) {
   assert(FC_ratio <= 1 && FC_ratio >=0);
   assert(m_fast_head.m_next == &m_fast_tail);
   assert(m_fast_tail.m_prev == &m_fast_head);
+
+  /* clear eviction counter to start */
   //assert(eviction_counter.load() == 0);
   if(eviction_counter.load() > 0){
     printf("\neviction counter error(?): %lu\n", eviction_counter.load());
@@ -313,13 +318,20 @@ bool LRU_FHCache<TKey, TValue, THash>::construct_ratio(double FC_ratio) {
   }
 
   m_fast_head.m_next = m_head.m_next;
+
+  // for thread safety
   fast_hash_construct = true;
 
   size_t FC_size = FC_ratio * m_maxSize;
   size_t DC_size = m_maxSize - FC_size;
   printf("FC_size: %lu, DC_size: %lu\n", FC_size, DC_size);
   size_t fail_count = 0, count = 0;
-  bool first_flag = true;
+
+  /* "first pass flag" is used to avoid inconsistency
+   * when eliminating global lock
+   */
+  // TODO @ Ziyue: add explanation
+  bool first_pass_flag = true;
   ListNode* temp_node = m_fast_head.m_next;
   ListNode* delete_temp;
   HashMapConstAccessor temp_hashAccessor;
@@ -327,7 +339,7 @@ bool LRU_FHCache<TKey, TValue, THash>::construct_ratio(double FC_ratio) {
   while(temp_node != &m_fast_tail){
     count++;
     auto eviction_count = eviction_counter.load();
-    if(! m_map.find(temp_hashAccessor, temp_node->m_key)){
+    if(!m_map.find(temp_hashAccessor, temp_node->m_key)){
       delete_temp = temp_node;
       //printf("fail key No.%lu: %lu, count: %lu\n", fail_count, delete_temp->m_key, count);
       //printf("insert count: %lu v.s. eviction count: %lu\n", count, eviction_count);
@@ -341,7 +353,10 @@ bool LRU_FHCache<TKey, TValue, THash>::construct_ratio(double FC_ratio) {
     m_fasthash->insert(temp_node->m_key, temp_hashAccessor->second.m_value);
     temp_node = temp_node->m_next;
 
-    if(count > FC_size - FC_RELAXATION && first_flag == true){
+    // TODO @ Ziyue: eliminate FC_RELAXATION
+    
+    // 
+    if(count > FC_size - FC_RELAXATION && first_pass_flag){
       std::unique_lock<ListMutex> lock(m_listMutex);
       // m_fast_head.m_next is right
       auto nodeBefore = m_fast_head.m_next->m_prev;
@@ -353,7 +368,7 @@ bool LRU_FHCache<TKey, TValue, THash>::construct_ratio(double FC_ratio) {
       nodeAfter->m_prev = nodeBefore;
       lock.unlock();
       break;
-    } else if(eviction_count > DC_size - FC_RELAXATION && first_flag == true) {
+    } else if(eviction_count > DC_size - FC_RELAXATION && first_pass_flag) {
       std::unique_lock<ListMutex> lock(m_listMutex);
       // m_fast_head.m_next is right
       auto node = m_fast_head.m_next;
@@ -365,7 +380,7 @@ bool LRU_FHCache<TKey, TValue, THash>::construct_ratio(double FC_ratio) {
       // debug(0);
       // debug(1);
       lock.unlock();
-      first_flag = false;
+      first_pass_flag = false;
     }
   }
   if(fail_count > 0)
@@ -380,85 +395,85 @@ bool LRU_FHCache<TKey, TValue, THash>::construct_ratio(double FC_ratio) {
   return true;
 }
 
-template <class TKey, class TValue, class THash>
-bool LRU_FHCache<TKey, TValue, THash>::construct_from(const TKey& key) {
-  HashMapConstAccessor hashAccessor;
-  if (!m_map.find(hashAccessor, key)) {
-    return false;
-  }
-  std::unique_lock<ListMutex> lock(m_listMutex);
-  fast_hash_construct = true;
+// template <class TKey, class TValue, class THash>
+// bool LRU_FHCache<TKey, TValue, THash>::construct_from(const TKey& key) {
+//   HashMapConstAccessor hashAccessor;
+//   if (!m_map.find(hashAccessor, key)) {
+//     return false;
+//   }
+//   std::unique_lock<ListMutex> lock(m_listMutex);
+//   fast_hash_construct = true;
 
-  ListNode* node = hashAccessor->second.m_listNode;
-  if (!node->isInList()) {
-    printf("not possible\n");
-    return false;
-  }
+//   ListNode* node = hashAccessor->second.m_listNode;
+//   if (!node->isInList()) {
+//     printf("not possible\n");
+//     return false;
+//   }
 
-  assert(m_fast_head.m_next == &m_fast_tail);
-  assert(m_fast_tail.m_prev == &m_fast_head);
+//   assert(m_fast_head.m_next == &m_fast_tail);
+//   assert(m_fast_tail.m_prev == &m_fast_head);
 
-  m_fast_head.m_next = m_head.m_next;
-  m_head.m_next->m_prev = &m_fast_head;
-  m_fast_tail.m_prev = node->m_prev;
-  node->m_prev->m_next = &m_fast_tail;
+//   m_fast_head.m_next = m_head.m_next;
+//   m_head.m_next->m_prev = &m_fast_head;
+//   m_fast_tail.m_prev = node->m_prev;
+//   node->m_prev->m_next = &m_fast_tail;
 
-  m_head.m_next = node->m_next;
-  node->m_next->m_prev = &m_head;
-  lock.unlock();
+//   m_head.m_next = node->m_next;
+//   node->m_next->m_prev = &m_head;
+//   lock.unlock();
 
-  m_map.erase(hashAccessor);
-  delete node;
-  m_size--;
+//   m_map.erase(hashAccessor);
+//   delete node;
+//   m_size--;
   
-  // insert into fast hash
-  int count = 0;
-  int fail_count = 0;
-  ListNode* temp_node = m_fast_head.m_next;
-  ListNode* delete_temp;
-  HashMapConstAccessor temp_hashAccessor;
-  while(temp_node != &m_fast_tail){
-#ifdef HANDLE_WRITE
-    if(temp_node->m_key == TOMB_KEY) {
-      delete_temp = temp_node;
-      temp_node = temp_node->m_next;
-      delink(delete_temp);
-      delete delete_temp;
-      continue;
-    }
-#endif
-    if(! m_map.find(temp_hashAccessor, temp_node->m_key)){
-      delete_temp = temp_node;
-      temp_node = temp_node->m_next;
-      if(delete_temp->isInList())
-        delink(delete_temp);
-      delete delete_temp;
-      fail_count++;
-      continue;
-    }
-#ifdef HANDLE_WRITE
-    if(temp_node->m_key == TOMB_KEY) {
-      delete_temp = temp_node;
-      temp_node = temp_node->m_next;
-      delink(delete_temp);
-      delete delete_temp;
-      continue;
-    }
-#endif
-    m_fasthash->insert(temp_node->m_key, temp_hashAccessor->second.m_value);
-    count++;
-    temp_node = temp_node->m_next;
-  }
-  if(fail_count > 0)
-    printf("fast hash insert num: %d, fail count: %d, m_size: %ld (FC_ratio: %.2lf)\n", 
-        count, fail_count, m_size.load(), count*1.0/m_size.load());
-  else
-    printf("fast hash insert num: %d, m_size: %ld (FC_ratio: %.2lf)\n", 
-        count, m_size.load(), count*1.0/m_size.load());
-  fast_hash_ready = true;
-  fast_hash_construct = false;
-  return true;
-}
+//   // insert into fast hash
+//   int count = 0;
+//   int fail_count = 0;
+//   ListNode* temp_node = m_fast_head.m_next;
+//   ListNode* delete_temp;
+//   HashMapConstAccessor temp_hashAccessor;
+//   while(temp_node != &m_fast_tail){
+// #ifdef HANDLE_WRITE
+//     if(temp_node->m_key == TOMB_KEY) {
+//       delete_temp = temp_node;
+//       temp_node = temp_node->m_next;
+//       delink(delete_temp);
+//       delete delete_temp;
+//       continue;
+//     }
+// #endif
+//     if(! m_map.find(temp_hashAccessor, temp_node->m_key)){
+//       delete_temp = temp_node;
+//       temp_node = temp_node->m_next;
+//       if(delete_temp->isInList())
+//         delink(delete_temp);
+//       delete delete_temp;
+//       fail_count++;
+//       continue;
+//     }
+// #ifdef HANDLE_WRITE
+//     if(temp_node->m_key == TOMB_KEY) {
+//       delete_temp = temp_node;
+//       temp_node = temp_node->m_next;
+//       delink(delete_temp);
+//       delete delete_temp;
+//       continue;
+//     }
+// #endif
+//     m_fasthash->insert(temp_node->m_key, temp_hashAccessor->second.m_value);
+//     count++;
+//     temp_node = temp_node->m_next;
+//   }
+//   if(fail_count > 0)
+//     printf("fast hash insert num: %d, fail count: %d, m_size: %ld (FC_ratio: %.2lf)\n", 
+//         count, fail_count, m_size.load(), count*1.0/m_size.load());
+//   else
+//     printf("fast hash insert num: %d, m_size: %ld (FC_ratio: %.2lf)\n", 
+//         count, m_size.load(), count*1.0/m_size.load());
+//   fast_hash_ready = true;
+//   fast_hash_construct = false;
+//   return true;
+// }
 
 template <class TKey, class TValue, class THash>
 bool LRU_FHCache<TKey, TValue, THash>::construct_tier() {
