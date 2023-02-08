@@ -71,10 +71,6 @@ namespace Cache
         virtual double print_reset_fast_hash() { return 1;}
         virtual double print_fast_hash() { return 1; }
 
-        virtual bool find_marker(TValue& ac, const TKey& key) { return false; }
-
-        //virtual bool construct_from(const TKey& key) { return false; }
-
         /* this is a function to construct the FC cache from a given ratio */
         virtual bool construct_ratio(double FC_ratio) { return false; }
 
