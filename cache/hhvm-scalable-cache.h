@@ -608,6 +608,7 @@ FastHashMonitor(){
   int wait_count = 0;
   double monitor_time = 0;
 
+  // Fill up cache
   printf("\n* start observation *\n");
   while(!should_stop) {
     printf("\ndata pass %lu\n", print_step_counter++);
