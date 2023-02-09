@@ -227,6 +227,7 @@ namespace Cache
         virtual void deconstruct() override {}
 
         /*
+         * It will fill 'curve_container' with {FC ratio, {FC hit, DC hit, DC miss}}
          * It is implemented differently
          * FIFO/LRU as an example:
          * 1. insert the marker, with the last access time = current time
