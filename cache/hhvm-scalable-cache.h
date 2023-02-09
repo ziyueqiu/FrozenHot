@@ -593,7 +593,7 @@ FastHashMonitor(){
 
   // use shard 0 simulate all the cache
   // TODO @ Ziyue: could be independent, not only shard 0
-  WAIT_STABLE:
+WAIT_STABLE:
   auto start_wait_stable = SSDLOGGING_TIME_NOW;
   double last_miss_ratio = 1.5;
   double miss_ratio;
@@ -610,29 +610,33 @@ FastHashMonitor(){
 
   // Fill up cache
   printf("\n* start observation *\n");
-  while(!should_stop) {
+  while(!should_stop) { // Where is should_stop updated inside the loop?
     printf("\ndata pass %lu\n", print_step_counter++);
     miss_ratio = PrintMissRatio();
     PrintStepLat();
+    
     if(last_size >= size){
-      if(last_miss_ratio <= miss_ratio)
+      if(last_miss_ratio <= miss_ratio) // The cache got some new data request?
         wait_count++;
-      if(wait_count >= WAIT_STABLE_THRESHOLD){
+      if(wait_count >= WAIT_STABLE_THRESHOLD){ // Waiting too long, stop filling process
         printf("- miss ratio = %.5lf -> %.5lf, with m_size = %lu (max = %lu)\n",
                   last_miss_ratio, miss_ratio, size, m_maxSize);
         break;
       }
     }
+    
+    // Update size
     last_size = size;
     size = Size();
     printf("- miss ratio = %.5lf -> %.5lf, with m_size = %lu (max = %lu)\n",
                   last_miss_ratio, miss_ratio, size, m_maxSize);
     fflush(stdout);
-    last_miss_ratio = miss_ratio;
+    last_miss_ratio = miss_ratio; // Update miss ratio
     usleep(WAIT_STABLE_SLEEP_INTERVAL_US);
   }
   printf("\ncache is stable\n");
-
+  
+  // Message for end filling
   if(beginning_flag){
     printf("the first wait stable\n");
     printf("clear stat for next stage:\n");
@@ -650,7 +654,7 @@ FastHashMonitor(){
   auto start_learning_time = SSDLOGGING_TIME_NOW;
 
   // get curve
-  if(!should_stop)
+  if(!should_stop) // Forgot what does it do
     m_shards[0]->get_curve(should_stop);
 
   // calculate optimal FC_ratio
@@ -677,8 +681,10 @@ FastHashMonitor(){
   PrintMissRatio();
   PrintStepLat();
 
+  // Controller sleep but the cache runs in 100% FH?
   usleep(WAIT_STABLE_SLEEP_INTERVAL_US);
   printf("\ndata pass %lu\n", print_step_counter++);
+  
   /* get one endpoint of FC miss ratio in curve -- when 100% FC
    * but not used (only printed)
    */
@@ -697,7 +703,7 @@ FastHashMonitor(){
   // for client, hit may be 50%, miss ~0.5%, then 49.5% write (i.e. insert)
   // better add a counter for insert()
 
-  for(size_t i = 0; i < container.size(); i++){
+  for(size_t i = 0; i < container.size(); i++){ // Calculate the best FC ratio for each shard/ or each something?
     auto tSize = container[i].size_;
     auto tFC_hit_ = container[i].FC_hit_;
     auto tMiss = container[i].miss_;
@@ -731,6 +737,7 @@ FastHashMonitor(){
     }
   }
   
+  // Update some global best case?
   if(best_avg > Frozen_Avg){
     printf("(Update) best avg: %.3lf us, best size: %.3lf\n",
       Frozen_Avg, 1.0);
@@ -739,6 +746,7 @@ FastHashMonitor(){
   }
   
   // clear curve container
+  // Only using shard 0 for the evaluation?
   m_shards[0]->curve_container.clear();
 
   auto learning_duration = SSDLOGGING_TIME_DURATION(start_learning_time, SSDLOGGING_TIME_NOW);
@@ -748,7 +756,8 @@ FastHashMonitor(){
   // debugging
   // printf("\nDebug: Test 1.0 Size\n");
   // best_size = 1;
-
+  
+  // End of FH evaluation, and got the desired ratio to construct
   printf("\n* end search *\n");
   
   if(!should_stop && best_size < 0.05){ // 0.05 is magic
@@ -771,6 +780,7 @@ FastHashMonitor(){
     }
   }
 
+  // Construct the FH
 CONSTRUCT:
   auto start_construct_time = SSDLOGGING_TIME_NOW;
   double baseline_metrics[80];
@@ -812,7 +822,7 @@ CONSTRUCT:
   int pass_count = 0;
   while(!should_stop && !construct_container.empty()) {
     size_t pass_len = construct_container.size();
-    for(size_t k = 0; k < pass_len; k++){
+    for(size_t k = 0; k < pass_len; k++){ // What is this doing?
       printf("%d ", construct_container.front());
       construct_container.push(construct_container.front());
       construct_container.pop();
@@ -824,11 +834,12 @@ CONSTRUCT:
       while(!construct_container.empty()){
         int shard_id = construct_container.front();
         construct_container.pop();
-        fail_list.insert(shard_id);
+        fail_list.insert(shard_id); // what is this fail_list, like we want to construct FH but we got no time/resource because of threshold?
       }
       break;
     }
-
+    
+    // Call the construct function for each shard
     for(size_t i = 0; i < pass_len; i++) {
       size_t shard_id = construct_container.front();
       if(double_is_equal(best_size, 1))
@@ -837,11 +848,13 @@ CONSTRUCT:
         m_shards[shard_id]->construct_ratio(best_size);
       
       m_shards[shard_id]->reset_cursor();
+      
+      // What is this pop and push?
       construct_container.pop();
       construct_container.push(shard_id);
     }
 
-    for(size_t i = 0; i < pass_len; i++) {
+    for(size_t i = 0; i < pass_len; i++) { // Similarly what does this do?
       size_t shard_id = construct_container.front();
       req_latency_[shard_id].reset();
       construct_container.pop();
@@ -851,7 +864,8 @@ CONSTRUCT:
     printf("try query\n");
     fflush(stdout);
     usleep(monitor_time);
-
+    
+    // Check if some shards are not suitable for FH and deconstruct
     for(size_t i = 0; i < pass_len; i++) {
       size_t shard_id = construct_container.front();
       m_shards[shard_id]->print_step();
@@ -881,11 +895,13 @@ CONSTRUCT:
 
   printf("\nconstruct step: %lu\n", construct_step);
 
+  // Means all shards fail?
   if(!should_stop && fail_list.size() == m_numShards){
     // TODO @ Ziyue: goto observation phase or search phase?
     goto WAIT_STABLE;
   }
 
+  // Message for construction phase details
   auto construct_duration = SSDLOGGING_TIME_DURATION(start_construct_time, SSDLOGGING_TIME_NOW);
   printf("\nconstruct time: %lf s\n", construct_duration / 1000 / 1000);
   if(fail_list.size() == 0)
@@ -893,22 +909,26 @@ CONSTRUCT:
   else
     printf("fail %ld shard\n", fail_list.size());
   
-  printf("\n* end construct *\n");
+  printf("\n* end construct *\n"); // End of the FH construction
 
-  stop_sample_stat = true;
+  stop_sample_stat = true; // What does this do, would it cause we do less job somewhere in controller or caches
   
+  // Start of Frozen run after construction, and monitor it
   auto start_query_stage = SSDLOGGING_TIME_NOW;
   printf("\n* start frozen *\n");
+  
   double check_time = CHECK_SLEEP_INTERVAL_US;
   printf("check interval: %.3lf s\n", check_time/1000/1000);
   performance_depletion = COUNT_THRESHOLD;
   bool first_flag = true;
   size_t total_step = 0;
   size_t current_step = 0;
+  
   while(!should_stop) {
     do{
       usleep(check_time);
     } while(GetStepSize() < 50 && !should_stop);
+    
     printf("\ndata pass %lu\n", print_step_counter++);
     PrintFrozenStat();
     performance = PrintStepLat(thput_step);
@@ -916,12 +936,14 @@ CONSTRUCT:
       baseline_step = thput_step;
       first_flag = false;
     }
+    
     // TODO @ Ziyue: window-based will be better?
     // TODO @ Ziyue: baseline shall be refreshed periodically?
     // TODO @ Ziyue: how to become 'optimal' instead of only better than baseline
     auto delta = (baseline_performance_with_threshold - performance)/baseline_performance_with_threshold * thput_step / baseline_step;
-    performance_depletion += delta;
+    performance_depletion += delta; // What is this part? Like the integration to decide whether to stop FH?
     
+    // Decide whether the FH performance is too bad, and go to baseline
     if(performance_depletion <= 0){
     // give 3 times baseline as start-up capital,
     // if depleted, goto DECONSTRUCT
@@ -936,7 +958,7 @@ CONSTRUCT:
 
     total_step += thput_step;
     current_step += thput_step;
-    if(total_step > construct_step * FROZEN_THRESHOLD){
+    if(total_step > construct_step * FROZEN_THRESHOLD){ // Periodic Reconstruction of FH?
       printf("\nAfter %lu frozen step (> %d * %lu = %lu), need periodically refresh!\n",
         total_step, FROZEN_THRESHOLD, construct_step, construct_step * FROZEN_THRESHOLD);
       for(size_t i = 0; i < m_numShards; i++) {
@@ -949,7 +971,7 @@ CONSTRUCT:
         SLEEP_THRESHOLD /= 2;
       printf("Perform Well, Sleep Threshold decrease into %zu\n", SLEEP_THRESHOLD);
       goto CONSTRUCT;
-    } else if(current_step > construct_step) {
+    } else if(current_step > construct_step) { // What's the difference between the two cases
       // a round to check whether need to deconstruct
       if(performance_depletion > COUNT_THRESHOLD){
         printf("\nPeformance Depletion set to %d after %zu step for a round!\n", COUNT_THRESHOLD, current_step);
@@ -969,7 +991,9 @@ CONSTRUCT:
     }
     fflush(stdout);
   }
-  DECONSTRUCT:
+  
+  // Deconstruction
+DECONSTRUCT:
   for(size_t i = 0; i < m_numShards; i++) {
     m_shards[i]->deconstruct();
   }
@@ -989,6 +1013,9 @@ CONSTRUCT:
         break;
     }
   }
+  
+  // Why wait stable instead of construct?
+  // Isn't wait stable for cache warm up, and we already run the cache for so long?
   if(!should_stop){
     printf("\ngo back to wait stable\n");
     goto WAIT_STABLE;
