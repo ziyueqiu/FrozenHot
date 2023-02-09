@@ -1006,6 +1006,7 @@ void FIFO_FHCache<TKey, TValue, THash>::delete_key(const TKey& key) {
     delink(node);
     lock.unlock();
     delete node;
+    
   }
   if(m_map.erase(hashAccessor))
     m_size--;
