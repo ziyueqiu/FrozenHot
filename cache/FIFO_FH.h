@@ -673,14 +673,14 @@ bool FIFO_FHCache<TKey, TValue, THash>::find(TValue& ac,
 }
 
 
-// Could there be a function description here ?
-// So the function insert a marker and check for several time where it is
-// Use the marker as a boundary for FC and DC?
-// What data are we storing, I only see a lot of calculation, status obtain and printing
-// We are not recording the FC ratio or something or further construction? (Or I might be wrong)
+// Check function description in the FHCache header file
+// So the function insert a marker and check for several time where it is (use movement counter)
+// Use the marker as a boundary for FC and DC
+// Record the FC ratio, and the FC hit, DC hit, (DC) miss by filling the curve container
 template <class TKey, class TValue, class THash>
 bool FIFO_FHCache<TKey, TValue, THash>::get_curve(bool& should_stop) {
-  assert(!tier_no_insert.load());// No curve to get when the whole cache is frozen
+  assert(!tier_no_insert.load()); // Shouldn't call get curve (learning state) 
+                                  // when flag indicates the whole cache is frozen (frozen state)
   
   // Create a marker and insert to the list
   m_marker = new ListNode(MARKER_KEY);
@@ -697,7 +697,8 @@ bool FIFO_FHCache<TKey, TValue, THash>::get_curve(bool& should_stop) {
   size_t FC_size = 0;
   auto start_time = SSDLOGGING_TIME_NOW;
   
-  // why 45 loops?
+  // why 45 loops:
+  // just magic now...assume we don't need the time-consuming loops for the last 10% FC ratio
   for(int i = 0; i < 45 && !should_stop; i++){
     do{
       usleep(1000);
@@ -705,14 +706,14 @@ bool FIFO_FHCache<TKey, TValue, THash>::get_curve(bool& should_stop) {
       FIFO_FHCache::get_step(temp_hit, temp_miss); // get the hit and miss ratio data for
                                                    // last period of time (step)
                                                    
-      FC_size = movement_counter.load(); // What is movement counter? Like how far the marker is 
-                                         // pushed forward by recent data?
+      FC_size = movement_counter.load(); // movement counter: how far the marker is 
+                                         // pushed forward by DC HIT
                                          
       //if(temp_hit + temp_miss > 0.98 && FC_size > m_maxSize * 0.2){
       if(temp_hit + temp_miss > 0.993){ // a magic number; but actually for early stop
         break;
       }
-    }while(FC_size <= m_maxSize * i * 1.0/100 * 2 && !should_stop); // Why this loop condition?
+    }while(FC_size <= m_maxSize * i * 1.0/100 * 2 && !should_stop); // use 2% as the step size
     
     // Message printing and calculate FC ratio from size (marker movements)
     printf("\ncurve pass %lu\n", pass_counter++);
@@ -725,14 +726,19 @@ bool FIFO_FHCache<TKey, TValue, THash>::get_curve(bool& should_stop) {
     start_time = curr_time;
     fflush(stdout);
     
-    // Why this break threshold? We can not accept too frozen (>0.9)? 
-    // What is the FC_hit + miss mean?
+    // 1 - (FC_hit + miss) is the DC hit, marker is pushed forward by DC data
+    // So if FC hit is too low, marker moves too slow (too time-consuming)
+    // Similarly, if FC_ratio is high enough (movement might be too slow),
+    // we assume no need to compare the difference between 90%, 92%, ..., 98%
+    // just compare 90% and 100%
+    // TODO @ Ziyue: check whether this is a good idea
     if(FC_hit + miss > 0.993 || FC_ratio > 0.9){
       break;
     }
     
-    // curve_container is a place to store each time we try to look at potential FC status?
-    // By potential, since we only have the marker but the cache is not yet frozen?
+    // curve_container is a place to STORE each time we try to look at potential FC status
+    // STORE FC ratio, FC hit and miss (DC hit = 1 - (FC_hit + miss))
+    // By potential, since we only have the marker but the cache is not yet frozen
     FIFO_FHCache::curve_container.insert(FIFO_FHCache::curve_container.end(), curve_data_node(FC_ratio, FC_hit, miss));
   }
   FIFO_FHCache::sample_flag = true;

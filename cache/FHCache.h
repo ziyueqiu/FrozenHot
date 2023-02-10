@@ -228,6 +228,7 @@ namespace Cache
 
         /*
          * It will fill 'curve_container' with {FC ratio, {FC hit, DC hit, DC miss}}
+         * in order to plot the hit/miss ratio versus FC ratio graph
          * It is implemented differently
          * FIFO/LRU as an example:
          * 1. insert the marker, with the last access time = current time
