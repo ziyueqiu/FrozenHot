@@ -672,9 +672,17 @@ bool FIFO_FHCache<TKey, TValue, THash>::find(TValue& ac,
   return true;
 }
 
+
+// Could there be a function description here ?
+// So the function insert a marker and check for several time where it is
+// Use the marker as a boundary for FC and DC?
+// What data are we storing, I only see a lot of calculation, status obtain and printing
+// We are not recording the FC ratio or something or further construction? (Or I might be wrong)
 template <class TKey, class TValue, class THash>
 bool FIFO_FHCache<TKey, TValue, THash>::get_curve(bool& should_stop) {
-  assert(!tier_no_insert.load());
+  assert(!tier_no_insert.load());// No curve to get when the whole cache is frozen
+  
+  // Create a marker and insert to the list
   m_marker = new ListNode(MARKER_KEY);
   size_t pass_counter = 0;
 
@@ -689,18 +697,24 @@ bool FIFO_FHCache<TKey, TValue, THash>::get_curve(bool& should_stop) {
   size_t FC_size = 0;
   auto start_time = SSDLOGGING_TIME_NOW;
   
+  // why 45 loops?
   for(int i = 0; i < 45 && !should_stop; i++){
     do{
       usleep(1000);
       double temp_hit = 0, temp_miss = 1;
-      FIFO_FHCache::get_step(temp_hit, temp_miss);
-      FC_size = movement_counter.load();
+      FIFO_FHCache::get_step(temp_hit, temp_miss); // get the hit and miss ratio data for
+                                                   // last period of time (step)
+                                                   
+      FC_size = movement_counter.load(); // What is movement counter? Like how far the marker is 
+                                         // pushed forward by recent data?
+                                         
       //if(temp_hit + temp_miss > 0.98 && FC_size > m_maxSize * 0.2){
       if(temp_hit + temp_miss > 0.993){ // a magic number; but actually for early stop
         break;
       }
-    }while(FC_size <= m_maxSize * i * 1.0/100 * 2 && !should_stop);
+    }while(FC_size <= m_maxSize * i * 1.0/100 * 2 && !should_stop); // Why this loop condition?
     
+    // Message printing and calculate FC ratio from size (marker movements)
     printf("\ncurve pass %lu\n", pass_counter++);
     double FC_ratio = FC_size * 1.0 / m_maxSize;
     printf("FC_size: %lu (FC_ratio: %.3lf)\n", FC_size, FC_ratio);
@@ -710,13 +724,20 @@ bool FIFO_FHCache<TKey, TValue, THash>::get_curve(bool& should_stop) {
     printf("duration: %.3lf ms\n", SSDLOGGING_TIME_DURATION(start_time, curr_time)/1000);
     start_time = curr_time;
     fflush(stdout);
+    
+    // Why this break threshold? We can not accept too frozen (>0.9)? 
+    // What is the FC_hit + miss mean?
     if(FC_hit + miss > 0.993 || FC_ratio > 0.9){
       break;
     }
+    
+    // curve_container is a place to store each time we try to look at potential FC status?
+    // By potential, since we only have the marker but the cache is not yet frozen?
     FIFO_FHCache::curve_container.insert(FIFO_FHCache::curve_container.end(), curve_data_node(FC_ratio, FC_hit, miss));
   }
   FIFO_FHCache::sample_flag = true;
-
+  
+  // Remove the marker
   printf("\ncurve container size: %lu\n", FIFO_FHCache::curve_container.size());
   std::unique_lock<ListMutex> lockB(m_listMutex);
   curve_flag = false;
