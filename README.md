@@ -22,13 +22,14 @@ cd CLHT && ./prepare_everything.sh
 cd ..
 
 # lib preparation (ubuntu as an example)
+sudo apt update
 sudo apt install cmake libtbb-dev numactl
 
 # compile project
 ./prepare.sh
 
 # fill param in run.py and then test by yourself
-python run.py
+python run_no_trace.py
 ```
 
 To satisfy hardware requirements (up to 72 cores in the same socket), enable hyperthreading to use cores from a single socket.
