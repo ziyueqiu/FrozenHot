@@ -7,3 +7,5 @@ Every data processing script is named like "handle_data.py", while every plot sc
 Scripts are classified into folders named with corresponding figure.
 
 Figure 10, 14 are two folders without "data_handle.py", cause data used in this script is collected manually.
+
+The size and y-axis range of some plots are manually adjusted according to the results in our machine and configuration. If you want to get figures to adapt to your own results, you can change the code like "plt.yticks(xxxx)" (e.g. Line 83 & 85 in `PlotEvaluation(Figure 8.c&d)-boxplot.py`).
