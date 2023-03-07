@@ -1,13 +1,17 @@
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 import mpl_toolkits.axisartist as axisartist
 
-msr_fifo = [-0.07562, 0.546184, 0.439858, 0.307405, -0.06152, -0.00418, -0.45913, -0.43019, 0.063448, 0.72]
-msr_lru = [-0.11075, 0.627922, 0.358341, 0.332037, -0.00776, 0.130577, -0.51198, -0.20913, -0.0063, 2.44361]
-msr_name = ["prn_1", "proj_1", "proj_2", "proj_4", "", "", "src1_1", "usr_1", "", "web_2"]
-msr_xbias = [0, 0, 0.02, 0, 0, 0, 0, 0, 0.05, -0.2]
-msr_ybias = [-0.17, 0, 0.03, 0, 0, 0, 0, 0, 0, 0.02]
-twitter_fifo = [-0.00295, 0.159558, 0.020645]
-twitter_lru = [-0.03603, 0.170159, 0.01576]
+mpl.rcParams['pdf.fonttype'] = 42
+mpl.rcParams['ps.fonttype'] = 42 
+
+msr_fifo = [-0.1309, -0.13834, 0.617683, 0.381737, 0.306024, -0.0583, 0.011611, -0.5111, -0.16167, 0.08462, 0.72]
+msr_lru = [-0.1061, -0.4712, 0.705716, 0.49599, 0.3078, -0.07968, 0.084431, -0.44263, -0.01759, 0.06967, 2.516114]
+msr_name = ["", "prn_1", "proj_1", "proj_2", "proj_4", "", "", "src1_1", "", "", "web_2"]
+msr_xbias = [0, 0, 0.02, 0, 0, 0, 0, 0, 0.05, -0.2, -0.14]
+msr_ybias = [-0.17, -0.17, 0.03, 0, 0, 0, 0, 0, 0, 0.02, 0.0]
+twitter_fifo = [-0.00342, 0.190441, 0.039459]
+twitter_lru = [-0.05771, 0.300502, 0.026519]
 twitter_name= ["", "T45", ""]
 twitter_xbias = [-0.02, 0.14, 0, ]
 twitter_ybias = [0.04, -0.08, 0, ]
@@ -29,7 +33,7 @@ for x,y,name,xbias,ybias in zip(msr_lru, msr_fifo, msr_name, msr_xbias, msr_ybia
 for x,y,name,xbias,ybias in zip(twitter_lru, twitter_fifo, twitter_name, twitter_xbias, twitter_ybias):
     plt.text(x + xbias, y+0.02 + ybias, name, ha='center', va='bottom', fontsize=14)
 
-plt.text(2.4, 0.76, "(244%, 351%)", fontsize=14, fontweight="semibold", fontstyle="italic")
+plt.text(2.51, 0.76, "(298%, 318%)", fontsize=14, fontweight="semibold", fontstyle="italic")
 
 plt.text(2.55, 0.05, "LRU (%)", fontweight="semibold", fontsize=13)
 plt.text(0.10, 0.8, "FIFO (%)", fontweight="semibold", fontsize=13)
