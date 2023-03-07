@@ -4,34 +4,34 @@ MSR_prefix = "TBF" # to be filled
 
 # "trace name":[{cache size: req num}, [covered subtraces]]
 Twitter_list = {
-    "cluster17": [{
+    "cluster17": [{ # number of objects: 6111583
         1000000:500,  # large size for MS machine
         }, [0, 9]],
 
-    "cluster45": [{
+    "cluster45": [{ # number of objects: 45414786
         30000000:150,
         # 30000000:1050, # only for rebuild freq
         }, [0, 0]],
 
-    "cluster18": [{
+    "cluster18": [{ # number of objects: 11459136
         2400000: 400,
     }, [0, 12]],
 
-    "cluster24": [{
+    "cluster24": [{ # number of objects: 11940561
         2000000: 200,
     }, [0, 3]],
 
-    "cluster44": [{
+    "cluster44": [{ # number of objects: 57750518
         40000000: 600,
         # 40000000: 7500, # only for rebuild freq
     }, [0, 5]],
 
-    "cluster52": [{
+    "cluster52": [{ # number of objects: 243219118
         88000000: 800,
         # 88000000: 10000, # only for rebuild freq
     }, [0, 6]],
 
-    "cluster29": [{
+    "cluster29": [{ # number of objects: 239213111
         900000: 100,
     }, [0, 6]],
 }

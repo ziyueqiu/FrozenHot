@@ -34,7 +34,7 @@
 #define MARKER_KEY 2 // 2 is reserved for marker key
 #define SPECIAL_KEY 0 // 0 is reserved for special key
 #define TOMB_KEY 1 // 1 is reserved for tomb key
-#define FC_RELAXATION 20 // TODO @ Ziyue: remove it later
+#define FC_RELAXATION 20 // TODO @ Ziyue: remove it later, could be 0 with careful design
 
 namespace Cache {
 /**
@@ -154,7 +154,6 @@ class FIFO_FHCache : public FHCacheAPI<TKey, TValue, THash> {
    */
   //bool find(ConstAccessor& ac, const TKey& key);
   virtual bool find(TValue& ac, const TKey& key) override;
-  virtual bool find_marker(TValue& ac, const TKey& key) override;
 
   /**
    * Insert a value into the container. Both the key and value will be copied.
@@ -193,12 +192,14 @@ class FIFO_FHCache : public FHCacheAPI<TKey, TValue, THash> {
 
   //void evict_key();
 
-  virtual bool construct_from(const TKey& key) override;
   virtual bool construct_ratio(double FC_ratio) override;
   virtual bool construct_tier() override;
   virtual void deconstruct() override;
   virtual bool get_curve(bool& should_stop) override;
   void debug(int status);
+
+  // TODO @ Ziyue: clarify the difference between tier_ready and tier_no_insert
+  // and the duty of each variable
   bool tier_ready = false;
 
  private:
@@ -292,58 +293,87 @@ FIFO_FHCache<TKey, TValue, THash>::FIFO_FHCache(size_t maxSize)
 
 template <class TKey, class TValue, class THash>
 bool FIFO_FHCache<TKey, TValue, THash>::construct_ratio(double FC_ratio) {
+  // Check valid ratio
   assert(FC_ratio <= 1 && FC_ratio >=0);
+  
+  // Check that Frozen LinkedList is empty (previously in DC mode)
   assert(m_fast_head.m_next == &m_fast_tail);
   assert(m_fast_tail.m_prev == &m_fast_head);
+  
+  // prepare eviction counter for later use
+  // TODO @ Ziyue: when will it not 0?
   if(eviction_counter.load() > 0){
     //printf("\neviction counter error(?): %lu\n", eviction_counter.load());
     eviction_counter = 0;
   }
-
+  
+  // Start to put nodes to Frozen part
   m_fast_head.m_next = m_head.m_next;
   fast_hash_construct = true;
-
+  
+  // Compute split sizes
   size_t FC_size = FC_ratio * m_maxSize;
   size_t DC_size = m_maxSize - FC_size;
   printf("FC_size: %lu, DC_size: %lu\n", FC_size, DC_size);
   size_t fail_count = 0, count = 0;
-  bool first_flag = true;
+
+  // false when FC is already pushed to the tail of the list
+  bool first_pass_flag = true;
+
   ListNode* temp_node = m_fast_head.m_next;
   ListNode* delete_temp;
   HashMapConstAccessor temp_hashAccessor;
-
+  
   while(temp_node != &m_fast_tail){
     count++;
     auto eviction_count = eviction_counter.load();
+    
+    /* if the node you want to build in the FC hash
+     * is already evicted/deleted (not in the DC hash)
+     * simply clean it up and pass
+     */
+    // TODO @ Ziyue: why such a case will happen??
     if(! m_map.find(temp_hashAccessor, temp_node->m_key)){
-      delete_temp = temp_node;
+      delete_temp = temp_node; // Delete the macro
       //printf("fail key No.%lu: %lu, count: %lu\n", fail_count, delete_temp->m_key, count);
       //printf("insert count: %lu v.s. eviction count: %lu\n", count, eviction_count);
-      temp_node = temp_node->m_next;
+      temp_node = temp_node->m_next; // Keep looping to next node
       if(delete_temp->isInList())
         delink(delete_temp);
       delete delete_temp;
       fail_count++;
-      continue;
+      continue; // Pass
     }
+    
+    // Node exists
     m_fasthash->insert(temp_node->m_key, temp_hashAccessor->second.m_value);
     temp_node = temp_node->m_next;
 
-    if(count > FC_size - FC_RELAXATION && first_flag == true){
+    // cutoff FC list, in two cases
+    if(count > FC_size - FC_RELAXATION && first_pass_flag == true){
+      // Lock the whole list
       std::unique_lock<ListMutex> lock(m_listMutex);
+      
       // m_fast_head.m_next is right
       auto nodeBefore = m_fast_head.m_next->m_prev;
       auto nodeAfter = temp_node;
+      
+      // Connect the part before and after FC part
       m_fast_tail.m_prev = temp_node->m_prev;
       temp_node->m_prev->m_next = &m_fast_tail;
       m_fast_head.m_next->m_prev = &m_fast_head;
       nodeBefore->m_next = nodeAfter;
       nodeAfter->m_prev = nodeBefore;
+      
+      // Unlock and finish
       lock.unlock();
       break;
-    } else if(eviction_count > DC_size - FC_RELAXATION && first_flag == true) {
+    } else if(eviction_count > DC_size - FC_RELAXATION && first_pass_flag == true) {
+      // Lock the whole list
       std::unique_lock<ListMutex> lock(m_listMutex);
+      
       // m_fast_head.m_next is right
+      // cut off from FC start to tail (i.e. FC end)
       auto node = m_fast_head.m_next;
       m_fast_tail.m_prev = m_tail.m_prev;
       m_tail.m_prev->m_next = &m_fast_tail;
@@ -351,123 +381,63 @@ bool FIFO_FHCache<TKey, TValue, THash>::construct_ratio(double FC_ratio) {
       m_tail.m_prev->m_next = &m_tail;
       node->m_prev = &m_fast_head;
       lock.unlock();
-      first_flag = false;
+      first_pass_flag = false;
     }
   }
+  
+  
   if(fail_count > 0)
     printf("fast hash insert num: %lu, fail count: %lu, m_size: %ld (FC_ratio: %.2lf)\n", 
         count, fail_count, m_size.load(), count*1.0/m_size.load());
   else
     printf("fast hash insert num: %lu, m_size: %ld (FC_ratio: %.2lf)\n", 
         count, m_size.load(), count*1.0/m_size.load());
+  
+  
   fast_hash_ready = true;
   fast_hash_construct = false;
   eviction_counter = 0;
   return true;
 }
 
-template <class TKey, class TValue, class THash>
-bool FIFO_FHCache<TKey, TValue, THash>::construct_from(const TKey& key) {
-  HashMapConstAccessor hashAccessor;
-  if (!m_map.find(hashAccessor, key)) {
-    return false;
-  }
-  std::unique_lock<ListMutex> lock(m_listMutex);
-  fast_hash_construct = true;
-
-  ListNode* node = hashAccessor->second.m_listNode;
-  if (!node->isInList()) {
-    printf("not possible\n");
-    return false;
-  }
-
-  assert(m_fast_head.m_next == &m_fast_tail);
-  assert(m_fast_tail.m_prev == &m_fast_head);
-
-  m_fast_head.m_next = m_head.m_next;
-  m_head.m_next->m_prev = &m_fast_head;
-  m_fast_tail.m_prev = node->m_prev;
-  node->m_prev->m_next = &m_fast_tail;
-
-  m_head.m_next = node->m_next;
-  node->m_next->m_prev = &m_head;
-  lock.unlock();
-
-  m_map.erase(hashAccessor);
-  delete node;
-  m_size--;
-  
-  // insert into fast hash
-  int count = 0;
-  int fail_count = 0;
-  ListNode* temp_node = m_fast_head.m_next;
-  ListNode* delete_temp;
-  HashMapConstAccessor temp_hashAccessor;
-  while(temp_node != &m_fast_tail){
-#ifdef HANDLE_WRITE
-    if(temp_node->m_key == TOMB_KEY) {
-      delete_temp = temp_node;
-      temp_node = temp_node->m_next;
-      delink(delete_temp);
-      delete delete_temp;
-      continue;
-    }
-#endif
-    if(! m_map.find(temp_hashAccessor, temp_node->m_key)){
-      delete_temp = temp_node;
-      temp_node = temp_node->m_next;
-      if(delete_temp->isInList())
-        delink(delete_temp);
-      delete delete_temp;
-      fail_count++;
-      continue;
-    }
-#ifdef HANDLE_WRITE
-    if(temp_node->m_key == TOMB_KEY) {
-      delete_temp = temp_node;
-      temp_node = temp_node->m_next;
-      delink(delete_temp);
-      delete delete_temp;
-      continue;
-    }
-#endif
-    m_fasthash->insert(temp_node->m_key, temp_hashAccessor->second.m_value);
-    count++;
-    temp_node = temp_node->m_next;
-  }
-  if(fail_count > 0)
-    printf("fast hash insert num: %d, fail count: %d, m_size: %ld (FC_ratio: %.2lf)\n", 
-        count, fail_count, m_size.load(), count*1.0/m_size.load());
-  else
-    printf("fast hash insert num: %d, m_size: %ld (FC_ratio: %.2lf)\n", 
-        count, m_size.load(), count*1.0/m_size.load());
-  fast_hash_ready = true;
-  fast_hash_construct = false;
-  return true;
-}
-
+// What's the function for?
 template <class TKey, class TValue, class THash>
 bool FIFO_FHCache<TKey, TValue, THash>::construct_tier() {
+  // Lock the whole list
   std::unique_lock<ListMutex> lock(m_listMutex);
+  
   fast_hash_construct = true;
-  tier_no_insert = true;
+  tier_no_insert = true; // reject insert
+  
+  // Check Frozen part was empty
   assert(m_fast_head.m_next == &m_fast_tail);
   assert(m_fast_tail.m_prev == &m_fast_head);
+  
+  // Put the whole list to Frozen
   m_fast_head.m_next = m_head.m_next;
   m_head.m_next->m_prev = &m_fast_head;
   m_fast_tail.m_prev = m_tail.m_prev;
   m_tail.m_prev->m_next = &m_fast_tail;
+  
+  // Empty DC
   m_head.m_next = &m_tail;
   m_tail.m_prev = &m_head;
 
   lock.unlock();
-
+  
   int count = 0;
   ListNode* temp_node = m_fast_head.m_next;
   ListNode* delete_temp;
   HashMapConstAccessor temp_hashAccessor;
+  
+  
   while(temp_node != &m_fast_tail){
 #ifdef HANDLE_WRITE
+    /*
+     * If the node key is tomb, clean tomb node; 
+     * data is already deleted in DC hash
+     * but can only be marked as tomb in FH list, wait for cleaning, since no lock
+     */
     if(temp_node->m_key == TOMB_KEY) {
       delete_temp = temp_node;
       temp_node = temp_node->m_next;
@@ -476,6 +446,8 @@ bool FIFO_FHCache<TKey, TValue, THash>::construct_tier() {
       continue;
     }
 #endif
+    
+    // Similar if data has been deleted, delink it and continue
     if(! m_map.find(temp_hashAccessor, temp_node->m_key)){
       delete_temp = temp_node;
       temp_node = temp_node->m_next;
@@ -485,7 +457,11 @@ bool FIFO_FHCache<TKey, TValue, THash>::construct_tier() {
       delete delete_temp;
       continue;
     }
+    
 #ifdef HANDLE_WRITE
+    // Check again for write tomb since temp_node might change
+    // Why recheck: delete (simply mark key as TOMB) can happen at the same time
+    // TODO @ Ziyue: not sure whether this is used, to check
     if(temp_node->m_key == TOMB_KEY) {
       delete_temp = temp_node;
       temp_node = temp_node->m_next;
@@ -494,10 +470,13 @@ bool FIFO_FHCache<TKey, TValue, THash>::construct_tier() {
       continue;
     }
 #endif
+    
+    // Insert the valid node to Frozen
     m_fasthash->insert(temp_node->m_key, temp_hashAccessor->second.m_value);
     count++;
     temp_node = temp_node->m_next;
   }
+  
   printf("fast hash insert num: %d, m_size: %ld (FC_ratio: %.2lf)\n", 
       count, m_size.load(), count*1.0/m_size.load());
   tier_ready = true;
@@ -505,6 +484,7 @@ bool FIFO_FHCache<TKey, TValue, THash>::construct_tier() {
   return true;
 }
 
+// Some debug print
 template <class TKey, class TValue, class THash>
 void FIFO_FHCache<TKey, TValue, THash>::debug(int status) {
   if(status == 0){
@@ -540,33 +520,47 @@ void FIFO_FHCache<TKey, TValue, THash>::debug(int status) {
   }
 }
 
+// Deconstruct the Frozen part
 template <class TKey, class TValue, class THash>
 void FIFO_FHCache<TKey, TValue, THash>::deconstruct() {
+  /* if empty, need to point to each other
+   * if not, need to not point to each other
+   */
   assert(!((m_fast_head.m_next == &m_fast_tail) ^ (m_fast_tail.m_prev == &m_fast_head)));
+  
+  // If the cache was DC already, do nothing
   if(m_fast_head.m_next == &m_fast_tail){
     printf("no need to deconstruct!\n");
     fflush(stdout);
     return;
   }
 
+  // Lock the whole list
   std::unique_lock<ListMutex> lock(m_listMutex);
   ListNode* node = m_head.m_next;
+  
+  // Put the frozen part at the start of the linkedlist (i.e. the Most recently used)
   m_fast_head.m_next->m_prev = &m_head;
   m_fast_tail.m_prev->m_next = node;
   m_head.m_next = m_fast_head.m_next;
   node->m_prev = m_fast_tail.m_prev;
 
+  // Empty out the Frozen list
   m_fast_head.m_next = &m_fast_tail;
   m_fast_tail.m_prev = &m_fast_head;
 
+  // TODO @ Ziyue: merge this two variables if possible
   if(tier_ready){
     tier_no_insert = false;
     tier_ready = false;
   }
+  
+  // Frozen is disabled
   if(fast_hash_ready)
     fast_hash_ready = false;
   lock.unlock();
-
+  
+  // Clear the frozen hashtable
   m_fasthash->clear();
 }
 
@@ -576,10 +570,16 @@ bool FIFO_FHCache<TKey, TValue, THash>::find(TValue& ac,
   bool stat_yes = FIFO_FHCache::sample_generator();
   HashMapConstAccessor hashAccessor;
   //HashMapAccessor& hashAccessor = ac.m_hashAccessor;
-  assert(!(tier_ready || fast_hash_ready) || !curve_flag.load());
-
+  assert(!(tier_ready || fast_hash_ready) || !curve_flag.load()); // What's this for, what's curve flag
+  
+  // Frozen ready for use
   if(tier_ready || fast_hash_ready) {
+  
 #ifdef HANDLE_WRITE
+    // TODO @ Ziyue: ac != nullptr is a deprecated mechanism to check tomb
+    // we can re-check this and remove it if possible
+
+    // Generally when we found the thing in frozen cache
     if(m_fasthash->find(key, ac) && (ac != nullptr))
 #else
     if(m_fasthash->find(key, ac))
@@ -593,8 +593,8 @@ bool FIFO_FHCache<TKey, TValue, THash>::find(TValue& ac,
 #endif
       return true;
     }
-    else {
-      if(tier_ready){
+    else { // Not found in frozen
+      if(tier_ready){ // If we only have frozen, then cache miss anyway
 #ifdef FH_STAT
         if(stat_yes) {
           FIFO_FHCache::tbb_find_miss++;
@@ -605,21 +605,29 @@ bool FIFO_FHCache<TKey, TValue, THash>::find(TValue& ac,
     }
   }
 
+  // Now we try to find in DC if data not in FC
   if (!m_map.find(hashAccessor, key)) {
 #ifdef FH_STAT
     if(stat_yes) {
       FIFO_FHCache::tbb_find_miss++;
     }
 #endif
+    // Not found in DC also (cache miss)
     return false;
   }
+  
+  // Now we found it in DC
   ac = hashAccessor->second.m_value;
+  
+  // If we are not constructing the frozen, then we need to update the list for recency
   if(!fast_hash_construct) {
-    // Acquire the lock, but don't block if it is already held
     ListNode* node = hashAccessor->second.m_listNode;
     uint64_t last_update = 0;
+    
+    // If we are in curve mode, for each find,
+    // it potentially updates the recency of the node and pushes the marker forward
     if(curve_flag.load()){
-      // TODO @ Ziyue: there is no lock, so corner case is that
+      // TODO @ Ziyue: there is no lock, check whether a corner case exists that
       // curve_flag turns into false, m_marker might cause core dump
       last_update = node->m_time;
       if(m_marker != nullptr && last_update <= m_marker->m_time){
@@ -640,6 +648,8 @@ bool FIFO_FHCache<TKey, TValue, THash>::find(TValue& ac,
       return true;
     }
     
+    // disable following promotion since this is FIFO_FHCache
+
     //if(((double)(ssdlogging::random::Random::GetTLSInstance()->Next()) / (double)(RAND_MAX)) < LOCK_P){
     // std::unique_lock<ListMutex> lock(m_listMutex, std::try_to_lock);
     // if (lock) {
@@ -662,20 +672,17 @@ bool FIFO_FHCache<TKey, TValue, THash>::find(TValue& ac,
   return true;
 }
 
-template <class TKey, class TValue, class THash>
-bool FIFO_FHCache<TKey, TValue, THash>::find_marker(TValue& ac,
-                                                   const TKey& key) {
-  HashMapConstAccessor hashAccessor;
-  if (!m_map.find(hashAccessor, key)) {
-    return false;
-  }
-  ac = hashAccessor->second.m_value;
-  return true;
-}
 
+// Check function description in the FHCache header file
+// So the function insert a marker and check for several time where it is (use movement counter)
+// Use the marker as a boundary for FC and DC
+// Record the FC ratio, and the FC hit, DC hit, (DC) miss by filling the curve container
 template <class TKey, class TValue, class THash>
 bool FIFO_FHCache<TKey, TValue, THash>::get_curve(bool& should_stop) {
-  assert(!tier_no_insert.load());
+  assert(!tier_no_insert.load()); // Shouldn't call get curve (learning state) 
+                                  // when flag indicates the whole cache is frozen (frozen state)
+  
+  // Create a marker and insert to the list
   m_marker = new ListNode(MARKER_KEY);
   size_t pass_counter = 0;
 
@@ -690,18 +697,25 @@ bool FIFO_FHCache<TKey, TValue, THash>::get_curve(bool& should_stop) {
   size_t FC_size = 0;
   auto start_time = SSDLOGGING_TIME_NOW;
   
+  // why 45 loops:
+  // just magic now...assume we don't need the time-consuming loops for the last 10% FC ratio
   for(int i = 0; i < 45 && !should_stop; i++){
     do{
       usleep(1000);
       double temp_hit = 0, temp_miss = 1;
-      FIFO_FHCache::get_step(temp_hit, temp_miss);
-      FC_size = movement_counter.load();
+      FIFO_FHCache::get_step(temp_hit, temp_miss); // get the hit and miss ratio data for
+                                                   // last period of time (step)
+                                                   
+      FC_size = movement_counter.load(); // movement counter: how far the marker is 
+                                         // pushed forward by DC HIT
+                                         
       //if(temp_hit + temp_miss > 0.98 && FC_size > m_maxSize * 0.2){
       if(temp_hit + temp_miss > 0.993){ // a magic number; but actually for early stop
         break;
       }
-    }while(FC_size <= m_maxSize * i * 1.0/100 * 2 && !should_stop);
+    }while(FC_size <= m_maxSize * i * 1.0/100 * 2 && !should_stop); // use 2% as the step size
     
+    // Message printing and calculate FC ratio from size (marker movements)
     printf("\ncurve pass %lu\n", pass_counter++);
     double FC_ratio = FC_size * 1.0 / m_maxSize;
     printf("FC_size: %lu (FC_ratio: %.3lf)\n", FC_size, FC_ratio);
@@ -711,13 +725,25 @@ bool FIFO_FHCache<TKey, TValue, THash>::get_curve(bool& should_stop) {
     printf("duration: %.3lf ms\n", SSDLOGGING_TIME_DURATION(start_time, curr_time)/1000);
     start_time = curr_time;
     fflush(stdout);
+    
+    // 1 - (FC_hit + miss) is the DC hit, marker is pushed forward by DC data
+    // So if FC hit is too low, marker moves too slow (too time-consuming)
+    // Similarly, if FC_ratio is high enough (movement might be too slow),
+    // we assume no need to compare the difference between 90%, 92%, ..., 98%
+    // just compare 90% and 100%
+    // TODO @ Ziyue: check whether this is a good idea
     if(FC_hit + miss > 0.993 || FC_ratio > 0.9){
       break;
     }
+    
+    // curve_container is a place to STORE each time we try to look at potential FC status
+    // STORE FC ratio, FC hit and miss (DC hit = 1 - (FC_hit + miss))
+    // By potential, since we only have the marker but the cache is not yet frozen
     FIFO_FHCache::curve_container.insert(FIFO_FHCache::curve_container.end(), curve_data_node(FC_ratio, FC_hit, miss));
   }
   FIFO_FHCache::sample_flag = true;
-
+  
+  // Remove the marker
   printf("\ncurve container size: %lu\n", FIFO_FHCache::curve_container.size());
   std::unique_lock<ListMutex> lockB(m_listMutex);
   curve_flag = false;
@@ -730,6 +756,7 @@ bool FIFO_FHCache<TKey, TValue, THash>::get_curve(bool& should_stop) {
   return true;
 }
 
+// Insert new data to the cache
 template <class TKey, class TValue, class THash>
 bool FIFO_FHCache<TKey, TValue, THash>::insert(const TKey& key,
                                                      const TValue& value) {
@@ -739,17 +766,26 @@ bool FIFO_FHCache<TKey, TValue, THash>::insert(const TKey& key,
   }
 
   // Insert into the CHM
+  // Basically if the whole cache is frozen, you can do nothing
   if(tier_no_insert.load())
     return false;
+  
+  // Generate some variables for insertion
   ListNode* node = new ListNode(key);
   HashMapAccessor hashAccessor;
   HashMapValuePair hashMapValue(key, HashMapValue(value, node));
+  
+  // Follow the same logic as HHVM cache
+  // What about in frozen part but not in DC: FC objects are a subset of DC objects, so it is fine
   if (!m_map.insert(hashAccessor, hashMapValue)) {
     hashAccessor->second = HashMapValue(value, node);
     return false;
   }
+  
+  // be aware of FC list movement
   if(fast_hash_construct)
     eviction_counter++;
+    
   // Evict if necessary, now that we know the hashmap insertion was successful.
   size_t s = m_size.load();
   bool evictionDone = false;
@@ -764,20 +800,28 @@ bool FIFO_FHCache<TKey, TValue, THash>::insert(const TKey& key,
   // that other threads don't attempt to evict list items before they even
   // exist.
   std::unique_lock<ListMutex> lock(m_listMutex);
+  // Frozen all cahce
   if(tier_no_insert.load()){
+    // How can we still reach this point:
+    // while we are inserting, the cache is 100% frozen
     lock.unlock();
     m_map.erase(hashAccessor);
     delete(node);
     return false;
   }
+  
   if(!curve_flag.load())
     pushFront(node);
   else{
+    // TODO @ Ziyue: I suddenly realize that profiling for FIFO is not correct
     node->m_time = m_marker->m_time;
     pushAfter(m_marker, node);
   }
+  
   lock.unlock();
-  hashAccessor.release(); // for deadlock
+  hashAccessor.release(); // avoid deadlock
+  
+  // Some eviction logic
   if (!evictionDone) {
     s = m_size++;
   }
@@ -803,7 +847,9 @@ bool FIFO_FHCache<TKey, TValue, THash>::insert(const TKey& key,
 
 template <class TKey, class TValue, class THash>
 void FIFO_FHCache<TKey, TValue, THash>::clear() {
+  // a debug counter
   printf("presumably unreachable count ~ %zu\n", unreachable_counter);
+
   m_map.clear();
   m_fasthash->clear();
   ListNode* node = m_head.m_next;
@@ -869,17 +915,21 @@ inline void FIFO_FHCache<TKey, TValue, THash>::pushAfter(ListNode* nodeBefore, L
   nodeBefore->m_next = nodeAfter;
 }
 
+// Eviction logic
 template <class TKey, class TValue, class THash>
 bool FIFO_FHCache<TKey, TValue, THash>::evict() {
 #ifdef HANDLE_WRITE
   std::unique_lock<ListMutex> lock(m_listMutex);
   ListNode* moribund = m_tail.m_prev;
+  
+  // Delete all the tombs for write in the end of list
   while(moribund->m_key == TOMB_KEY) {
     delink(moribund);
     delete moribund;
     moribund = m_tail.m_prev;
     // fast_hash_evict_tomb++;
   }
+  
   if (moribund == &m_head) {
     // List is empty, can't evict
     //printf("List is empty!\n");
@@ -890,19 +940,26 @@ bool FIFO_FHCache<TKey, TValue, THash>::evict() {
 #else
   std::unique_lock<ListMutex> lock(m_listMutex);
   ListNode* moribund = m_tail.m_prev;
+  
   if (moribund == &m_head) {
     // List is empty, can't evict
     return false;
   }
+  
   // if(!moribund->isInList()){
   //   printf("Error key: %lu\n", moribund->m_key);
   //   debug(0);
   // }
   assert(moribund->isInList());
-  delink(moribund);
+  delink(moribund); // Delete the oldest node
   lock.unlock();
 #endif
-
+  
+  // Check if it has already been deleted somehow
+  // Usually node and hash item are deleted at the same time
+  // rarely see this case
+  // TODO @ Ziyue: why this happens frequently in some workloads?
+  //               Is it due to FH mechanisms?
   HashMapAccessor hashAccessor;
   if (!m_map.find(hashAccessor, moribund->m_key)) {
     //Presumably unreachable
@@ -910,6 +967,8 @@ bool FIFO_FHCache<TKey, TValue, THash>::evict() {
     unreachable_counter++;
     return false;
   }
+  
+  // Delete the data from hashmap also
   m_map.erase(hashAccessor);
   delete moribund;
   return true;
@@ -922,42 +981,59 @@ bool FIFO_FHCache<TKey, TValue, THash>::evict() {
 // }
 
 #ifdef RECENCY
+// Delete the key from both the list and the hashmap (user call)
 template <class TKey, class TValue, class THash>
 void FIFO_FHCache<TKey, TValue, THash>::delete_key(const TKey& key) {
   // I guess users will not use such keys in find()
   // handle_req_num++;
   // HashMapConstAccessor hashAccessor;
+  
+  // If the key has already been deleted
   HashMapAccessor hashAccessor;
   if (!m_map.find(hashAccessor, key)) {
       return;
   }
+  
+  // When we are constructing frozen cache, we do not delete thing, but we mark it as dead
+  // in order not to mess up the linked list; We also dont acquire the lock :)
   TValue ac;
   ListNode* node = hashAccessor->second.m_listNode;
   if(fast_hash_construct) {
     node->m_key = TOMB_KEY;
     if(m_fasthash->find(key, ac)) {
-      // TODO: removed
+      // TODO @ Ziyue: we removed these,
+      // basically due to the seg fault
+      // however, we need to figure out why
+
       // m_fasthash.set_key_value(key, nullptr);
       // fast_hash_invalid++;
     }
-  }
+  } // Found in the frozen part
   else if ((tier_ready || fast_hash_ready) && m_fasthash->find(key, ac) && (ac != nullptr)) {
-    node->m_key = TOMB_KEY;
-    std::unique_lock<ListMutex> lock(m_listMutex);
+    node->m_key = TOMB_KEY; // Mark it as dead
+    
+    // std::unique_lock<ListMutex> lock(m_listMutex);
     // m_fasthash.set_key_value(key, nullptr);
     // fast_hash_invalid++;
-    lock.unlock();
+    // lock.unlock();
     // fast_hash_try_invalid++;
   }
-  else {
+  else { // Not frozen or not found in frozen
     std::unique_lock<ListMutex> lock(m_listMutex);
     //ListNode* node = hashAccessor->second.m_listNode;
+    
+    // If it's not in DC list
+    // This happens when evict() delinks this at the same time
+    // check isInList() for more details
     if (!node->isInList()) {
       return;
     }
+    
+    // Delink the key
     delink(node);
     lock.unlock();
     delete node;
+    
   }
   if(m_map.erase(hashAccessor))
     m_size--;

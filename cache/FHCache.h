@@ -186,13 +186,13 @@ namespace Cache
         virtual double print_fast_hash() override {
             double temp, global_miss, total;
             total = fast_find_hit.load()+tbb_find_miss.load()+end_to_end_find_succ.load();
-            if(total == 0){
+            if (total == 0){
                 temp = 1;
                 global_miss = 1;
             }
             else {
-                temp = 1 - fast_find_hit.load() * 1.0/total;
-                global_miss = tbb_find_miss.load()*1.0/total;
+                temp = 1 - fast_find_hit.load() * 1.0 / total;
+                global_miss = tbb_find_miss.load() * 1.0 / total;
             }
             printf("miss ratio: %.5f / %.5f\n", temp, global_miss);
             printf("fast find hit: %ld, global hit: %ld, global miss: %ld\n", 
@@ -201,16 +201,45 @@ namespace Cache
             return temp;
         }
 
-        virtual bool construct_from(const TKey& key) override { return false; }
-        virtual bool construct_ratio(double FC_ratio) override { return false; }
-        virtual bool construct_tier() override { return false; }
-        virtual void deconstruct() override {}
-        virtual bool get_curve(bool& should_stop) override { return false;}
-        virtual bool is_full() override { return false;}
+        /* 
+         * This is the construction function for the FH cache.
+         * It will construct the cache with the given ratio.
+         * DO NOT NEED to stop insert(), NEED to stop promotion
+         * The way to achieve this goal is to think of the movement:
+         * 1. ONE insert() will cause ONE evict(), use 'eviction counter' to count
+         *    so the list will look like 'new_dc -> fc start -> ... -> fc end -> dc start -> ... -> dc end'
+         *    w/o fc part, dc is actually a FIFO list in this stage
+         * 2. if counter < DC size, but fc scan to end (with scan counter == FC size),
+         *    then cutoff from fc start and fc end; link new dc end <-> (old) dc start
+         * 3. if the eviction counter == DC size, then cutoff from fc start
+         *    since it looks like 'new dc start -> ... -> new dc end -> fc start -> ... -> fc end' now
+         */
 
-        virtual bool find_marker(TValue& ac, const TKey& key) override {
-            return false;
-        }
+        virtual bool construct_ratio(double FC_ratio) override { return false; }
+
+        /*
+         * This function only used for 100% FC construction
+         * only one case, but also frozen the cache (not only metadata)
+         * even after delete() happens, it will not permit any insert()
+         */
+        virtual bool construct_tier() override { return false; }
+
+        virtual void deconstruct() override {}
+
+        /*
+         * It will fill 'curve_container' with {FC ratio, {FC hit, DC hit, DC miss}}
+         * in order to plot the hit/miss ratio versus FC ratio graph
+         * It is implemented differently
+         * FIFO/LRU as an example:
+         * 1. insert the marker, with the last access time = current time
+         * 2. keep checking the movement counter to track marker's position
+         *    and print FC hit, DC hit, DC miss
+         * 3. movement counter is added by 1 ONLY WHEN
+         *    a node older than marker get accessed
+         *    and update this node's last access time
+         */
+        virtual bool get_curve(bool& should_stop) override { return false; }
+        virtual bool is_full() override { return false; }
 
         inline bool sample_generator() {
             if(!CacheBase::sample_flag)

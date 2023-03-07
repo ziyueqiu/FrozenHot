@@ -15,7 +15,7 @@
 
 // depends on the cpu type
 // the goal is to make use of all cores in same socket
-#define XEONR8360
+// #define XEONR8360
 
 #define Param_Granularity 1
 #define Large_Param_Granularity 1000
@@ -173,7 +173,7 @@ class Client{
         #ifdef XEONR8360
             threads_monitor.emplace_back(fn_monitor, 1);
         #else
-            threads_monitor.emplace_back(fn_monitor, 120);
+            threads_monitor.emplace_back(fn_monitor, 0);
         #endif
 #endif
         for(auto &t : threads){
