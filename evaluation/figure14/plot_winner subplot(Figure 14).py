@@ -7,12 +7,14 @@ if __name__ == "__main__":
 
     mpl.rcParams["figure.figsize"] = (9.5, 4.3)
     mpl.rcParams["font.size"] = 12
+    mpl.rcParams['pdf.fonttype'] = 42
+    mpl.rcParams['ps.fonttype'] = 42
 
     ### baseline
-    msr_lru_hit_ratio_win = 9 / 12
-    msr_fifo_hit_ratio_win = 3 / 12
-    msr_lru_thput_win = 0 / 12
-    msr_fifo_thput_win = 12 / 12
+    msr_lru_hit_ratio_win = 6 / 12
+    msr_fifo_hit_ratio_win = 6 / 12
+    msr_lru_thput_win = 3 / 12
+    msr_fifo_thput_win = 9 / 12
     twitter_lru_hit_ratio_win = 7 / 7
     twitter_fifo_hit_ratio_win = 0 / 7
     twitter_lru_thput_win = 0 / 7
@@ -44,14 +46,14 @@ if __name__ == "__main__":
     plt.title("Baseline", y=-1.3, fontweight="semibold")
 
     ### best FH
-    msr_lru_hit_ratio_win = 7 / 12
-    msr_fifo_hit_ratio_win = 5 / 12
-    msr_lru_thput_win = 5 / 12
-    msr_fifo_thput_win = 7 / 12
+    msr_lru_hit_ratio_win = 8 / 12
+    msr_fifo_hit_ratio_win = 4 / 12
+    msr_lru_thput_win = 9 / 12
+    msr_fifo_thput_win = 3 / 12
     twitter_lru_hit_ratio_win = 6 / 7
     twitter_fifo_hit_ratio_win = 1 / 7
-    twitter_lru_thput_win = 3 / 7
-    twitter_fifo_thput_win = 4 / 7
+    twitter_lru_thput_win = 4 / 7
+    twitter_fifo_thput_win = 3 / 7
 
     labels_1 = ["", " "]
     labels_2 = ["", " "]
