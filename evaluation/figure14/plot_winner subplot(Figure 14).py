@@ -3,6 +3,34 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+def get_data_from_csv(csvfile: str, baseline, trace_type: str):
+    df = pd.read_csv(csvfile)
+    if baseline:
+        df = df[df["refresh ratio"] == "no FH"]
+        df = df[(df.algo_type == "FIFO") | (df.algo_type == "LRU")]
+    else:
+        df = df[df["refresh ratio"] != "no FH"]
+        df = df[(df.algo_type == "FIFO FH") | (df.algo_type == "LRU FH")]
+    if trace_type == "Twitter":
+        df = df[df['trace'].str.contains("Twitter")]
+    else:
+        df = df[df['trace'].str.contains("MSR")]
+    if baseline:
+        tmp_df = df[(df.algo_type == "FIFO") & (df.thread == 72)][["trace", "thput-b"]].groupby(by="trace", as_index=False).max()
+    else:
+        tmp_df = df[(df.algo_type == "FIFO FH") & (df.thread == 72)][["trace", "thput-b"]].groupby(by="trace", as_index=False).max()
+    tmp_df = pd.merge(tmp_df, df, on=["trace", "thput-b"], how='left')
+    fifo_thput = tmp_df[["thput-b"]].values.flatten()
+    fifo_ratio = tmp_df[["total miss ratio"]].values.flatten()
+    if baseline:
+        tmp_df = df[(df.algo_type == "LRU") & (df.thread == 72)][["trace", "thput-b"]].groupby(by="trace", as_index=False).max()
+    else:
+        tmp_df = df[(df.algo_type == "LRU FH") & (df.thread == 72)][["trace", "thput-b"]].groupby(by="trace", as_index=False).max()
+    tmp_df = pd.merge(tmp_df, df, on=["trace", "thput-b"], how='left')
+    lru_thput = tmp_df[["thput-b"]].values.flatten()
+    lru_ratio = tmp_df[["total miss ratio"]].values.flatten()
+    return np.sum((lru_thput - fifo_thput) > 0), np.sum((lru_thput - fifo_thput) < 0), np.sum((lru_ratio - fifo_ratio) < 0), np.sum((lru_ratio - fifo_ratio) > 0)
+
 if __name__ == "__main__":
 
     mpl.rcParams["figure.figsize"] = (9.5, 4.3)
@@ -10,15 +38,21 @@ if __name__ == "__main__":
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['ps.fonttype'] = 42
 
+    csv_file="figure.csv"
+    t_b_lru_thput_win, t_b_fifo_thput_win, t_b_lru_ratio_win, t_b_fifo_ratio_win = get_data_from_csv(csv_file, True, "Twitter")
+    t_f_lru_thput_win, t_f_fifo_thput_win, t_f_lru_ratio_win, t_f_fifo_ratio_win = get_data_from_csv(csv_file, False, "Twitter")
+    m_b_lru_thput_win, m_b_fifo_thput_win, m_b_lru_ratio_win, m_b_fifo_ratio_win = get_data_from_csv(csv_file, True, "MSR")
+    m_f_lru_thput_win, m_f_fifo_thput_win, m_f_lru_ratio_win, m_f_fifo_ratio_win = get_data_from_csv(csv_file, False, "MSR")
+
     ### baseline
-    msr_lru_hit_ratio_win = 6 / 12
-    msr_fifo_hit_ratio_win = 6 / 12
-    msr_lru_thput_win = 3 / 12
-    msr_fifo_thput_win = 9 / 12
-    twitter_lru_hit_ratio_win = 7 / 7
-    twitter_fifo_hit_ratio_win = 0 / 7
-    twitter_lru_thput_win = 0 / 7
-    twitter_fifo_thput_win = 7 / 7
+    msr_lru_hit_ratio_win = m_b_lru_ratio_win / (m_b_lru_ratio_win + m_b_fifo_ratio_win)
+    msr_fifo_hit_ratio_win = m_b_fifo_ratio_win / (m_b_lru_ratio_win + m_b_fifo_ratio_win)
+    msr_lru_thput_win = m_b_lru_thput_win / (m_b_lru_thput_win + m_b_fifo_thput_win)
+    msr_fifo_thput_win = m_b_fifo_thput_win / (m_b_lru_thput_win + m_b_fifo_thput_win)
+    twitter_lru_hit_ratio_win = t_b_lru_ratio_win / (t_b_lru_ratio_win + t_b_fifo_ratio_win)
+    twitter_fifo_hit_ratio_win = t_b_fifo_ratio_win / (t_b_lru_ratio_win + t_b_fifo_ratio_win)
+    twitter_lru_thput_win = t_b_lru_thput_win / (t_b_lru_thput_win + t_b_fifo_thput_win)
+    twitter_fifo_thput_win = t_b_fifo_thput_win / (t_b_lru_thput_win + t_b_fifo_thput_win)
 
     labels_1 = ["MSR Hit Ratio", "Twitter Hit Ratio"]
     labels_2 = ["MSR Thput", "Twitter Thput"]
@@ -26,7 +60,6 @@ if __name__ == "__main__":
     values_2_up = np.array([msr_fifo_hit_ratio_win, twitter_fifo_hit_ratio_win])
     values_1_down = np.array([msr_lru_thput_win, twitter_lru_thput_win])
     values_2_down = np.array([msr_fifo_thput_win, twitter_fifo_thput_win])
-    print(values_1_up, values_2_up, values_1_down, values_2_down)
 
     bar_height = 0.6
 
@@ -46,14 +79,14 @@ if __name__ == "__main__":
     plt.title("Baseline", y=-1.3, fontweight="semibold")
 
     ### best FH
-    msr_lru_hit_ratio_win = 8 / 12
-    msr_fifo_hit_ratio_win = 4 / 12
-    msr_lru_thput_win = 9 / 12
-    msr_fifo_thput_win = 3 / 12
-    twitter_lru_hit_ratio_win = 6 / 7
-    twitter_fifo_hit_ratio_win = 1 / 7
-    twitter_lru_thput_win = 4 / 7
-    twitter_fifo_thput_win = 3 / 7
+    msr_lru_hit_ratio_win = m_f_lru_ratio_win / (m_f_lru_ratio_win + m_f_fifo_ratio_win)
+    msr_fifo_hit_ratio_win = m_f_fifo_ratio_win / (m_f_lru_ratio_win + m_f_fifo_ratio_win)
+    msr_lru_thput_win = m_f_lru_thput_win / (m_f_lru_thput_win + m_f_fifo_thput_win)
+    msr_fifo_thput_win = m_f_fifo_thput_win / (m_f_lru_thput_win + m_f_fifo_thput_win)
+    twitter_lru_hit_ratio_win = t_f_lru_ratio_win / (t_f_lru_ratio_win + t_f_fifo_ratio_win)
+    twitter_fifo_hit_ratio_win = t_f_fifo_ratio_win / (t_f_lru_ratio_win + t_f_fifo_ratio_win)
+    twitter_lru_thput_win = t_f_lru_thput_win / (t_f_lru_thput_win + t_f_fifo_thput_win)
+    twitter_fifo_thput_win = t_f_fifo_thput_win / (t_f_lru_thput_win + t_f_fifo_thput_win)
 
     labels_1 = ["", " "]
     labels_2 = ["", " "]

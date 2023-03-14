@@ -1,12 +1,11 @@
+
 import re
 import os
 import csv
-import sys
 
-g = os.walk("../origin_data/figure8/twitter/")
-order = ["trace", "thread", "algo type", "cachesize", "thput-b", "hit ratio"]
-# Modify output file here!
-with open("twitter.csv", "w", newline="") as csvfile:
+g = os.walk("../origin_data/figure14")
+order = ["trace", "thread", "algo_type", "disk lat", "refresh ratio", "cachesize", "thput-b", "total miss ratio", "hit latency"]
+with open("figure.csv", "w", newline="") as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(order)
     for path, dir_list, file_list in g:
@@ -29,39 +28,47 @@ with open("twitter.csv", "w", newline="") as csvfile:
                     max_step += handled_request_size
             res = {}
             data_flag = False
+            res['trace'] = "Zipf" if file_name.find("Zipf") != -1 else "Twitter" if file_name.find("MSR") == -1 else "MSR"
+            if res['trace'] == "Twitter":
+                res['trace'] += " " + file_name.split("_")[5]
+            elif res['trace'] == "MSR":
+                res['trace'] += " " + file_name.split("_")[5] + "_" + file_name.split("_")[6]
             thread_num = int(file_name.split("_")[3].replace("thd", ""))
+            disk_laten = int(file_name.split("_")[2].replace("u", ""))
+            refresh_ratio = "no FH" if file_name.find("FH") == -1 else "0" if file_name.find("rebuild10000") != -1 else file_name.split("rebuild")[1].replace('.txt', '')
+            if file_name.find("no_rebuild") != -1:
+                refresh_ratio = "0"
             res['thread'] = thread_num
-            res['trace'] = file_name.split("_")[5]
+            res['disk lat'] = disk_laten
+            res['refresh ratio'] = refresh_ratio
             if file_name.find("LRU_FH") != -1:
-                res['algo type'] = "LRU FH"
-            elif file_name.find("Redis_LRU") != -1:
-                res['algo type'] = "Redis LRU"
-            elif file_name.find("StrictLRU") != -1:
-                res["algo type"] = "Strict LRU"
+                res['algo_type'] = "LRU FH"
             elif file_name.find("LFU_FH") != -1:
-                res["algo type"] = "LFU FH"
+                res['algo_type'] = "LFU FH"
             elif file_name.find("LFU") != -1:
-                res["algo type"] = "LFU"
+                res['algo_type'] = "LFU"
             elif file_name.find("FIFO_FH") != -1:
-                res["algo type"] = "FIFO FH"
+                res['algo_type'] = "FIFO FH"
             elif file_name.find("FIFO") != -1:
-                res["algo type"] = "FIFO"
+                res['algo_type'] = "FIFO"
+            elif file_name.find("Redis_LRU") != -1:
+                res['algo_type'] = "Redis LRU"
+            elif file_name.find("StrictLRU") != -1:
+                res["algo_type"] = "Strict LRU"
             else:
-                res['algo type'] = "LRU"
-            res['cachesize'] = "small" if file_name.find("5000") != -1 else "large"
+                res['algo_type'] = "LRU"
+            res['cachesize'] = (file_name.split("size")[0].split("_")[-1])
+            # res['cachesize'] = "small" if file_name.find("5000") != -1 else "large"
             wait_stable_time = 0
             useless_time = 0
             useless_req = 0
             max_ = 0
             now_step = 0
-            wait_stable_flag = False
+            final_flag = False
             for line in lines:
-                if re.match("wait stable spend time: \d+\.\d+ s", line) and wait_stable_flag:
+                if re.match("wait stable spend time: \d+\.\d+ s", line):
                     flag = re.match("wait stable spend time: \d+\.\d+ s", line)
                     wait_stable_time = float(flag.group(0).split(' ')[4])
-                    wait_stable_flag = False
-                elif re.match("the first wait stable", line):
-                    wait_stable_flag = True
                 elif re.match("data pass \d+", line):
                     flag = re.match("data pass \d+", line)
                     pass_ = int(flag.group(0).split(' ')[2])
@@ -74,22 +81,26 @@ with open("twitter.csv", "w", newline="") as csvfile:
                     handled_request_size = int(flag.group(0).split(' ')[5].replace(',', ''))
                     duration_time = float(flag.group(0).split(' ')[7])
                     now_step += handled_request_size
-                    if now_step >= max_step * 0.95 and thread_num != 1:
+                    if now_step >= max_step * 0.98 and thread_num != 1:
                         useless_req += handled_request_size
                         useless_time += duration_time
                         continue
                 elif re.match("All threads run \d+\.\d+ s", line):
                     flag = re.match("All threads run \d+\.\d+ s", line)
                     data_flag = True
+                    final_flag = True
                     all_thread_run_time = float(flag.group(0).split(' ')[3])
                 elif re.match("granularity: \d+ and large granularity: \d+", line):
                     flag = re.match("granularity: \d+ and large granularity: \d+", line)
                     large_gran = int(flag.group(0).split(' ')[5])
+                elif final_flag and re.match("- Hit Avg: \d+\.\d+ (.)*", line):
+                    flag = re.match("- Hit Avg: \d+\.\d+ (.)*", line)
+                    res["hit latency"] = float(flag.group(0).split(" ")[3])
                 elif data_flag and re.match("Total Avg Lat: \d+\.\d+ \(size: \d+, miss ratio: \d+\.\d+(.)*", line):
                     data_flag = False
                     flag = re.match("Total Avg Lat: \d+\.\d+ \(size: \d+, miss ratio: \d+\.\d+(.)*", line)
-                    res["hit ratio"] = 1 - float(flag.group(0).split(" ")[8].replace(')', ''))
                     total_size = int(flag.group(0).split(' ')[5].replace(',', ''))
+                    res["total miss ratio"] = float(flag.group(0).split(' ')[8].replace(')', ''))
                     print(wait_stable_time, all_thread_run_time)
                     print(useless_time)
                     res["thput-b"] = (total_size - useless_req) * large_gran * 1.0 / (all_thread_run_time - wait_stable_time - useless_time)

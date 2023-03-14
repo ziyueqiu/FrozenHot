@@ -1,6 +1,15 @@
 import os
-Twitter_prefix = "TBF" # to be filled
-MSR_prefix = "TBF" # to be filled
+import argparse
+
+parser = argparse.ArgumentParser(description='Running trace script')
+parser.add_argument("Twitter_prefix", help="The data path of Twitter trace data set")
+parser.add_argument("MSR_prefix", help="The data path of MSR trace data set")
+parser.add_argument("-o", "--output", help="Output data path", default="../origin_data/figure14/")
+args = parser.parse_args()
+Twitter_prefix = args.Twitter_prefix
+MSR_prefix = args.MSR_prefix
+
+output_prefix = args.output
 
 # "trace name":[{cache size: req num}, [covered subtraces]]
 Twitter_list = {

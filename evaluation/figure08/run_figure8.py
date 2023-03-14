@@ -1,6 +1,15 @@
 import os
-Twitter_prefix = "TBF" # to be filled
-MSR_prefix = "TBF" # to be filled
+import argparse
+
+parser = argparse.ArgumentParser(description='Running trace script')
+parser.add_argument("Twitter_prefix", help="The data path of Twitter trace data set")
+parser.add_argument("MSR_prefix", help="The data path of MSR trace data set")
+parser.add_argument("-o", "--output", help="Output data path", default="../origin_data/figure8/")
+args = parser.parse_args()
+Twitter_prefix = args.Twitter_prefix
+MSR_prefix = args.MSR_prefix
+
+output_prefix = args.output
 
 # "trace name":[{cache size: req num}, [covered subtraces]]
 Twitter_list = {
@@ -148,7 +157,7 @@ for thread in thread_num:
                                 cache_size = int(1000000 * ratio)
                                 request_num = Zipf_size_ratio[ratio] * 1000000 * thread_ # rewrite
                                 for zipf_const in zipf:
-                                    output_file = path_2 + str(zipf_const) + "_" + str(ratio) + "size_" + cache_type + "_rebuild" + str(freq) + ".txt"
+                                    output_file = output_prefix + "zipf/" + path_2 + str(zipf_const) + "_" + str(ratio) + "size_" + cache_type + "_rebuild" + str(freq) + ".txt"
                                     command = "./build/test_trace " + str(thread) + " " + str(cache_size) \
                                             + " " + str(request_num) + " " + str(shard) + " " \
                                             + workload_type + " " + str(zipf_const)+ " " + cache_type \
@@ -167,7 +176,7 @@ for thread in thread_num:
                                     elif trace == "prxy_1" and thread == 20: # need warmup
                                         thread_ = thread * 4
                                     request_num = MSR_list[trace][1] * 1000000 * thread_ # rewrite
-                                    output_file = path_2 + trace + "_" + str(ratio) + "size_" + cache_type + "_rebuild" + str(freq) + ".txt"
+                                    output_file = output_prefix + "msr/" + path_2 + trace + "_" + str(ratio) + "size_" + cache_type + "_rebuild" + str(freq) + ".txt"
                                     cache_size = int(MSR_list[trace][0] * ratio)
                                     trace_path = MSR_prefix + trace + ".csv"
                                     os.system("sync; echo 1 > /proc/sys/vm/drop_caches")
@@ -191,7 +200,7 @@ for thread in thread_num:
                                     thread_ = thread * 15
                                 
                                 for cache_size in Twitter_list[trace][0]:
-                                    output_file = path_2 + trace + "_" + str(cache_size) + "_" + cache_type + "_rebuild" + str(freq) + ".txt"
+                                    output_file = output_prefix + "twitter/" + path_2 + trace + "_" + str(cache_size) + "_" + cache_type + "_rebuild" + str(freq) + ".txt"
                                     start = Twitter_list[trace][1][0]
                                     end = Twitter_list[trace][1][1]
                                     request_num = Twitter_list[trace][0][cache_size] * 1000000 * thread_ # rewrite
