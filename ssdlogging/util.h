@@ -381,14 +381,14 @@ namespace statistics{
           size_ = 0;
           cursor = 0;
           data_ = (double *) mmap(nullptr, capacity, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_NORESERVE, -1, 0);
-          assert(data_ != nullptr);
+          assert(data_ != (void *)-1);
           describe_ = "";
         }
         MySet(std::string describe){
           size_ = 0;
           cursor = 0;
           data_ = (double *) mmap(nullptr, capacity, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_NORESERVE, -1, 0);
-          assert(data_ != nullptr);
+          assert(data_ != (void *)-1);
           describe_ = describe;
           sorted = false;
         }

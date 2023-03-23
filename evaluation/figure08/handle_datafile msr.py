@@ -3,7 +3,7 @@ import os
 import csv
 import sys
 
-g = os.walk("../origin_data/figure8/" + sys.argv[1])
+g = os.walk("../origin_data/figure8/msr/")
 order = ["trace", "thread", "algo type", "cachesize", "thput-b", "hit ratio"]
 # Modify output file here!
 with open("msr.csv", "w", newline="") as csvfile:

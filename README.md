@@ -1,6 +1,6 @@
 # FrozenHot Cache: Rethinking Cache Management for Modern Software
 
-This repository contains simulation code and instructions to reproduce key results in the FrozenHot paper (to appear in EuroSys'23).
+This repository contains simulation code and instructions to reproduce key results in the paper "FrozenHot Cache: Rethinking Cache Management for Modern Hardware" (to appear in EuroSys'23).
 
 ## Repo Introduction
 
@@ -9,6 +9,12 @@ Cache implementations can be found under `cache/`, including `hhvm_lru_cache_FH.
 We use utils in `ssdlogging/` from SPDK, e.g. random generator, current time, distribution stats, etc.
 
 The framework of this benchmark is organized by `traceloader/client.h`, `traceloader/trace_loader.h`, and `test_trace.cpp`.
+
+## Hardware requirement
+
+No less than 32 CPU cores per socket, and no less than around 100 GiB memory per numa node (to bind thread in CPU core and avoid cross-numa memory access).
+
+## 
 
 ## Deployment & Usage
 
@@ -32,7 +38,7 @@ sudo apt install cmake libtbb-dev numactl
 python run_no_trace.py
 ```
 
-To satisfy hardware requirements (up to 72 cores in the same socket), enable hyperthreading to use cores from a single socket.
+To satisfy hardware requirements (up to 72 cores in the same socket), enable hyperthreading to use cores from a single socket. (require root privileges)
 
 ```
 # enable hyperthreading
@@ -49,10 +55,10 @@ Note that we assume the machine has at least 100 GiB memory (see `traceloader/tr
 
 ## Key Results
 
-- Figure 8: Throughput improvement for all algorithm workload combinations, with increasing thread counts.
-- Figure 9: FC hit share with FH versions of algorithms
+- Figure 8: Throughput improvement for all algorithm workload combinations, with increasing thread counts. (about 100 compute hours expected)
+- Figure 9: FC hit share with FH versions of algorithms (about 12 compute hours expected)
 - Figure 13: FH sensitivity to FC lifetime factor
-- Figure 14: LRU vs. FIFO, before and after enabling FH
+- Figure 14: LRU vs. FIFO, before and after enabling FH (about 75 compute hours expected)
 - Figure 15: Sensitivity analysis with Zipf 0.99 at 72 threads.
 
 See details in `evaluation` folder.
