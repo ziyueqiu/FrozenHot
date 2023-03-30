@@ -16,9 +16,14 @@
 // depends on the cpu type
 // the goal is to make use of all cores in same socket
 // #define XEONR8360
+#define PDL
 
 #define Param_Granularity 1
 #define Large_Param_Granularity 1000
+
+#define MARKER_KEY 2
+#define SPECIAL_KEY 0
+#define TOMB_KEY 1
 
 class Client{
     public:
@@ -155,6 +160,8 @@ class Client{
         auto start_work = SSDLOGGING_TIME_NOW;
         #ifdef XEONR8360
             printf("use cpu - xeonr8360\n");
+        #elif defined(PDL)
+            printf("use cpu - PDL FrozenHot Server\n");
         #else
             printf("use cpu - other\n");
         #endif
@@ -162,6 +169,14 @@ class Client{
             uint64_t start_ = queue_size / work_thread * i;
         #ifdef XEONR8360
             threads.emplace_back(fn, single_num, i * 2, true, i==0, start_);
+        #elif defined(PDL)
+            if (i < 16) {
+                if (i < 8) {
+                    threads.emplace_back(fn, single_num, i, true, i==0, start_);
+                } else {
+                    threads.emplace_back(fn, single_num, i + 8, true, i==0, start_);
+                }
+            }
         #else
             if(base_coreid + i > 39)
                 threads.emplace_back(fn, single_num, base_coreid + i + 40, true, i==0, start_);
@@ -172,6 +187,8 @@ class Client{
 #ifdef FH_ENABLE
         #ifdef XEONR8360
             threads_monitor.emplace_back(fn_monitor, 1);
+        #elif defined(PDL)
+            threads_monitor.emplace_back(fn_monitor, 0);
         #else
             threads_monitor.emplace_back(fn_monitor, 0);
         #endif
@@ -201,13 +218,37 @@ class Client{
         if(!is_warmup && is_master){
             printf("starting requests...\n");
         }
-        int offset = coreid > 40 ? coreid - 40: coreid;
-        
+
+        uint64_t offset = coreid > 40 ? coreid - 40: coreid;
+        #ifdef PDL
+            offset = coreid > 15 ? coreid - 8 : coreid;
+        #endif
+
         scalable_cache->thread_init(coreid);
 
         std::chrono::_V2::system_clock::time_point start_of_loop;
+        uint64_t prev_iter = 0;
+        uint64_t invalid_trace_cnt = 0;
+        uint64_t load_index = 0; // New variable for traversing the trace
+
         for(uint64_t i = 0; i < num; i++){
-            auto req = loader_1->GetRequest(offset + i * work_thread);
+            auto req = loader_1->GetRequest(offset + load_index * work_thread);
+            uint64_t iter = ((offset + load_index * (uint64_t)work_thread) / queue_size);
+            load_index ++;
+
+            // Skip the traces with keys conflicting with special usages
+            if (req.Key() == MARKER_KEY || req.Key() == SPECIAL_KEY || req.Key() == TOMB_KEY) {
+                i --;
+                invalid_trace_cnt ++;
+                continue;
+            }
+
+            // Log trace loop ends
+            if (iter != prev_iter && coreid == 0) {
+                printf("Loop Iteration %ld, %ld, %ld\n", iter, offset + i * work_thread, queue_size);
+            }
+
+            prev_iter = iter;
             auto key = req.Key();
             assert(key != 0);
 
@@ -258,6 +299,9 @@ class Client{
                 }
             }
         }
+
+        // Log trace entries with bad keys
+        printf("Total invalid trace: %ld\n", invalid_trace_cnt);
         if(is_warmup)
             return ;
     }
