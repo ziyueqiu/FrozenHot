@@ -1,0 +1,1713 @@
+Warmup
+using Zipfian as test trace!
+workset size: 3906 MB
+loading workload (240000000)...
+zipfian const value: 0.990000
+origin data size :100000000
+loading workload finished in 7.591 s
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+Number of buckets: 32768
+31250 items per shard
+client2 have monitor!
+granularity: 1 and large granularity: 1000
+use cpu - other
+client coreid: 0
+client coreid: 0
+start monitor...
+wait stable interval: 500000 us (0.5 s)
+Add extra FH performance threshold 0.20 for construction & frozen
+
+* start observation *
+
+data pass 0
+- Hit None
+- Other None
+Total Avg Lat: -nan (size: 0, duration: 1680724143.57004 s, approx miss rate: -nan)
+- miss ratio = 1.50000 -> 1.00000, with m_size = 0 (max = 500000)
+[ALLOC] initializing allocator with fs size: 507 objects
+
+data pass 1
+Total miss rate: 0.3688, hit num: 1251, miss num: 731
+- Hit Avg: 0.413 (stat size: 69, size: 0 -> 69)
+- Other Avg: 1.992 (stat size: 147, size: 0 -> 147)
+Total Avg Lat: 1.487 (size: 216, duration: 0.50029 s, approx miss rate: 0.6806)
+- miss ratio = 1.00000 -> 0.36882, with m_size = 64553 (max = 500000)
+
+data pass 2
+Total miss rate: 0.2589, hit num: 1806, miss num: 631
+- Hit Avg: 0.596 (stat size: 91, size: 70 -> 161)
+- Other Avg: 1.937 (stat size: 162, size: 148 -> 310)
+Total Avg Lat: 1.455 (size: 253, duration: 0.50041 s, approx miss rate: 0.6403)
+- miss ratio = 0.36882 -> 0.25892, with m_size = 114471 (max = 500000)
+
+data pass 3
+Total miss rate: 0.2165, hit num: 2229, miss num: 616
+- Hit Avg: 0.518 (stat size: 120, size: 162 -> 282)
+- Other Avg: 1.617 (stat size: 179, size: 311 -> 490)
+Total Avg Lat: 1.176 (size: 299, duration: 0.50015 s, approx miss rate: 0.5987)
+- miss ratio = 0.25892 -> 0.21652, with m_size = 159580 (max = 500000)
+
+data pass 4
+Total miss rate: 0.1871, hit num: 2451, miss num: 564
+- Hit Avg: 0.445 (stat size: 130, size: 283 -> 413)
+- Other Avg: 1.880 (stat size: 192, size: 491 -> 683)
+Total Avg Lat: 1.301 (size: 322, duration: 0.50016 s, approx miss rate: 0.5963)
+- miss ratio = 0.21652 -> 0.18706, with m_size = 198396 (max = 500000)
+
+data pass 5
+Total miss rate: 0.1599, hit num: 2533, miss num: 482
+- Hit Avg: 0.565 (stat size: 139, size: 414 -> 553)
+- Other Avg: 1.737 (stat size: 179, size: 684 -> 863)
+Total Avg Lat: 1.225 (size: 318, duration: 0.50015 s, approx miss rate: 0.5629)
+- miss ratio = 0.18706 -> 0.15987, with m_size = 230747 (max = 500000)
+
+data pass 6
+Total miss rate: 0.1435, hit num: 2662, miss num: 446
+- Hit Avg: 0.742 (stat size: 141, size: 554 -> 695)
+- Other Avg: 1.651 (stat size: 183, size: 864 -> 1047)
+Total Avg Lat: 1.255 (size: 324, duration: 0.50016 s, approx miss rate: 0.5648)
+- miss ratio = 0.15987 -> 0.14350, with m_size = 259690 (max = 500000)
+
+data pass 7
+Total miss rate: 0.1297, hit num: 2556, miss num: 381
+- Hit Avg: 0.771 (stat size: 139, size: 696 -> 835)
+- Other Avg: 1.846 (stat size: 181, size: 1048 -> 1229)
+Total Avg Lat: 1.379 (size: 320, duration: 0.50016 s, approx miss rate: 0.5656)
+- miss ratio = 0.14350 -> 0.12972, with m_size = 284403 (max = 500000)
+
+data pass 8
+Total miss rate: 0.1275, hit num: 3045, miss num: 445
+- Hit Avg: 0.583 (stat size: 154, size: 836 -> 990)
+- Other Avg: 1.649 (stat size: 216, size: 1230 -> 1446)
+Total Avg Lat: 1.205 (size: 370, duration: 0.50017 s, approx miss rate: 0.5838)
+- miss ratio = 0.12972 -> 0.12751, with m_size = 309524 (max = 500000)
+
+data pass 9
+Total miss rate: 0.1215, hit num: 3166, miss num: 438
+- Hit Avg: 0.505 (stat size: 172, size: 991 -> 1163)
+- Other Avg: 1.305 (stat size: 203, size: 1447 -> 1650)
+Total Avg Lat: 0.938 (size: 375, duration: 0.50017 s, approx miss rate: 0.5413)
+- miss ratio = 0.12751 -> 0.12153, with m_size = 332113 (max = 500000)
+
+data pass 10
+Total miss rate: 0.1056, hit num: 3160, miss num: 373
+- Hit Avg: 0.756 (stat size: 161, size: 1164 -> 1325)
+- Other Avg: 1.686 (stat size: 216, size: 1651 -> 1867)
+Total Avg Lat: 1.289 (size: 377, duration: 0.50018 s, approx miss rate: 0.5729)
+- miss ratio = 0.12153 -> 0.10558, with m_size = 352259 (max = 500000)
+
+data pass 11
+Total miss rate: 0.1151, hit num: 2930, miss num: 381
+- Hit Avg: 0.750 (stat size: 165, size: 1326 -> 1491)
+- Other Avg: 1.358 (stat size: 183, size: 1868 -> 2051)
+Total Avg Lat: 1.070 (size: 348, duration: 0.50021 s, approx miss rate: 0.5259)
+- miss ratio = 0.10558 -> 0.11507, with m_size = 369399 (max = 500000)
+
+data pass 12
+Total miss rate: 0.1078, hit num: 3243, miss num: 392
+- Hit Avg: 0.662 (stat size: 167, size: 1492 -> 1659)
+- Other Avg: 1.582 (stat size: 214, size: 2052 -> 2266)
+Total Avg Lat: 1.179 (size: 381, duration: 0.50018 s, approx miss rate: 0.5617)
+- miss ratio = 0.11507 -> 0.10784, with m_size = 386051 (max = 500000)
+
+data pass 13
+Total miss rate: 0.1066, hit num: 3109, miss num: 371
+- Hit Avg: 0.684 (stat size: 168, size: 1660 -> 1828)
+- Other Avg: 1.444 (stat size: 201, size: 2267 -> 2468)
+Total Avg Lat: 1.098 (size: 369, duration: 0.50018 s, approx miss rate: 0.5447)
+- miss ratio = 0.10784 -> 0.10661, with m_size = 401109 (max = 500000)
+
+data pass 14
+Total miss rate: 0.1049, hit num: 3352, miss num: 393
+- Hit Avg: 0.754 (stat size: 177, size: 1829 -> 2006)
+- Other Avg: 1.461 (stat size: 214, size: 2469 -> 2683)
+Total Avg Lat: 1.141 (size: 391, duration: 0.50016 s, approx miss rate: 0.5473)
+- miss ratio = 0.10661 -> 0.10494, with m_size = 415812 (max = 500000)
+
+data pass 15
+Total miss rate: 0.0997, hit num: 2997, miss num: 332
+- Hit Avg: 0.821 (stat size: 157, size: 2007 -> 2164)
+- Other Avg: 1.658 (stat size: 197, size: 2684 -> 2881)
+Total Avg Lat: 1.287 (size: 354, duration: 0.50017 s, approx miss rate: 0.5565)
+- miss ratio = 0.10494 -> 0.09973, with m_size = 427975 (max = 500000)
+
+data pass 16
+Total miss rate: 0.0914, hit num: 3011, miss num: 303
+- Hit Avg: 0.922 (stat size: 162, size: 2165 -> 2327)
+- Other Avg: 1.725 (stat size: 199, size: 2882 -> 3081)
+Total Avg Lat: 1.365 (size: 361, duration: 0.50016 s, approx miss rate: 0.5512)
+- miss ratio = 0.09973 -> 0.09143, with m_size = 439800 (max = 500000)
+
+data pass 17
+Total miss rate: 0.1055, hit num: 3095, miss num: 365
+- Hit Avg: 0.788 (stat size: 162, size: 2328 -> 2490)
+- Other Avg: 1.720 (stat size: 202, size: 3082 -> 3284)
+Total Avg Lat: 1.305 (size: 364, duration: 0.50017 s, approx miss rate: 0.5549)
+- miss ratio = 0.09143 -> 0.10549, with m_size = 450930 (max = 500000)
+
+data pass 18
+Total miss rate: 0.0912, hit num: 3338, miss num: 335
+- Hit Avg: 0.768 (stat size: 181, size: 2491 -> 2672)
+- Other Avg: 1.460 (stat size: 215, size: 3285 -> 3500)
+Total Avg Lat: 1.143 (size: 396, duration: 0.50015 s, approx miss rate: 0.5429)
+- miss ratio = 0.10549 -> 0.09121, with m_size = 461820 (max = 500000)
+
+data pass 19
+Total miss rate: 0.0917, hit num: 3139, miss num: 317
+- Hit Avg: 0.724 (stat size: 170, size: 2673 -> 2843)
+- Other Avg: 1.568 (stat size: 195, size: 3501 -> 3696)
+Total Avg Lat: 1.175 (size: 365, duration: 0.50017 s, approx miss rate: 0.5342)
+- miss ratio = 0.09121 -> 0.09172, with m_size = 471336 (max = 500000)
+
+data pass 20
+Total miss rate: 0.0876, hit num: 3279, miss num: 315
+- Hit Avg: 0.809 (stat size: 180, size: 2844 -> 3024)
+- Other Avg: 1.450 (stat size: 201, size: 3697 -> 3898)
+Total Avg Lat: 1.147 (size: 381, duration: 0.50017 s, approx miss rate: 0.5276)
+- miss ratio = 0.09172 -> 0.08765, with m_size = 480683 (max = 500000)
+
+data pass 21
+Total miss rate: 0.0825, hit num: 2991, miss num: 269
+- Hit Avg: 0.951 (stat size: 159, size: 3025 -> 3184)
+- Other Avg: 1.603 (stat size: 185, size: 3899 -> 4084)
+Total Avg Lat: 1.301 (size: 344, duration: 0.50015 s, approx miss rate: 0.5378)
+- miss ratio = 0.08765 -> 0.08252, with m_size = 488559 (max = 500000)
+
+data pass 22
+Total miss rate: 0.0762, hit num: 3212, miss num: 265
+- Hit Avg: 0.837 (stat size: 176, size: 3185 -> 3361)
+- Other Avg: 1.500 (stat size: 203, size: 4085 -> 4288)
+Total Avg Lat: 1.192 (size: 379, duration: 0.50016 s, approx miss rate: 0.5356)
+- miss ratio = 0.08252 -> 0.07622, with m_size = 496823 (max = 500000)
+
+data pass 23
+Total miss rate: 0.0787, hit num: 3384, miss num: 289
+- Hit Avg: 0.706 (stat size: 177, size: 3362 -> 3539)
+- Other Avg: 1.476 (stat size: 213, size: 4289 -> 4502)
+Total Avg Lat: 1.127 (size: 390, duration: 0.50020 s, approx miss rate: 0.5462)
+- miss ratio = 0.07622 -> 0.07868, with m_size = 499972 (max = 500000)
+
+data pass 24
+Total miss rate: 0.0870, hit num: 3506, miss num: 334
+- Hit Avg: 0.649 (stat size: 184, size: 3540 -> 3724)
+- Other Avg: 1.464 (stat size: 212, size: 4503 -> 4715)
+Total Avg Lat: 1.085 (size: 396, duration: 0.50017 s, approx miss rate: 0.5354)
+- miss ratio = 0.07868 -> 0.08698, with m_size = 499978 (max = 500000)
+
+data pass 25
+Total miss rate: 0.0800, hit num: 3242, miss num: 282
+- Hit Avg: 0.747 (stat size: 177, size: 3725 -> 3902)
+- Other Avg: 1.539 (stat size: 205, size: 4716 -> 4921)
+Total Avg Lat: 1.172 (size: 382, duration: 0.50017 s, approx miss rate: 0.5366)
+- miss ratio = 0.08698 -> 0.08002, with m_size = 499959 (max = 500000)
+
+data pass 26
+Total miss rate: 0.0936, hit num: 3371, miss num: 348
+- Hit Avg: 0.816 (stat size: 180, size: 3903 -> 4083)
+- Other Avg: 1.672 (stat size: 216, size: 4922 -> 5138)
+Total Avg Lat: 1.283 (size: 396, duration: 0.50016 s, approx miss rate: 0.5455)
+- miss ratio = 0.08002 -> 0.09357, with m_size = 499968 (max = 500000)
+
+data pass 27
+Total miss rate: 0.0805, hit num: 3507, miss num: 307
+- Hit Avg: 0.645 (stat size: 188, size: 4084 -> 4272)
+- Other Avg: 1.373 (stat size: 216, size: 5139 -> 5355)
+Total Avg Lat: 1.035 (size: 404, duration: 0.50016 s, approx miss rate: 0.5347)
+- miss ratio = 0.09357 -> 0.08049, with m_size = 499974 (max = 500000)
+
+data pass 28
+Total miss rate: 0.0857, hit num: 3818, miss num: 358
+- Hit Avg: 0.641 (stat size: 200, size: 4273 -> 4473)
+- Other Avg: 1.433 (stat size: 243, size: 5356 -> 5599)
+Total Avg Lat: 1.076 (size: 443, duration: 0.50014 s, approx miss rate: 0.5485)
+- miss ratio = 0.08049 -> 0.08573, with m_size = 499980 (max = 500000)
+
+data pass 29
+Total miss rate: 0.0803, hit num: 3849, miss num: 336
+- Hit Avg: 0.610 (stat size: 207, size: 4474 -> 4681)
+- Other Avg: 1.220 (stat size: 242, size: 5600 -> 5842)
+Total Avg Lat: 0.939 (size: 449, duration: 0.50015 s, approx miss rate: 0.5390)
+- miss ratio = 0.08573 -> 0.08029, with m_size = 499965 (max = 500000)
+
+data pass 30
+Total miss rate: 0.0784, hit num: 4041, miss num: 344
+- Hit Avg: 0.576 (stat size: 216, size: 4682 -> 4898)
+- Other Avg: 1.232 (stat size: 252, size: 5843 -> 6095)
+Total Avg Lat: 0.929 (size: 468, duration: 0.50014 s, approx miss rate: 0.5385)
+- miss ratio = 0.08029 -> 0.07845, with m_size = 499975 (max = 500000)
+
+data pass 31
+Total miss rate: 0.0761, hit num: 3908, miss num: 322
+- Hit Avg: 0.596 (stat size: 206, size: 4899 -> 5105)
+- Other Avg: 1.440 (stat size: 239, size: 6096 -> 6335)
+Total Avg Lat: 1.049 (size: 445, duration: 0.50015 s, approx miss rate: 0.5371)
+- miss ratio = 0.07845 -> 0.07612, with m_size = 499965 (max = 500000)
+
+data pass 32
+Total miss rate: 0.0849, hit num: 3742, miss num: 347
+- Hit Avg: 0.723 (stat size: 209, size: 5106 -> 5315)
+- Other Avg: 1.217 (stat size: 234, size: 6336 -> 6570)
+Total Avg Lat: 0.984 (size: 443, duration: 0.50014 s, approx miss rate: 0.5282)
+- miss ratio = 0.07612 -> 0.08486, with m_size = 499965 (max = 500000)
+
+cache is stable
+the first wait stable
+clear stat for next stage:
+- Hit Avg: 0.698 (stat size: 5315, real size_: 5315), median: 0.371, p9999: 24.315, p999: 4.066, p99: 3.162, p90: 1.828
+- Other Avg: 1.540 (stat size: 6570, real size_: 6570), median: 0.765, p9999: 38.820, p999: 11.943, p99: 8.416, p90: 3.619
+Total Avg Lat: 1.163 (size: 11885, miss ratio: 0.552798)
+
+wait stable spend time: 16.006271 s
+
+* end observation *
+
+* start search *
+
+Debug: Test 1.0 Size
+
+* end search *
+
+* start construct *
+
+Find median avg lat of baseline:
+data pass 33
+Total miss rate: 0.0796, hit num: 8094, miss num: 700
+- Hit Avg: 0.631 (stat size: 423, size: 0 -> 423)
+- Other Avg: 1.335 (stat size: 505, size: 0 -> 505)
+Total Avg Lat: 1.014 (size: 928, duration: 1.00013 s, approx miss rate: 0.5442)
+FH compare with baseline metric: 1.014
+FH compare with baseline metric with threshold: 0.845
+
+Per shard baseline print tail
+Avg: 1.112 (stat size: 424712, real size_: 434398), median: 0.426, p9999: 24.779, p999: 9.571, p99: 8.418, p90: 2.102
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 left
+fast hash insert num: 31244, m_size: 31206 (FC_ratio: 1.00)
+fast hash insert num: 31240, m_size: 31196 (FC_ratio: 1.00)
+fast hash insert num: 31238, m_size: 31195 (FC_ratio: 1.00)
+fast hash insert num: 31244, m_size: 31196 (FC_ratio: 1.00)
+fast hash insert num: 31244, m_size: 31197 (FC_ratio: 1.00)
+fast hash insert num: 31242, m_size: 31187 (FC_ratio: 1.00)
+fast hash insert num: 31244, m_size: 31196 (FC_ratio: 1.00)
+fast hash insert num: 31247, m_size: 31199 (FC_ratio: 1.00)
+fast hash insert num: 31241, m_size: 31189 (FC_ratio: 1.00)
+fast hash insert num: 31241, m_size: 31182 (FC_ratio: 1.00)
+fast hash insert num: 31232, m_size: 31183 (FC_ratio: 1.00)
+fast hash insert num: 31241, m_size: 31160 (FC_ratio: 1.00)
+fast hash insert num: 31247, m_size: 31207 (FC_ratio: 1.00)
+fast hash insert num: 31234, m_size: 31170 (FC_ratio: 1.00)
+fast hash insert num: 31232, m_size: 31152 (FC_ratio: 1.00)
+fast hash insert num: 31245, m_size: 31209 (FC_ratio: 1.00)
+try query
+miss ratio: 0.06965 / 0.06965
+fast find hit: 187, global hit: 0, global miss: 16, total insert: 14
+Avg: 1.517 (stat size: 12164, real size_: 12164), median: 0.175, p9999: 11.720, p999: 6.372, p99: 5.906, p90: 1.051
+LB_RES Clear number of buckets: 32768
+shard 0 baseline metrics (update):
+Avg: 0.841 (stat size: 10502, real size_: 10502), median: 0.175, p9999: 128.169, p999: 7.931, p99: 6.890, p90: 1.579
+miss ratio: 0.01182 / 0.01182
+fast find hit: 418, global hit: 0, global miss: 7, total insert: 5
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 1 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.12651 / 0.12651
+fast find hit: 145, global hit: 0, global miss: 28, total insert: 21
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 2 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.15301 / 0.15301
+fast find hit: 155, global hit: 0, global miss: 20, total insert: 28
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 3 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.03524 / 0.03524
+fast find hit: 219, global hit: 0, global miss: 11, total insert: 8
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 4 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06918 / 0.06918
+fast find hit: 148, global hit: 0, global miss: 18, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 5 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05517 / 0.05517
+fast find hit: 137, global hit: 0, global miss: 13, total insert: 8
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 6 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06061 / 0.06061
+fast find hit: 248, global hit: 0, global miss: 8, total insert: 16
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 7 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05785 / 0.05785
+fast find hit: 114, global hit: 0, global miss: 5, total insert: 7
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 8 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.11628 / 0.11628
+fast find hit: 114, global hit: 0, global miss: 13, total insert: 15
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 9 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.11290 / 0.11290
+fast find hit: 110, global hit: 0, global miss: 8, total insert: 14
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 10 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.04464 / 0.04464
+fast find hit: 107, global hit: 0, global miss: 15, total insert: 5
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 11 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06667 / 0.06667
+fast find hit: 98, global hit: 0, global miss: 6, total insert: 7
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 12 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06742 / 0.06742
+fast find hit: 83, global hit: 0, global miss: 4, total insert: 6
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 13 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.09677 / 0.09677
+fast find hit: 56, global hit: 0, global miss: 5, total insert: 6
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 14 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.11321 / 0.11321
+fast find hit: 94, global hit: 0, global miss: 6, total insert: 12
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 15 baseline metrics (update):
+no stat to print tail
+pass 0 end
+
+construct phase:
+data pass 34
+Total miss rate: 0.0946, hit num: 8189, miss num: 856
+- Hit Avg: 0.497 (stat size: 436, size: 424 -> 860)
+- Other Avg: 1.448 (stat size: 524, size: 506 -> 1030)
+Total Avg Lat: 1.016 (size: 960, duration: 1.47384 s, approx miss rate: 0.5458)
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 left
+fast hash insert num: 31034, m_size: 31004 (FC_ratio: 1.00)
+fast hash insert num: 30970, m_size: 30906 (FC_ratio: 1.00)
+fast hash insert num: 31059, m_size: 31017 (FC_ratio: 1.00)
+fast hash insert num: 31083, m_size: 31033 (FC_ratio: 1.00)
+fast hash insert num: 31111, m_size: 31073 (FC_ratio: 1.00)
+fast hash insert num: 31180, m_size: 31147 (FC_ratio: 1.00)
+fast hash insert num: 31142, m_size: 31097 (FC_ratio: 1.00)
+fast hash insert num: 31202, m_size: 31145 (FC_ratio: 1.00)
+fast hash insert num: 31213, m_size: 31176 (FC_ratio: 1.00)
+fast hash insert num: 31219, m_size: 31173 (FC_ratio: 1.00)
+fast hash insert num: 31242, m_size: 31189 (FC_ratio: 1.00)
+fast hash insert num: 31243, m_size: 31200 (FC_ratio: 1.00)
+fast hash insert num: 31234, m_size: 31189 (FC_ratio: 1.00)
+fast hash insert num: 31238, m_size: 31172 (FC_ratio: 1.00)
+fast hash insert num: 31238, m_size: 31170 (FC_ratio: 1.00)
+fast hash insert num: 31236, m_size: 31176 (FC_ratio: 1.00)
+try query
+miss ratio: 0.08235 / 0.08235
+fast find hit: 156, global hit: 0, global miss: 17, total insert: 14
+Avg: 1.028 (stat size: 14774, real size_: 14774), median: 0.177, p9999: 13.328, p999: 6.383, p99: 5.949, p90: 1.366
+LB_RES Clear number of buckets: 32768
+shard 0 baseline metrics (update):
+Avg: 0.745 (stat size: 10039, real size_: 10039), median: 0.180, p9999: 9.931, p999: 7.729, p99: 6.891, p90: 1.800
+miss ratio: 0.04138 / 0.04138
+fast find hit: 417, global hit: 0, global miss: 20, total insert: 18
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 1 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.08989 / 0.08989
+fast find hit: 162, global hit: 0, global miss: 10, total insert: 16
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 2 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06286 / 0.06286
+fast find hit: 164, global hit: 0, global miss: 16, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 3 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05213 / 0.05213
+fast find hit: 200, global hit: 0, global miss: 8, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 4 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.17419 / 0.17419
+fast find hit: 128, global hit: 0, global miss: 13, total insert: 27
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 5 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.09150 / 0.09150
+fast find hit: 139, global hit: 0, global miss: 22, total insert: 14
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 6 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05306 / 0.05306
+fast find hit: 232, global hit: 0, global miss: 11, total insert: 13
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 7 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.09231 / 0.09231
+fast find hit: 118, global hit: 0, global miss: 13, total insert: 12
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 8 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.10714 / 0.10714
+fast find hit: 100, global hit: 0, global miss: 6, total insert: 12
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 9 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.04386 / 0.04386
+fast find hit: 109, global hit: 0, global miss: 7, total insert: 5
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 10 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05941 / 0.05941
+fast find hit: 95, global hit: 0, global miss: 10, total insert: 6
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 11 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.18584 / 0.18584
+fast find hit: 92, global hit: 0, global miss: 16, total insert: 21
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 12 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.12821 / 0.12821
+fast find hit: 68, global hit: 0, global miss: 6, total insert: 10
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 13 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.11111 / 0.11111
+fast find hit: 64, global hit: 0, global miss: 7, total insert: 8
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 14 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06422 / 0.06422
+fast find hit: 102, global hit: 0, global miss: 4, total insert: 7
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 15 baseline metrics (update):
+no stat to print tail
+pass 1 end
+
+construct phase:
+data pass 35
+Total miss rate: 0.0934, hit num: 4183, miss num: 431
+- Hit Avg: 0.420 (stat size: 225, size: 861 -> 1086)
+- Other Avg: 1.538 (stat size: 271, size: 1031 -> 1302)
+Total Avg Lat: 1.031 (size: 496, duration: 0.94558 s, approx miss rate: 0.5464)
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 left
+fast hash insert num: 30839, m_size: 30820 (FC_ratio: 1.00)
+fast hash insert num: 30826, m_size: 30797 (FC_ratio: 1.00)
+fast hash insert num: 30898, m_size: 30849 (FC_ratio: 1.00)
+fast hash insert num: 31040, m_size: 31011 (FC_ratio: 1.00)
+fast hash insert num: 30991, m_size: 30949 (FC_ratio: 1.00)
+fast hash insert num: 31145, m_size: 31117 (FC_ratio: 1.00)
+fast hash insert num: 31148, m_size: 31112 (FC_ratio: 1.00)
+fast hash insert num: 31223, m_size: 31170 (FC_ratio: 1.00)
+fast hash insert num: 31223, m_size: 31173 (FC_ratio: 1.00)
+fast hash insert num: 31245, m_size: 31198 (FC_ratio: 1.00)
+fast hash insert num: 31247, m_size: 31197 (FC_ratio: 1.00)
+fast hash insert num: 31243, m_size: 31190 (FC_ratio: 1.00)
+fast hash insert num: 31231, m_size: 31164 (FC_ratio: 1.00)
+fast hash insert num: 31245, m_size: 31218 (FC_ratio: 1.00)
+fast hash insert num: 31227, m_size: 31156 (FC_ratio: 1.00)
+fast hash insert num: 31223, m_size: 31185 (FC_ratio: 1.00)
+try query
+miss ratio: 0.23077 / 0.23077
+fast find hit: 130, global hit: 0, global miss: 26, total insert: 39
+Avg: 1.439 (stat size: 10901, real size_: 10901), median: 0.174, p9999: 21.304, p999: 6.311, p99: 5.946, p90: 1.533
+LB_RES Clear number of buckets: 32768
+shard 0 baseline metrics (update):
+Avg: 0.912 (stat size: 9711, real size_: 9711), median: 0.177, p9999: 1336.161, p999: 7.824, p99: 6.895, p90: 1.992
+miss ratio: 0.02765 / 0.02765
+fast find hit: 422, global hit: 0, global miss: 13, total insert: 12
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 1 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.11348 / 0.11348
+fast find hit: 125, global hit: 0, global miss: 14, total insert: 16
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 2 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.07059 / 0.07059
+fast find hit: 158, global hit: 0, global miss: 11, total insert: 12
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 3 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.07512 / 0.07512
+fast find hit: 197, global hit: 0, global miss: 17, total insert: 16
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 4 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.14557 / 0.14557
+fast find hit: 135, global hit: 0, global miss: 17, total insert: 23
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 5 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.09259 / 0.09259
+fast find hit: 147, global hit: 0, global miss: 18, total insert: 15
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 6 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05991 / 0.05991
+fast find hit: 204, global hit: 0, global miss: 9, total insert: 13
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 7 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.13008 / 0.13008
+fast find hit: 107, global hit: 0, global miss: 10, total insert: 16
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 8 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.18095 / 0.18095
+fast find hit: 86, global hit: 0, global miss: 15, total insert: 19
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 9 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.08209 / 0.08209
+fast find hit: 123, global hit: 0, global miss: 11, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 10 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05714 / 0.05714
+fast find hit: 99, global hit: 0, global miss: 6, total insert: 6
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 11 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.12500 / 0.12500
+fast find hit: 77, global hit: 0, global miss: 8, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 12 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.13580 / 0.13580
+fast find hit: 70, global hit: 0, global miss: 6, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 13 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06061 / 0.06061
+fast find hit: 62, global hit: 0, global miss: 7, total insert: 4
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 14 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05000 / 0.05000
+fast find hit: 76, global hit: 0, global miss: 4, total insert: 4
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 15 baseline metrics (update):
+no stat to print tail
+pass 2 end
+
+construct phase:
+data pass 36
+Total miss rate: 0.1155, hit num: 4022, miss num: 525
+- Hit Avg: 0.352 (stat size: 212, size: 1087 -> 1299)
+- Other Avg: 1.549 (stat size: 271, size: 1303 -> 1574)
+Total Avg Lat: 1.023 (size: 483, duration: 0.95238 s, approx miss rate: 0.5611)
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 left
+
+construct step: 2867
+
+* start observation *
+
+data pass 37
+- Hit None
+- Other None
+Total Avg Lat: -nan (size: 0, duration: 0.00002 s, approx miss rate: -nan)
+- miss ratio = 1.50000 -> 1.00000, with m_size = 494903 (max = 500000)
+
+data pass 38
+Total miss rate: 0.0997, hit num: 3792, miss num: 420
+- Hit Avg: 0.548 (stat size: 196, size: 1300 -> 1496)
+- Other Avg: 1.434 (stat size: 246, size: 1575 -> 1821)
+Total Avg Lat: 1.041 (size: 442, duration: 0.50012 s, approx miss rate: 0.5566)
+- miss ratio = 1.00000 -> 0.09972, with m_size = 499973 (max = 500000)
+
+data pass 39
+Total miss rate: 0.0853, hit num: 4020, miss num: 375
+- Hit Avg: 0.563 (stat size: 209, size: 1497 -> 1706)
+- Other Avg: 1.386 (stat size: 255, size: 1822 -> 2077)
+Total Avg Lat: 1.015 (size: 464, duration: 0.50014 s, approx miss rate: 0.5496)
+- miss ratio = 0.09972 -> 0.08532, with m_size = 499976 (max = 500000)
+
+data pass 40
+Total miss rate: 0.0822, hit num: 3939, miss num: 353
+- Hit Avg: 0.604 (stat size: 208, size: 1707 -> 1915)
+- Other Avg: 1.341 (stat size: 246, size: 2078 -> 2324)
+Total Avg Lat: 1.004 (size: 454, duration: 0.50017 s, approx miss rate: 0.5419)
+- miss ratio = 0.08532 -> 0.08225, with m_size = 499984 (max = 500000)
+
+data pass 41
+Total miss rate: 0.0842, hit num: 3925, miss num: 361
+- Hit Avg: 0.620 (stat size: 205, size: 1916 -> 2121)
+- Other Avg: 1.456 (stat size: 246, size: 2325 -> 2571)
+Total Avg Lat: 1.076 (size: 451, duration: 0.50014 s, approx miss rate: 0.5455)
+- miss ratio = 0.08225 -> 0.08423, with m_size = 499967 (max = 500000)
+
+data pass 42
+Total miss rate: 0.0785, hit num: 4144, miss num: 353
+- Hit Avg: 0.610 (stat size: 213, size: 2122 -> 2335)
+- Other Avg: 1.271 (stat size: 259, size: 2572 -> 2831)
+Total Avg Lat: 0.973 (size: 472, duration: 0.50014 s, approx miss rate: 0.5487)
+- miss ratio = 0.08423 -> 0.07850, with m_size = 499977 (max = 500000)
+
+data pass 43
+Total miss rate: 0.0841, hit num: 4029, miss num: 370
+- Hit Avg: 0.554 (stat size: 212, size: 2336 -> 2548)
+- Other Avg: 1.308 (stat size: 251, size: 2832 -> 3083)
+Total Avg Lat: 0.963 (size: 463, duration: 0.50014 s, approx miss rate: 0.5421)
+- miss ratio = 0.07850 -> 0.08411, with m_size = 499957 (max = 500000)
+
+data pass 44
+Total miss rate: 0.0893, hit num: 3887, miss num: 381
+- Hit Avg: 0.616 (stat size: 208, size: 2549 -> 2757)
+- Other Avg: 1.306 (stat size: 245, size: 3084 -> 3329)
+Total Avg Lat: 0.989 (size: 453, duration: 0.50013 s, approx miss rate: 0.5408)
+- miss ratio = 0.08411 -> 0.08927, with m_size = 499974 (max = 500000)
+
+data pass 45
+Total miss rate: 0.0849, hit num: 3989, miss num: 370
+- Hit Avg: 0.482 (stat size: 219, size: 2758 -> 2977)
+- Other Avg: 1.167 (stat size: 249, size: 3330 -> 3579)
+Total Avg Lat: 0.846 (size: 468, duration: 0.50014 s, approx miss rate: 0.5321)
+- miss ratio = 0.08927 -> 0.08488, with m_size = 499976 (max = 500000)
+
+data pass 46
+Total miss rate: 0.0772, hit num: 3897, miss num: 326
+- Hit Avg: 0.627 (stat size: 214, size: 2978 -> 3192)
+- Other Avg: 1.135 (stat size: 245, size: 3580 -> 3825)
+Total Avg Lat: 0.898 (size: 459, duration: 0.50013 s, approx miss rate: 0.5338)
+- miss ratio = 0.08488 -> 0.07720, with m_size = 499980 (max = 500000)
+
+data pass 47
+Total miss rate: 0.0797, hit num: 3935, miss num: 341
+- Hit Avg: 0.637 (stat size: 205, size: 3193 -> 3398)
+- Other Avg: 1.369 (stat size: 239, size: 3826 -> 4065)
+Total Avg Lat: 1.031 (size: 444, duration: 0.50014 s, approx miss rate: 0.5383)
+- miss ratio = 0.07720 -> 0.07975, with m_size = 499977 (max = 500000)
+
+data pass 48
+Total miss rate: 0.0772, hit num: 3799, miss num: 318
+- Hit Avg: 0.640 (stat size: 203, size: 3399 -> 3602)
+- Other Avg: 1.448 (stat size: 245, size: 4066 -> 4311)
+Total Avg Lat: 1.082 (size: 448, duration: 0.50014 s, approx miss rate: 0.5469)
+- miss ratio = 0.07975 -> 0.07724, with m_size = 499966 (max = 500000)
+
+data pass 49
+Total miss rate: 0.0783, hit num: 3789, miss num: 322
+- Hit Avg: 0.718 (stat size: 206, size: 3603 -> 3809)
+- Other Avg: 1.320 (stat size: 233, size: 4312 -> 4545)
+Total Avg Lat: 1.038 (size: 439, duration: 0.50014 s, approx miss rate: 0.5308)
+- miss ratio = 0.07724 -> 0.07833, with m_size = 499966 (max = 500000)
+
+cache is stable
+
+wait stable spend time: 6.001675 s
+
+* end observation *
+
+* start search *
+
+Debug: Test 1.0 Size
+
+* end search *
+
+* start construct *
+
+Find median avg lat of baseline:
+data pass 50
+Total miss rate: 0.0856, hit num: 7977, miss num: 747
+- Hit Avg: 0.579 (stat size: 420, size: 3810 -> 4230)
+- Other Avg: 1.319 (stat size: 498, size: 4546 -> 5044)
+Total Avg Lat: 0.980 (size: 918, duration: 1.00015 s, approx miss rate: 0.5425)
+FH compare with baseline metric: 0.980
+FH compare with baseline metric with threshold: 0.817
+
+Per shard baseline print tail
+Avg: 1.123 (stat size: 424491, real size_: 434123), median: 0.446, p9999: 16.766, p999: 9.630, p99: 8.520, p90: 2.108
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 left
+fast hash insert num: 31235, m_size: 31200 (FC_ratio: 1.00)
+fast hash insert num: 31238, m_size: 31193 (FC_ratio: 1.00)
+fast hash insert num: 31248, m_size: 31196 (FC_ratio: 1.00)
+fast hash insert num: 31244, m_size: 31223 (FC_ratio: 1.00)
+fast hash insert num: 31233, m_size: 31188 (FC_ratio: 1.00)
+fast hash insert num: 31241, m_size: 31204 (FC_ratio: 1.00)
+fast hash insert num: 31225, m_size: 31200 (FC_ratio: 1.00)
+fast hash insert num: 31235, m_size: 31189 (FC_ratio: 1.00)
+fast hash insert num: 31247, m_size: 31201 (FC_ratio: 1.00)
+fast hash insert num: 31242, m_size: 31204 (FC_ratio: 1.00)
+fast hash insert num: 31238, m_size: 31167 (FC_ratio: 1.00)
+fast hash insert num: 31240, m_size: 31218 (FC_ratio: 1.00)
+fast hash insert num: 31227, m_size: 31172 (FC_ratio: 1.00)
+fast hash insert num: 31226, m_size: 31168 (FC_ratio: 1.00)
+fast hash insert num: 31221, m_size: 31156 (FC_ratio: 1.00)
+fast hash insert num: 31240, m_size: 31194 (FC_ratio: 1.00)
+try query
+miss ratio: 0.08840 / 0.08840
+fast find hit: 165, global hit: 0, global miss: 15, total insert: 16
+Avg: 1.476 (stat size: 9687, real size_: 9687), median: 0.188, p9999: 6795.330, p999: 6.348, p99: 6.011, p90: 2.174
+LB_RES Clear number of buckets: 32768
+shard 0 baseline metrics (update):
+Avg: 1.008 (stat size: 8880, real size_: 8880), median: 0.188, p9999: 1399.180, p999: 7.908, p99: 6.928, p90: 3.017
+miss ratio: 0.03204 / 0.03204
+fast find hit: 423, global hit: 0, global miss: 10, total insert: 14
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 1 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.07643 / 0.07643
+fast find hit: 145, global hit: 0, global miss: 13, total insert: 12
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 2 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06707 / 0.06707
+fast find hit: 153, global hit: 0, global miss: 7, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 3 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.27600 / 0.27600
+fast find hit: 181, global hit: 0, global miss: 68, total insert: 69
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 4 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.21769 / 0.21769
+fast find hit: 115, global hit: 0, global miss: 23, total insert: 32
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 5 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.07031 / 0.07031
+fast find hit: 119, global hit: 0, global miss: 23, total insert: 9
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 6 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.03431 / 0.03431
+fast find hit: 197, global hit: 0, global miss: 11, total insert: 7
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 7 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.11404 / 0.11404
+fast find hit: 101, global hit: 0, global miss: 5, total insert: 13
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 8 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.10714 / 0.10714
+fast find hit: 100, global hit: 0, global miss: 14, total insert: 12
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 9 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05505 / 0.05505
+fast find hit: 103, global hit: 0, global miss: 14, total insert: 6
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 10 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05645 / 0.05645
+fast find hit: 117, global hit: 0, global miss: 11, total insert: 7
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 11 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.03960 / 0.03960
+fast find hit: 97, global hit: 0, global miss: 5, total insert: 4
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 12 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.22581 / 0.22581
+fast find hit: 48, global hit: 0, global miss: 17, total insert: 14
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 13 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.15476 / 0.15476
+fast find hit: 71, global hit: 0, global miss: 6, total insert: 13
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 14 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.07527 / 0.07527
+fast find hit: 86, global hit: 0, global miss: 8, total insert: 7
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 15 baseline metrics (update):
+no stat to print tail
+pass 0 end
+
+construct phase:
+data pass 51
+Total miss rate: 0.0998, hit num: 7966, miss num: 883
+- Hit Avg: 0.489 (stat size: 423, size: 4231 -> 4654)
+- Other Avg: 1.440 (stat size: 515, size: 5045 -> 5560)
+Total Avg Lat: 1.011 (size: 938, duration: 1.52733 s, approx miss rate: 0.5490)
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 left
+fast hash insert num: 31019, m_size: 30981 (FC_ratio: 1.00)
+fast hash insert num: 30977, m_size: 30946 (FC_ratio: 1.00)
+fast hash insert num: 31043, m_size: 31018 (FC_ratio: 1.00)
+fast hash insert num: 31071, m_size: 31029 (FC_ratio: 1.00)
+fast hash insert num: 31100, m_size: 31058 (FC_ratio: 1.00)
+fast hash insert num: 31149, m_size: 31086 (FC_ratio: 1.00)
+fast hash insert num: 31153, m_size: 31129 (FC_ratio: 1.00)
+fast hash insert num: 31229, m_size: 31197 (FC_ratio: 1.00)
+fast hash insert num: 31219, m_size: 31176 (FC_ratio: 1.00)
+fast hash insert num: 31241, m_size: 31197 (FC_ratio: 1.00)
+fast hash insert num: 31236, m_size: 31184 (FC_ratio: 1.00)
+fast hash insert num: 31241, m_size: 31210 (FC_ratio: 1.00)
+fast hash insert num: 31231, m_size: 31141 (FC_ratio: 1.00)
+fast hash insert num: 31249, m_size: 31197 (FC_ratio: 1.00)
+fast hash insert num: 31242, m_size: 31188 (FC_ratio: 1.00)
+fast hash insert num: 31238, m_size: 31180 (FC_ratio: 1.00)
+try query
+miss ratio: 0.06417 / 0.06417
+fast find hit: 175, global hit: 0, global miss: 18, total insert: 12
+Avg: 1.029 (stat size: 10908, real size_: 10908), median: 0.176, p9999: 35.977, p999: 6.358, p99: 5.992, p90: 1.536
+LB_RES Clear number of buckets: 32768
+shard 0 baseline metrics (update):
+Avg: 0.901 (stat size: 9847, real size_: 9847), median: 0.173, p9999: 1376.833, p999: 7.803, p99: 6.916, p90: 1.894
+miss ratio: 0.08633 / 0.08633
+fast find hit: 381, global hit: 0, global miss: 47, total insert: 36
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 1 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.08633 / 0.08633
+fast find hit: 127, global hit: 0, global miss: 17, total insert: 12
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 2 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.23077 / 0.23077
+fast find hit: 110, global hit: 0, global miss: 34, total insert: 33
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 3 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06996 / 0.06996
+fast find hit: 226, global hit: 0, global miss: 17, total insert: 17
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 4 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.08889 / 0.08889
+fast find hit: 164, global hit: 0, global miss: 10, total insert: 16
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 5 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06757 / 0.06757
+fast find hit: 138, global hit: 0, global miss: 10, total insert: 10
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 6 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06114 / 0.06114
+fast find hit: 215, global hit: 0, global miss: 14, total insert: 14
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 7 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.07368 / 0.07368
+fast find hit: 88, global hit: 0, global miss: 7, total insert: 7
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 8 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.15625 / 0.15625
+fast find hit: 81, global hit: 0, global miss: 13, total insert: 15
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 9 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.03306 / 0.03306
+fast find hit: 117, global hit: 0, global miss: 5, total insert: 4
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 10 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.07317 / 0.07317
+fast find hit: 114, global hit: 0, global miss: 9, total insert: 9
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 11 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.04386 / 0.04386
+fast find hit: 109, global hit: 0, global miss: 10, total insert: 5
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 12 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06557 / 0.06557
+fast find hit: 57, global hit: 0, global miss: 2, total insert: 4
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 13 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.10526 / 0.10526
+fast find hit: 68, global hit: 0, global miss: 8, total insert: 8
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 14 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.02273 / 0.02273
+fast find hit: 86, global hit: 0, global miss: 4, total insert: 2
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 15 baseline metrics (update):
+no stat to print tail
+pass 1 end
+
+construct phase:
+data pass 52
+Total miss rate: 0.1087, hit num: 4133, miss num: 504
+- Hit Avg: 0.410 (stat size: 223, size: 4655 -> 4878)
+- Other Avg: 1.498 (stat size: 271, size: 5561 -> 5832)
+Total Avg Lat: 1.007 (size: 494, duration: 0.93991 s, approx miss rate: 0.5486)
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 left
+fast hash insert num: 30846, m_size: 30820 (FC_ratio: 1.00)
+fast hash insert num: 30837, m_size: 30802 (FC_ratio: 1.00)
+fast hash insert num: 30934, m_size: 30897 (FC_ratio: 1.00)
+fast hash insert num: 31029, m_size: 30993 (FC_ratio: 1.00)
+fast hash insert num: 31056, m_size: 31006 (FC_ratio: 1.00)
+fast hash insert num: 31119, m_size: 31077 (FC_ratio: 1.00)
+fast hash insert num: 31187, m_size: 31147 (FC_ratio: 1.00)
+fast hash insert num: 31244, m_size: 31198 (FC_ratio: 1.00)
+fast hash insert num: 31250, m_size: 31195 (FC_ratio: 1.00)
+fast hash insert num: 31248, m_size: 31196 (FC_ratio: 1.00)
+fast hash insert num: 31233, m_size: 31191 (FC_ratio: 1.00)
+fast hash insert num: 31231, m_size: 31185 (FC_ratio: 1.00)
+fast hash insert num: 31229, m_size: 31173 (FC_ratio: 1.00)
+fast hash insert num: 31244, m_size: 31190 (FC_ratio: 1.00)
+fast hash insert num: 31228, m_size: 31200 (FC_ratio: 1.00)
+fast hash insert num: 31239, m_size: 31193 (FC_ratio: 1.00)
+try query
+miss ratio: 0.06962 / 0.06962
+fast find hit: 147, global hit: 0, global miss: 23, total insert: 11
+Avg: 1.296 (stat size: 17776, real size_: 17776), median: 0.138, p9999: 18.715, p999: 6.285, p99: 5.922, p90: 1.466
+LB_RES Clear number of buckets: 32768
+shard 0 baseline metrics (update):
+Avg: 0.888 (stat size: 10288, real size_: 10288), median: 0.142, p9999: 24.036, p999: 7.590, p99: 6.611, p90: 1.702
+miss ratio: 0.09677 / 0.09677
+fast find hit: 364, global hit: 0, global miss: 34, total insert: 39
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 1 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.09091 / 0.09091
+fast find hit: 120, global hit: 0, global miss: 16, total insert: 12
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 2 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.08889 / 0.08889
+fast find hit: 164, global hit: 0, global miss: 23, total insert: 16
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 3 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.03571 / 0.03571
+fast find hit: 243, global hit: 0, global miss: 8, total insert: 9
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 4 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.04420 / 0.04420
+fast find hit: 173, global hit: 0, global miss: 12, total insert: 8
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 5 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.14634 / 0.14634
+fast find hit: 105, global hit: 0, global miss: 12, total insert: 18
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 6 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.04327 / 0.04327
+fast find hit: 199, global hit: 0, global miss: 8, total insert: 9
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 7 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.07965 / 0.07965
+fast find hit: 104, global hit: 0, global miss: 9, total insert: 9
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 8 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.10256 / 0.10256
+fast find hit: 105, global hit: 0, global miss: 7, total insert: 12
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 9 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.10791 / 0.10791
+fast find hit: 124, global hit: 0, global miss: 14, total insert: 15
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 10 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.13393 / 0.13393
+fast find hit: 97, global hit: 0, global miss: 9, total insert: 15
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 11 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.10811 / 0.10811
+fast find hit: 99, global hit: 0, global miss: 7, total insert: 12
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 12 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.12121 / 0.12121
+fast find hit: 58, global hit: 0, global miss: 11, total insert: 8
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 13 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.11268 / 0.11268
+fast find hit: 63, global hit: 0, global miss: 4, total insert: 8
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 14 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.08696 / 0.08696
+fast find hit: 84, global hit: 0, global miss: 2, total insert: 8
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 15 baseline metrics (update):
+no stat to print tail
+pass 2 end
+
+construct phase:
+data pass 53
+Total miss rate: 0.1108, hit num: 4181, miss num: 521
+- Hit Avg: 0.363 (stat size: 225, size: 4879 -> 5104)
+- Other Avg: 1.566 (stat size: 270, size: 5833 -> 6103)
+Total Avg Lat: 1.019 (size: 495, duration: 0.96287 s, approx miss rate: 0.5455)
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 left
+
+construct step: 2845
+
+* start observation *
+
+data pass 54
+- Hit None
+- Other None
+Total Avg Lat: -nan (size: 0, duration: 0.00002 s, approx miss rate: -nan)
+- miss ratio = 1.50000 -> 1.00000, with m_size = 494990 (max = 500000)
+
+data pass 55
+Total miss rate: 0.0920, hit num: 3957, miss num: 401
+- Hit Avg: 0.529 (stat size: 212, size: 5105 -> 5317)
+- Other Avg: 1.269 (stat size: 251, size: 6104 -> 6355)
+Total Avg Lat: 0.930 (size: 463, duration: 0.50014 s, approx miss rate: 0.5421)
+- miss ratio = 1.00000 -> 0.09201, with m_size = 499976 (max = 500000)
+
+data pass 56
+Total miss rate: 0.0812, hit num: 4331, miss num: 383
+- Hit Avg: 0.556 (stat size: 228, size: 5318 -> 5546)
+- Other Avg: 1.157 (stat size: 262, size: 6356 -> 6618)
+Total Avg Lat: 0.878 (size: 490, duration: 0.50014 s, approx miss rate: 0.5347)
+- miss ratio = 0.09201 -> 0.08125, with m_size = 499979 (max = 500000)
+
+data pass 57
+Total miss rate: 0.0889, hit num: 4182, miss num: 408
+- Hit Avg: 0.548 (stat size: 231, size: 5547 -> 5778)
+- Other Avg: 0.979 (stat size: 251, size: 6619 -> 6870)
+Total Avg Lat: 0.772 (size: 482, duration: 0.50014 s, approx miss rate: 0.5207)
+- miss ratio = 0.08125 -> 0.08889, with m_size = 499973 (max = 500000)
+
+data pass 58
+Total miss rate: 0.0826, hit num: 4100, miss num: 369
+- Hit Avg: 0.606 (stat size: 220, size: 5779 -> 5999)
+- Other Avg: 1.259 (stat size: 256, size: 6871 -> 7127)
+Total Avg Lat: 0.957 (size: 476, duration: 0.50013 s, approx miss rate: 0.5378)
+- miss ratio = 0.08889 -> 0.08257, with m_size = 499973 (max = 500000)
+
+data pass 59
+Total miss rate: 0.0819, hit num: 3913, miss num: 349
+- Hit Avg: 0.634 (stat size: 203, size: 6000 -> 6203)
+- Other Avg: 1.384 (stat size: 242, size: 7128 -> 7370)
+Total Avg Lat: 1.042 (size: 445, duration: 0.50019 s, approx miss rate: 0.5438)
+- miss ratio = 0.08257 -> 0.08189, with m_size = 499972 (max = 500000)
+
+data pass 60
+Total miss rate: 0.0809, hit num: 3760, miss num: 331
+- Hit Avg: 0.692 (stat size: 203, size: 6204 -> 6407)
+- Other Avg: 1.308 (stat size: 238, size: 7371 -> 7609)
+Total Avg Lat: 1.025 (size: 441, duration: 0.50014 s, approx miss rate: 0.5397)
+- miss ratio = 0.08189 -> 0.08091, with m_size = 499961 (max = 500000)
+
+data pass 61
+Total miss rate: 0.0852, hit num: 3963, miss num: 369
+- Hit Avg: 0.539 (stat size: 212, size: 6408 -> 6620)
+- Other Avg: 1.296 (stat size: 246, size: 7610 -> 7856)
+Total Avg Lat: 0.945 (size: 458, duration: 0.50014 s, approx miss rate: 0.5371)
+- miss ratio = 0.08091 -> 0.08518, with m_size = 499969 (max = 500000)
+
+data pass 62
+Total miss rate: 0.0884, hit num: 3970, miss num: 385
+- Hit Avg: 0.556 (stat size: 209, size: 6621 -> 6830)
+- Other Avg: 1.399 (stat size: 251, size: 7857 -> 8108)
+Total Avg Lat: 1.016 (size: 460, duration: 0.50014 s, approx miss rate: 0.5457)
+- miss ratio = 0.08518 -> 0.08840, with m_size = 499963 (max = 500000)
+
+data pass 63
+Total miss rate: 0.0786, hit num: 3951, miss num: 337
+- Hit Avg: 0.579 (stat size: 211, size: 6831 -> 7042)
+- Other Avg: 1.304 (stat size: 248, size: 8109 -> 8357)
+Total Avg Lat: 0.971 (size: 459, duration: 0.50015 s, approx miss rate: 0.5403)
+- miss ratio = 0.08840 -> 0.07859, with m_size = 499969 (max = 500000)
+
+data pass 64
+Total miss rate: 0.0756, hit num: 4095, miss num: 335
+- Hit Avg: 0.623 (stat size: 212, size: 7043 -> 7255)
+- Other Avg: 1.392 (stat size: 253, size: 8358 -> 8611)
+Total Avg Lat: 1.041 (size: 465, duration: 0.50014 s, approx miss rate: 0.5441)
+- miss ratio = 0.07859 -> 0.07562, with m_size = 499974 (max = 500000)
+
+data pass 65
+Total miss rate: 0.0763, hit num: 3982, miss num: 329
+- Hit Avg: 0.592 (stat size: 209, size: 7256 -> 7465)
+- Other Avg: 1.290 (stat size: 251, size: 8612 -> 8863)
+Total Avg Lat: 0.973 (size: 460, duration: 0.50013 s, approx miss rate: 0.5457)
+- miss ratio = 0.07562 -> 0.07632, with m_size = 499983 (max = 500000)
+
+data pass 66
+Total miss rate: 0.0879, hit num: 3996, miss num: 385
+- Hit Avg: 0.493 (stat size: 215, size: 7466 -> 7681)
+- Other Avg: 1.319 (stat size: 258, size: 8864 -> 9122)
+Total Avg Lat: 0.944 (size: 473, duration: 0.50014 s, approx miss rate: 0.5455)
+- miss ratio = 0.07632 -> 0.08788, with m_size = 499971 (max = 500000)
+
+data pass 67
+Total miss rate: 0.0847, hit num: 3805, miss num: 352
+- Hit Avg: 0.683 (stat size: 202, size: 7682 -> 7884)
+- Other Avg: 1.398 (stat size: 243, size: 9123 -> 9366)
+Total Avg Lat: 1.073 (size: 445, duration: 0.50014 s, approx miss rate: 0.5461)
+- miss ratio = 0.08788 -> 0.08468, with m_size = 499968 (max = 500000)
+
+data pass 68
+Total miss rate: 0.0821, hit num: 3877, miss num: 347
+- Hit Avg: 0.565 (stat size: 201, size: 7885 -> 8086)
+- Other Avg: 1.460 (stat size: 244, size: 9367 -> 9611)
+Total Avg Lat: 1.056 (size: 445, duration: 0.50014 s, approx miss rate: 0.5483)
+- miss ratio = 0.08468 -> 0.08215, with m_size = 499960 (max = 500000)
+
+data pass 69
+Total miss rate: 0.0906, hit num: 3824, miss num: 381
+- Hit Avg: 0.655 (stat size: 209, size: 8087 -> 8296)
+- Other Avg: 1.311 (stat size: 238, size: 9612 -> 9850)
+Total Avg Lat: 1.004 (size: 447, duration: 0.50013 s, approx miss rate: 0.5324)
+- miss ratio = 0.08215 -> 0.09061, with m_size = 499960 (max = 500000)
+
+cache is stable
+
+wait stable spend time: 7.502137 s
+
+* end observation *
+
+* start search *
+
+Debug: Test 1.0 Size
+
+* end search *
+
+* start construct *
+
+Find median avg lat of baseline:
+data pass 70
+Total miss rate: 0.0843, hit num: 7922, miss num: 729
+- Hit Avg: 0.622 (stat size: 419, size: 8297 -> 8716)
+- Other Avg: 1.338 (stat size: 484, size: 9851 -> 10335)
+Total Avg Lat: 1.006 (size: 903, duration: 1.00013 s, approx miss rate: 0.5360)
+FH compare with baseline metric: 1.006
+FH compare with baseline metric with threshold: 0.838
+
+Per shard baseline print tail
+Avg: 1.106 (stat size: 430825, real size_: 451372), median: 0.432, p9999: 15.833, p999: 9.609, p99: 8.461, p90: 2.070
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+no stat to print tail
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 left
+fast hash insert num: 31248, m_size: 31222 (FC_ratio: 1.00)
+fast hash insert num: 31234, m_size: 31187 (FC_ratio: 1.00)
+fast hash insert num: 31250, m_size: 31223 (FC_ratio: 1.00)
+fast hash insert num: 31242, m_size: 31194 (FC_ratio: 1.00)
+fast hash insert num: 31246, m_size: 31218 (FC_ratio: 1.00)
+fast hash insert num: 31235, m_size: 31193 (FC_ratio: 1.00)
+fast hash insert num: 31223, m_size: 31186 (FC_ratio: 1.00)
+fast hash insert num: 31247, m_size: 31200 (FC_ratio: 1.00)
+fast hash insert num: 31239, m_size: 31200 (FC_ratio: 1.00)
+fast hash insert num: 31233, m_size: 31166 (FC_ratio: 1.00)
+fast hash insert num: 31242, m_size: 31191 (FC_ratio: 1.00)
+fast hash insert num: 31239, m_size: 31187 (FC_ratio: 1.00)
+fast hash insert num: 31229, m_size: 31176 (FC_ratio: 1.00)
+fast hash insert num: 31233, m_size: 31200 (FC_ratio: 1.00)
+fast hash insert num: 31219, m_size: 31164 (FC_ratio: 1.00)
+fast hash insert num: 31238, m_size: 31192 (FC_ratio: 1.00)
+try query
+miss ratio: 0.07429 / 0.07429
+fast find hit: 162, global hit: 0, global miss: 13, total insert: 13
+Avg: 1.055 (stat size: 10240, real size_: 10240), median: 0.172, p9999: 25.974, p999: 6.279, p99: 5.950, p90: 1.926
+LB_RES Clear number of buckets: 32768
+shard 0 baseline metrics (update):
+Avg: 0.921 (stat size: 9643, real size_: 9643), median: 0.173, p9999: 1359.500, p999: 7.787, p99: 6.618, p90: 2.105
+miss ratio: 0.03765 / 0.03765
+fast find hit: 409, global hit: 0, global miss: 9, total insert: 16
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 1 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06962 / 0.06962
+fast find hit: 147, global hit: 0, global miss: 15, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 2 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.09827 / 0.09827
+fast find hit: 156, global hit: 0, global miss: 10, total insert: 17
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 3 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05906 / 0.05906
+fast find hit: 239, global hit: 0, global miss: 10, total insert: 15
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 4 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.10256 / 0.10256
+fast find hit: 140, global hit: 0, global miss: 13, total insert: 16
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 5 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.19328 / 0.19328
+fast find hit: 96, global hit: 0, global miss: 31, total insert: 23
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 6 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.04292 / 0.04292
+fast find hit: 223, global hit: 0, global miss: 8, total insert: 10
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 7 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06957 / 0.06957
+fast find hit: 107, global hit: 0, global miss: 17, total insert: 8
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 8 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.07914 / 0.07914
+fast find hit: 128, global hit: 0, global miss: 6, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 9 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.04808 / 0.04808
+fast find hit: 99, global hit: 0, global miss: 6, total insert: 5
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 10 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.09565 / 0.09565
+fast find hit: 104, global hit: 0, global miss: 7, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 11 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.33577 / 0.33577
+fast find hit: 91, global hit: 0, global miss: 40, total insert: 46
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 12 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.13514 / 0.13514
+fast find hit: 64, global hit: 0, global miss: 10, total insert: 10
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 13 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.11594 / 0.11594
+fast find hit: 61, global hit: 0, global miss: 5, total insert: 8
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 14 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05618 / 0.05618
+fast find hit: 84, global hit: 0, global miss: 5, total insert: 5
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 15 baseline metrics (update):
+no stat to print tail
+pass 0 end
+
+construct phase:
+data pass 71
+Total miss rate: 0.0941, hit num: 8185, miss num: 850
+- Hit Avg: 0.484 (stat size: 432, size: 8717 -> 9149)
+- Other Avg: 1.395 (stat size: 525, size: 10336 -> 10861)
+Total Avg Lat: 0.984 (size: 957, duration: 1.50103 s, approx miss rate: 0.5486)
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 left
+fast hash insert num: 30994, m_size: 30978 (FC_ratio: 1.00)
+fast hash insert num: 31020, m_size: 30981 (FC_ratio: 1.00)
+fast hash insert num: 31055, m_size: 31009 (FC_ratio: 1.00)
+fast hash insert num: 31120, m_size: 31088 (FC_ratio: 1.00)
+fast hash insert num: 31122, m_size: 31074 (FC_ratio: 1.00)
+fast hash insert num: 31148, m_size: 31107 (FC_ratio: 1.00)
+fast hash insert num: 31166, m_size: 31116 (FC_ratio: 1.00)
+fast hash insert num: 31217, m_size: 31177 (FC_ratio: 1.00)
+fast hash insert num: 31245, m_size: 31193 (FC_ratio: 1.00)
+fast hash insert num: 31243, m_size: 31200 (FC_ratio: 1.00)
+fast hash insert num: 31238, m_size: 31198 (FC_ratio: 1.00)
+fast hash insert num: 31240, m_size: 31191 (FC_ratio: 1.00)
+fast hash insert num: 31236, m_size: 31201 (FC_ratio: 1.00)
+fast hash insert num: 31233, m_size: 31185 (FC_ratio: 1.00)
+fast hash insert num: 31232, m_size: 31165 (FC_ratio: 1.00)
+fast hash insert num: 31219, m_size: 31176 (FC_ratio: 1.00)
+try query
+miss ratio: 0.09677 / 0.09677
+fast find hit: 168, global hit: 0, global miss: 15, total insert: 18
+Avg: 1.683 (stat size: 16114, real size_: 16114), median: 0.182, p9999: 6505.491, p999: 6.582, p99: 6.062, p90: 1.869
+LB_RES Clear number of buckets: 32768
+shard 0 baseline metrics (update):
+Avg: 0.991 (stat size: 9271, real size_: 9271), median: 0.187, p9999: 1665.453, p999: 7.883, p99: 6.811, p90: 2.209
+miss ratio: 0.02663 / 0.02663
+fast find hit: 402, global hit: 0, global miss: 10, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 1 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.14384 / 0.14384
+fast find hit: 125, global hit: 0, global miss: 19, total insert: 21
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 2 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.07692 / 0.07692
+fast find hit: 156, global hit: 0, global miss: 10, total insert: 13
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 3 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05677 / 0.05677
+fast find hit: 216, global hit: 0, global miss: 14, total insert: 13
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 4 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.07895 / 0.07895
+fast find hit: 140, global hit: 0, global miss: 14, total insert: 12
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 5 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05960 / 0.05960
+fast find hit: 142, global hit: 0, global miss: 14, total insert: 9
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 6 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.20221 / 0.20221
+fast find hit: 217, global hit: 0, global miss: 54, total insert: 55
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 7 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.09244 / 0.09244
+fast find hit: 108, global hit: 0, global miss: 13, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 8 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06604 / 0.06604
+fast find hit: 99, global hit: 0, global miss: 7, total insert: 7
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 9 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06383 / 0.06383
+fast find hit: 132, global hit: 0, global miss: 11, total insert: 9
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 10 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.08065 / 0.08065
+fast find hit: 114, global hit: 0, global miss: 14, total insert: 10
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 11 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.11570 / 0.11570
+fast find hit: 107, global hit: 0, global miss: 9, total insert: 14
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 12 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06452 / 0.06452
+fast find hit: 58, global hit: 0, global miss: 8, total insert: 4
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 13 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.04545 / 0.04545
+fast find hit: 63, global hit: 0, global miss: 6, total insert: 3
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 14 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.08247 / 0.08247
+fast find hit: 89, global hit: 0, global miss: 5, total insert: 8
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 15 baseline metrics (update):
+no stat to print tail
+pass 1 end
+
+construct phase:
+data pass 72
+Total miss rate: 0.1056, hit num: 4253, miss num: 502
+- Hit Avg: 0.404 (stat size: 219, size: 9150 -> 9369)
+- Other Avg: 1.553 (stat size: 275, size: 10862 -> 11137)
+Total Avg Lat: 1.044 (size: 494, duration: 0.95712 s, approx miss rate: 0.5567)
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 left
+fast hash insert num: 30849, m_size: 30837 (FC_ratio: 1.00)
+fast hash insert num: 30916, m_size: 30882 (FC_ratio: 1.00)
+fast hash insert num: 30943, m_size: 30904 (FC_ratio: 1.00)
+fast hash insert num: 30978, m_size: 30920 (FC_ratio: 1.00)
+fast hash insert num: 31061, m_size: 31030 (FC_ratio: 1.00)
+fast hash insert num: 31167, m_size: 31115 (FC_ratio: 1.00)
+fast hash insert num: 31229, m_size: 31170 (FC_ratio: 1.00)
+fast hash insert num: 31238, m_size: 31186 (FC_ratio: 1.00)
+fast hash insert num: 31232, m_size: 31169 (FC_ratio: 1.00)
+fast hash insert num: 31229, m_size: 31191 (FC_ratio: 1.00)
+fast hash insert num: 31239, m_size: 31189 (FC_ratio: 1.00)
+fast hash insert num: 31232, m_size: 31163 (FC_ratio: 1.00)
+fast hash insert num: 31246, m_size: 31179 (FC_ratio: 1.00)
+fast hash insert num: 31244, m_size: 31194 (FC_ratio: 1.00)
+fast hash insert num: 31227, m_size: 31160 (FC_ratio: 1.00)
+fast hash insert num: 31242, m_size: 31192 (FC_ratio: 1.00)
+try query
+miss ratio: 0.09502 / 0.09502
+fast find hit: 200, global hit: 0, global miss: 21, total insert: 21
+Avg: 1.535 (stat size: 10299, real size_: 10299), median: 0.181, p9999: 54.838, p999: 6.490, p99: 6.056, p90: 1.749
+LB_RES Clear number of buckets: 32768
+shard 0 baseline metrics (update):
+Avg: 0.934 (stat size: 9538, real size_: 9538), median: 0.179, p9999: 1387.543, p999: 7.955, p99: 6.886, p90: 2.038
+miss ratio: 0.06496 / 0.06496
+fast find hit: 475, global hit: 0, global miss: 15, total insert: 33
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 1 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.12755 / 0.12755
+fast find hit: 171, global hit: 0, global miss: 17, total insert: 25
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 2 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.09836 / 0.09836
+fast find hit: 165, global hit: 0, global miss: 14, total insert: 18
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 3 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.13755 / 0.13755
+fast find hit: 232, global hit: 0, global miss: 39, total insert: 37
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 4 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.08725 / 0.08725
+fast find hit: 136, global hit: 0, global miss: 17, total insert: 13
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 5 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06509 / 0.06509
+fast find hit: 158, global hit: 0, global miss: 19, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 6 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.03929 / 0.03929
+fast find hit: 269, global hit: 0, global miss: 8, total insert: 11
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 7 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.17037 / 0.17037
+fast find hit: 112, global hit: 0, global miss: 20, total insert: 23
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 8 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.13433 / 0.13433
+fast find hit: 116, global hit: 0, global miss: 15, total insert: 18
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 9 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.05556 / 0.05556
+fast find hit: 119, global hit: 0, global miss: 7, total insert: 7
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 10 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.06593 / 0.06593
+fast find hit: 85, global hit: 0, global miss: 10, total insert: 6
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 11 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.08738 / 0.08738
+fast find hit: 94, global hit: 0, global miss: 15, total insert: 9
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 12 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.24590 / 0.24590
+fast find hit: 46, global hit: 0, global miss: 15, total insert: 15
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 13 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.08219 / 0.08219
+fast find hit: 67, global hit: 0, global miss: 7, total insert: 6
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 14 baseline metrics (update):
+no stat to print tail
+miss ratio: 0.02151 / 0.02151
+fast find hit: 91, global hit: 0, global miss: 5, total insert: 2
+no stat to print tail
+LB_RES Clear number of buckets: 32768
+shard 15 baseline metrics (update):
+no stat to print tail
+pass 2 end
+
+construct phase:
+data pass 73
+Total miss rate: 0.1110, hit num: 4525, miss num: 565
+- Hit Avg: 0.402 (stat size: 255, size: 9370 -> 9625)
+- Other Avg: 1.478 (stat size: 291, size: 11138 -> 11429)
+Total Avg Lat: 0.975 (size: 546, duration: 1.10008 s, approx miss rate: 0.5330)
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 left
+
+construct step: 2900
+
+* start observation *
+
+data pass 74
+- Hit None
+- Other None
+Total Avg Lat: -nan (size: 0, duration: 0.00003 s, approx miss rate: -nan)
+- miss ratio = 1.50000 -> 1.00000, with m_size = 494229 (max = 500000)

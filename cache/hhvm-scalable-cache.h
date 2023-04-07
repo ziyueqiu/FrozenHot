@@ -292,7 +292,9 @@ ConcurrentScalableCache<TKey, TValue, THash>::
 getShard(const TKey& key) {
   THash hashObj;
   constexpr int shift = std::numeric_limits<size_t>::digits - 16;
-  size_t h = (hashObj.hash(key) >> shift) % m_numShards;
+  // printf("check num_shards: %d\n", m_numShards);
+  size_t h = (hashObj.hash(key)) % m_numShards;
+  // printf("check shard index %d, key: %d,shift: %d, x: %d\n", h, key, shift, (hashObj.hash(key) >> shift));
   // size_t h = key % m_numShards;
   // std::cout << "before hash: " << hashObj.hash(key) << std::endl;
   // std::cout << "hashed at shard: " << h << std::endl;
@@ -657,115 +659,115 @@ WAIT_STABLE:
   printf("\n* end observation *\n");
 
   printf("\n* start search *\n");
-  auto start_learning_time = SSDLOGGING_TIME_NOW;
+  // auto start_learning_time = SSDLOGGING_TIME_NOW;
 
-  // get curve
-  if(!should_stop) // get FC hit, DC hit, DC miss each FC_ratio
-    m_shards[0]->get_curve(should_stop);
+  // // get curve
+  // if(!should_stop) // get FC hit, DC hit, DC miss each FC_ratio
+  //   m_shards[0]->get_curve(should_stop);
 
-  // calculate optimal FC_ratio
-  auto container = m_shards[0]->curve_container;
-  double best_avg = 1000, best_size = 0;
-  double DC_hit_lat = 0, miss_lat = 0, FC_lat = 0;
-  double disk_lat = 0;
-  double Frozen_Avg = 0, Frozen_Miss = 0, best_option_tMiss = 0;
+  // // calculate optimal FC_ratio
+  // auto container = m_shards[0]->curve_container;
+  // double best_avg = 1000, best_size = 0;
+  // double DC_hit_lat = 0, miss_lat = 0, FC_lat = 0;
+  // double disk_lat = 0;
+  // double Frozen_Avg = 0, Frozen_Miss = 0, best_option_tMiss = 0;
 
-  /* observe baseline for a while */
-  do{
-    usleep(WAIT_STABLE_SLEEP_INTERVAL_US);
-  }while(total_other_latency_.size_from_last_end() < 5 && !should_stop);
-  printf("\ndraw curve\ndata pass %lu\n", print_step_counter++);
-  PrintMissRatio();
-  /* become aware of DC latency (hit lat) and DC miss latency + disk latency (miss lat) */
-  PrintStepLat(DC_hit_lat, miss_lat);
+  // /* observe baseline for a while */
+  // do{
+  //   usleep(WAIT_STABLE_SLEEP_INTERVAL_US);
+  // }while(total_other_latency_.size_from_last_end() < 5 && !should_stop);
+  // printf("\ndraw curve\ndata pass %lu\n", print_step_counter++);
+  // PrintMissRatio();
+  // /* become aware of DC latency (hit lat) and DC miss latency + disk latency (miss lat) */
+  // PrintStepLat(DC_hit_lat, miss_lat);
 
-  // first do 100% FC
-  for(size_t i = 0; i < m_numShards; i++){
-    m_shards[i]->construct_tier();
-  }
-  printf("\ndata pass %lu\n", print_step_counter++);
-  PrintMissRatio();
-  PrintStepLat();
+  // // first do 100% FC
+  // for(size_t i = 0; i < m_numShards; i++){
+  //   m_shards[i]->construct_tier();
+  // }
+  // printf("\ndata pass %lu\n", print_step_counter++);
+  // PrintMissRatio();
+  // PrintStepLat();
 
-  /* Controller "sleep" for a while
-   * the cache runs in 100% FH, 
-   * get performance and miss ratio after sleep
-   */
-  usleep(WAIT_STABLE_SLEEP_INTERVAL_US);
-  printf("\ndata pass %lu\n", print_step_counter++);
+  // /* Controller "sleep" for a while
+  //  * the cache runs in 100% FH, 
+  //  * get performance and miss ratio after sleep
+  //  */
+  // usleep(WAIT_STABLE_SLEEP_INTERVAL_US);
+  // printf("\ndata pass %lu\n", print_step_counter++);
   
-  /* get one endpoint of FC miss ratio in curve -- when 100% FC
-   * but not used (only printed)
-   */
-  Frozen_Miss = PrintMissRatio();
-  /* become aware of FC latency (hit lat) and disk latency (miss lat) */
-  Frozen_Avg = PrintStepLat(FC_lat, disk_lat);
-  for(size_t i = 0; i < m_numShards; i++){
-    m_shards[i]->deconstruct();
-  }
+  // /* get one endpoint of FC miss ratio in curve -- when 100% FC
+  //  * but not used (only printed)
+  //  */
+  // Frozen_Miss = PrintMissRatio();
+  // /* become aware of FC latency (hit lat) and disk latency (miss lat) */
+  // Frozen_Avg = PrintStepLat(FC_lat, disk_lat);
+  // for(size_t i = 0; i < m_numShards; i++){
+  //   m_shards[i]->deconstruct();
+  // }
 
-  printf("\nHothash lat: %.3lf, 100%% Frozen Avg lat: %.3lf us, Miss Rate: %.3lf\n",
-    FC_lat, Frozen_Avg, Frozen_Miss);
-  fflush(stdout);
+  // printf("\nHothash lat: %.3lf, 100%% Frozen Avg lat: %.3lf us, Miss Rate: %.3lf\n",
+  //   FC_lat, Frozen_Avg, Frozen_Miss);
+  // fflush(stdout);
 
-  // in-cache hit miss is only lookup pass metrics, e.g. 99% hit
-  // for client, hit may be 50%, miss ~0.5%, then 49.5% write (i.e. insert)
-  // better add a counter for insert()
+  // // in-cache hit miss is only lookup pass metrics, e.g. 99% hit
+  // // for client, hit may be 50%, miss ~0.5%, then 49.5% write (i.e. insert)
+  // // better add a counter for insert()
 
-  // Calculate the best FC ratio for shard 0, but will be applied to all shards
-  for(size_t i = 0; i < container.size(); i++){
-    auto tSize = container[i].size_;
-    auto tFC_hit_ = container[i].FC_hit_;
-    auto tMiss = container[i].miss_;
-    double avg;
-    if(tSize < 0.01){
-      avg = tMiss * miss_lat + (1-tMiss) * DC_hit_lat;
-      tSize = 0;
-      printf("when baseline, avg from %.3lf to %.3lf\n",
-          avg, avg / (1 + FH_PERFORMANCE_THRESHOLD));
-      avg = avg / (1 + FH_PERFORMANCE_THRESHOLD);
-    }
+  // // Calculate the best FC ratio for shard 0, but will be applied to all shards
+  // for(size_t i = 0; i < container.size(); i++){
+  //   auto tSize = container[i].size_;
+  //   auto tFC_hit_ = container[i].FC_hit_;
+  //   auto tMiss = container[i].miss_;
+  //   double avg;
+  //   if(tSize < 0.01){
+  //     avg = tMiss * miss_lat + (1-tMiss) * DC_hit_lat;
+  //     tSize = 0;
+  //     printf("when baseline, avg from %.3lf to %.3lf\n",
+  //         avg, avg / (1 + FH_PERFORMANCE_THRESHOLD));
+  //     avg = avg / (1 + FH_PERFORMANCE_THRESHOLD);
+  //   }
 
-    // when tSize is large, we regard it as ~100% FC
-    else if(i == container.size() - 1 && tSize > 0.65){
-      //avg = tMiss * disk_lat + (1-tMiss) * FC_lat;
-      printf("regard tSize from %.3lf to %d\n", tSize, 1);
-      tSize = 1;
-      avg = tFC_hit_ * FC_lat + tMiss * (miss_lat+FC_lat) + (1-tFC_hit_-tMiss) * (FC_lat + DC_hit_lat);
-    }
-    else {
-      avg = tFC_hit_ * FC_lat + tMiss * (miss_lat+FC_lat) + (1-tFC_hit_-tMiss) * (FC_lat + DC_hit_lat);
-    }
+  //   // when tSize is large, we regard it as ~100% FC
+  //   else if(i == container.size() - 1 && tSize > 0.65){
+  //     //avg = tMiss * disk_lat + (1-tMiss) * FC_lat;
+  //     printf("regard tSize from %.3lf to %d\n", tSize, 1);
+  //     tSize = 1;
+  //     avg = tFC_hit_ * FC_lat + tMiss * (miss_lat+FC_lat) + (1-tFC_hit_-tMiss) * (FC_lat + DC_hit_lat);
+  //   }
+  //   else {
+  //     avg = tFC_hit_ * FC_lat + tMiss * (miss_lat+FC_lat) + (1-tFC_hit_-tMiss) * (FC_lat + DC_hit_lat);
+  //   }
 
-    if(avg < best_avg){
-      best_avg = avg;
-      best_size = tSize;
-      best_option_tMiss = tMiss;
-      /* only print when best avg is updated */
-      printf("(Update) best avg: %.3lf us, best size: %.3lf (w. FC_hit: %.3lf, miss: %.3lf)\n",
-        best_avg, best_size, tFC_hit_, best_option_tMiss);
-    }
-  }
+  //   if(avg < best_avg){
+  //     best_avg = avg;
+  //     best_size = tSize;
+  //     best_option_tMiss = tMiss;
+  //     /* only print when best avg is updated */
+  //     printf("(Update) best avg: %.3lf us, best size: %.3lf (w. FC_hit: %.3lf, miss: %.3lf)\n",
+  //       best_avg, best_size, tFC_hit_, best_option_tMiss);
+  //   }
+  // }
   
-  // Compare best "partially" frozen [0, 100%) one with 100% Frozen
-  if(best_avg > Frozen_Avg){
-    printf("(Update) best avg: %.3lf us, best size: %.3lf\n",
-      Frozen_Avg, 1.0);
-    best_avg = Frozen_Avg;
-    best_size = 1.0;
-  }
+  // // Compare best "partially" frozen [0, 100%) one with 100% Frozen
+  // if(best_avg > Frozen_Avg){
+  //   printf("(Update) best avg: %.3lf us, best size: %.3lf\n",
+  //     Frozen_Avg, 1.0);
+  //   best_avg = Frozen_Avg;
+  //   best_size = 1.0;
+  // }
   
-  // clear curve container
-  // Only using shard 0 for profiling
-  m_shards[0]->curve_container.clear();
+  // // clear curve container
+  // // Only using shard 0 for profiling
+  // m_shards[0]->curve_container.clear();
 
-  auto learning_duration = SSDLOGGING_TIME_DURATION(start_learning_time, SSDLOGGING_TIME_NOW);
-  printf("\nsearch time: %lf s\n", learning_duration / 1000 / 1000);
-  printf("Profiling best size: %.3lf\n", best_size);
+  // auto learning_duration = SSDLOGGING_TIME_DURATION(start_learning_time, SSDLOGGING_TIME_NOW);
+  // printf("\nsearch time: %lf s\n", learning_duration / 1000 / 1000);
+  // printf("Profiling best size: %.3lf\n", best_size);
 
   // debugging
-  // printf("\nDebug: Test 1.0 Size\n");
-  // best_size = 1;
+  printf("\nDebug: Test 1.0 Size\n");
+  double best_size = 1;
   
   // End of FH evaluation, and got the desired ratio to construct
   printf("\n* end search *\n");

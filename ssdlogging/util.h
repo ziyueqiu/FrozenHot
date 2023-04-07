@@ -373,7 +373,7 @@ namespace statistics{
         uint64_t cursor;
         double *data_;
         std::string describe_;
-        const uint64_t max_size = 1ul << 30;
+        const uint64_t max_size = 1ul << 20;
         const uint64_t capacity = max_size * sizeof(double);
         bool sorted;
       public:
@@ -381,7 +381,8 @@ namespace statistics{
           size_ = 0;
           cursor = 0;
           data_ = (double *) mmap(nullptr, capacity, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_NORESERVE, -1, 0);
-          assert(data_ != nullptr);
+          // printf("data: %p\n", data_);
+          assert(data_ != (void*)(-1));
           describe_ = "";
         }
         MySet(std::string describe){

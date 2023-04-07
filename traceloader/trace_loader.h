@@ -96,7 +96,8 @@ class TraceLoader{
         requests_ = (request*)malloc(item_num * 100 * sizeof(request));
         for(size_t i = 0; i < item_num * 100; i++){
             uint64_t next_ = zipf_generator->Next();
-            requests_[i] = request(TraceLoader::READ, next_);
+            if (i%16) requests_[i] = request(TraceLoader::READ, next_);
+            else requests_[i] = request(TraceLoader::delete_, next_);
         }
         // // pre-fault, to avoid page fault
         // for(size_t i = 0; i < item_num * 100; i++){

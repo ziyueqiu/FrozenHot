@@ -1,7 +1,7 @@
 
 PROJECT(test_trace)
 # SET(CMAKE_CXX_FLAGS  "-Wall -O3 -pthread -std=c++14")
-SET(CMAKE_CXX_FLAGS  " -Wl,--rpath=./lib/ -m64 -Wall -O3 -pthread -std=c++14 -fPIC")
+SET(CMAKE_CXX_FLAGS  " -Wl,--rpath=./lib/ -m64 -Wall -O3 -pthread -std=c++14 -fPIC -g")
 
 SET(SRC_LIST test_trace.cpp)
 

@@ -200,7 +200,7 @@ class FIFO_FHCache : public FHCacheAPI<TKey, TValue, THash> {
 
   // TODO @ Ziyue: clarify the difference between tier_ready and tier_no_insert
   // and the duty of each variable
-  bool tier_ready = false;
+  // bool tier_ready = false; 
 
  private:
   /**
@@ -256,6 +256,7 @@ class FIFO_FHCache : public FHCacheAPI<TKey, TValue, THash> {
   bool fast_hash_ready = false;
   bool fast_hash_construct = false;
   std::atomic<bool> tier_no_insert{false};
+  std::atomic<bool> tier_ready{false};
   std::atomic<bool> curve_flag{false};
   std::atomic<size_t> movement_counter{0};
   std::atomic<size_t> eviction_counter{0};
@@ -289,13 +290,14 @@ FIFO_FHCache<TKey, TValue, THash>::FIFO_FHCache(size_t maxSize)
   int align_len = 1 + int(log2(m_maxSize));
   m_fasthash.reset(new FastHash::CLHT<TValue>(0, align_len));
   //m_fasthash.reset(new FastHash::TbbCHT<TValue>(m_maxSize));
+  // printf("hiiiii\n");
 }
 
 template <class TKey, class TValue, class THash>
 bool FIFO_FHCache<TKey, TValue, THash>::construct_ratio(double FC_ratio) {
   // Check valid ratio
   assert(FC_ratio <= 1 && FC_ratio >=0);
-  
+  printf("check FC Ratio: %f\n", FC_ratio);
   // Check that Frozen LinkedList is empty (previously in DC mode)
   assert(m_fast_head.m_next == &m_fast_tail);
   assert(m_fast_tail.m_prev == &m_fast_head);
@@ -390,7 +392,7 @@ bool FIFO_FHCache<TKey, TValue, THash>::construct_ratio(double FC_ratio) {
     printf("fast hash insert num: %lu, fail count: %lu, m_size: %ld (FC_ratio: %.2lf)\n", 
         count, fail_count, m_size.load(), count*1.0/m_size.load());
   else
-    printf("fast hash insert num: %lu, m_size: %ld (FC_ratio: %.2lf)\n", 
+    printf("Construct_ratio fast hash insert num: %lu, m_size: %ld (FC_ratio: %.2lf)\n", 
         count, m_size.load(), count*1.0/m_size.load());
   
   
@@ -406,7 +408,10 @@ bool FIFO_FHCache<TKey, TValue, THash>::construct_tier() {
   // Lock the whole list
   std::unique_lock<ListMutex> lock(m_listMutex);
   
+  assert(tier_ready.load() == tier_no_insert.load());
+  
   fast_hash_construct = true;
+  tier_ready = true;
   tier_no_insert = true; // reject insert
   
   // Check Frozen part was empty
@@ -477,7 +482,7 @@ bool FIFO_FHCache<TKey, TValue, THash>::construct_tier() {
     temp_node = temp_node->m_next;
   }
   
-  printf("fast hash insert num: %d, m_size: %ld (FC_ratio: %.2lf)\n", 
+  printf("construct_tier fast hash insert num: %d, m_size: %ld (FC_ratio: %.2lf)\n", 
       count, m_size.load(), count*1.0/m_size.load());
   tier_ready = true;
   fast_hash_construct = false;
@@ -594,9 +599,9 @@ bool FIFO_FHCache<TKey, TValue, THash>::find(TValue& ac,
       return true;
     }
     else { // Not found in frozen
-      if(tier_ready){ // If we only have frozen, then cache miss anyway
+      if(tier_ready && is_full()){ // If we only have frozen, then cache miss anyway // and DC size==0
 #ifdef FH_STAT
-        if(stat_yes) {
+        if(stat_yes) { 
           FIFO_FHCache::tbb_find_miss++;
         }
 #endif
@@ -679,9 +684,10 @@ bool FIFO_FHCache<TKey, TValue, THash>::find(TValue& ac,
 // Record the FC ratio, and the FC hit, DC hit, (DC) miss by filling the curve container
 template <class TKey, class TValue, class THash>
 bool FIFO_FHCache<TKey, TValue, THash>::get_curve(bool& should_stop) {
-  assert(!tier_no_insert.load()); // Shouldn't call get curve (learning state) 
+  // assert(!tier_no_insert.load()); // Shouldn't call get curve (learning state) 
                                   // when flag indicates the whole cache is frozen (frozen state)
-  
+  assert(!tier_ready.load());
+  assert(tier_ready.load() == tier_no_insert.load());
   // Create a marker and insert to the list
   m_marker = new ListNode(MARKER_KEY);
   size_t pass_counter = 0;
@@ -767,7 +773,9 @@ bool FIFO_FHCache<TKey, TValue, THash>::insert(const TKey& key,
 
   // Insert into the CHM
   // Basically if the whole cache is frozen, you can do nothing
-  if(tier_no_insert.load())
+  // if(tier_no_insert.load() && is_full())
+  assert(tier_ready.load() == tier_no_insert.load());
+  if(tier_ready.load() && is_full())
     return false;
   
   // Generate some variables for insertion
@@ -801,7 +809,8 @@ bool FIFO_FHCache<TKey, TValue, THash>::insert(const TKey& key,
   // exist.
   std::unique_lock<ListMutex> lock(m_listMutex);
   // Frozen all cahce
-  if(tier_no_insert.load()){
+  // if(tier_no_insert.load()){
+  if(tier_ready.load()){
     // How can we still reach this point:
     // while we are inserting, the cache is 100% frozen
     lock.unlock();

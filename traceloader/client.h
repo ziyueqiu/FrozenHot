@@ -211,6 +211,9 @@ class Client{
             auto key = req.Key();
             assert(key != 0);
 
+            // debug
+            int succount = 0;
+
             bool ret_flag = false; // TODO @ Ziyue: how to consider set()/insert()
             TraceLoader::Operation opt = req.Type();
             if((!scalable_cache->stop_sample_stat && i % Granularity == 0) || (scalable_cache->stop_sample_stat && i % Large_Granularity == 0))
@@ -251,9 +254,11 @@ class Client{
                 }
             } else if(scalable_cache->stop_sample_stat && (i % Large_Granularity == 0)) {
                 auto duration = SSDLOGGING_TIME_DURATION(start_of_loop, SSDLOGGING_TIME_NOW);
-                if(ret_flag)
+                if(ret_flag){
                     tstarling::total_hit_latency_.insert(duration);
+                }
                 else{
+                    // printf("succ count: %    d, duration: %d\n", succount, duration);
                     tstarling::total_other_latency_.insert(duration);
                 }
             }
