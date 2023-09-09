@@ -245,7 +245,7 @@ class Client{
 
             // Log trace loop ends
             if (iter != prev_iter && coreid == 0) {
-                printf("Loop Iteration %ld, %ld, %ld\n", iter, offset + i * work_thread, queue_size);
+                printf("Loop Iteration %ld, %ld, %ld\n", iter, offset + load_index * work_thread, queue_size);
             }
 
             prev_iter = iter;
@@ -301,6 +301,8 @@ class Client{
         }
 
         // Log trace entries with bad keys
+        // auto dur = SSDLOGGING_TIME_DURATION(start_work, SSDLOGGING_TIME_NOW);
+        // printf("\nCore %d finish %lf s\n", coreid, dur / 1000 / 1000);
         printf("Total invalid trace: %ld\n", invalid_trace_cnt);
         if(is_warmup)
             return ;

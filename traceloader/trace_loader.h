@@ -85,7 +85,7 @@ class TraceLoader{
     // Zipf
     TraceLoader(const uint64_t num, double zipf_const){
         printf("using Zipfian as test trace!\n");
-        size_t item_num = 1000000;
+        size_t item_num = 2000000;
         size_t workload_size = item_num * 4 / 1024;
         printf("workset size: %lu MB\n", workload_size);
         printf("loading workload (%lu)...\n", num);
@@ -228,7 +228,7 @@ class TraceLoader{
             sys_info.totalram * (unsigned long long)sys_info.mem_unit / (1024 * 1024 * 1024),
             sys_info.freeram * (unsigned long long)sys_info.mem_unit / (1024 * 1024 * 1024));
         
-        requests_ = (request*)malloc(100ull*1024*1024*1024);
+        requests_ = (request*)malloc(30ull*1024*1024*1024);
         if(requests_ == NULL) {
             printf("malloc failed!\n");
             exit(0);
@@ -259,6 +259,10 @@ class TraceLoader{
             int request_buffer_size = 1024;
             char* request_buffer = (char*)malloc(infile_read_size * request_buffer_size);
             while(infile.good() && !infile.eof() && load_index_ < num_) {
+                if (load_index_ > 26ull * 1024 * 1024 * 1024 / sizeof(request)) {
+                    std::cout << "End reading file early due to memory constraints" << std::endl;
+                    break;
+                }
                 infile.read(request_buffer, infile_read_size * request_buffer_size);
                 if(infile.eof()){
                     for(int i = 0; i < file_request_num % request_buffer_size; i++){
@@ -408,6 +412,11 @@ class TraceLoader{
     request GetRequest(key_size_t index){
       return requests_[index % queue_size];
     }
+
+    key_size_t GetIter(key_size_t index){
+      return index / queue_size;
+    }
+
     uint64_t GetQueueSize(){
         return queue_size;
     }

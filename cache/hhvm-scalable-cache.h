@@ -160,6 +160,7 @@ struct ConcurrentScalableCache {
   double PrintStepLat(size_t& total_num);
   double PrintStepLat(double& avg_hit, double& avg_other);
   uint64_t GetStepSize();
+  double PrintPerformance(double cur_perf, size_t avg_len, std::vector<double> &avgs);
 
   void delete_key(const TKey& key);
 
@@ -253,7 +254,7 @@ ConcurrentScalableCache(size_t maxSize, size_t numShards, Type type, int rebuild
     else if(algType == Type::LFU)
       m_shards.emplace_back(std::make_shared<Cache::LFUCache<TKey, TValue, THash>>(s));
     else if(algType == Type::LRU_FH) {
-      assert(FROZEN_THRESHOLD > 0);
+      //assert(FROZEN_THRESHOLD > 0);
       m_shards.emplace_back(std::make_shared<Cache::LRU_FHCache<TKey, TValue, THash>>(s));
     }
     else if(algType == Type::Redis_LRU) {
@@ -266,11 +267,11 @@ ConcurrentScalableCache(size_t maxSize, size_t numShards, Type type, int rebuild
       m_shards.emplace_back(std::make_shared<Cache::StrictLRUCache<TKey, TValue, THash>>(s));
     }
     else if(algType == Type::LFU_FH) {
-      assert(FROZEN_THRESHOLD > 0);
+      //assert(FROZEN_THRESHOLD > 0);
       m_shards.emplace_back(std::make_shared<Cache::LFU_FHCache<TKey, TValue, THash>>(s));
     }
     else if(algType == Type::FIFO_FH) {
-      assert(FROZEN_THRESHOLD > 0);
+      //assert(FROZEN_THRESHOLD > 0);
       m_shards.emplace_back(std::make_shared<Cache::FIFO_FHCache<TKey, TValue, THash>>(s));
     }
     else {
@@ -509,6 +510,22 @@ PrintStepLat(double& avg_hit, double& avg_other){
     temp, total_num, SSDLOGGING_TIME_DURATION(cursor, curr_time)/1000/1000, other_num*1.0/total_num);
   cursor = curr_time;
   return temp;
+}
+
+template <class TKey, class TValue, class THash>
+double ConcurrentScalableCache<TKey, TValue, THash>::
+PrintPerformance(double cur_perf, size_t avg_len, std::vector<double> &avgs){
+  if (avgs.size() >= avg_len) avgs.erase(avgs.begin());
+  avgs.push_back(cur_perf);
+
+  double p = 0;
+  for (auto a : avgs) {
+    p += a;
+  }
+
+  printf("Average Performance: %.3lf\n", p / avgs.size());
+
+  return p / avgs.size();
 }
 
 #ifdef RECENCY
@@ -790,6 +807,9 @@ WAIT_STABLE:
     }
   }
 
+  double deconstruct_perf = 0.f;
+  size_t deconstruct_step = 0;
+
   // Construct the FH
 CONSTRUCT:
   auto start_construct_time = SSDLOGGING_TIME_NOW;
@@ -809,9 +829,23 @@ CONSTRUCT:
 
   size_t baseline_step = 0;
   size_t construct_step = 0;
+  double avg_performance = 0;
+  double max_performance = -1;
+  size_t perf_count = 0;
+  size_t avg_len = 40;
+  std::vector<double> perfs;
   
   baseline_performance_for_query = PrintStepLat(construct_step);
   double baseline_performance_with_threshold = baseline_performance_for_query  / (1 + FH_PERFORMANCE_THRESHOLD);
+
+  // TODO @ Hongzhe : First performance print
+  auto first_step = construct_step + deconstruct_step;
+  auto first_performance = (baseline_performance_for_query * construct_step + deconstruct_perf) / first_step;
+
+  avg_performance += (baseline_performance_with_threshold - first_performance)/baseline_performance_with_threshold * first_step / construct_step;
+  printf("Average Performance: %.3lf\n", avg_performance);
+  max_performance = std::max(max_performance, avg_performance);
+  //PrintPerformance(avg_performance, avg_len, perfs);
 
   printf("FH compare with baseline metric: %.3lf\n", baseline_performance_for_query);
   printf("FH compare with baseline metric with threshold: %.3lf\n", baseline_performance_with_threshold);
@@ -915,8 +949,15 @@ CONSTRUCT:
     printf("\nconstruct phase:\ndata pass %lu\n", print_step_counter++);
     PrintMissRatio();
     size_t temp_step = 0;
-    PrintStepLat(temp_step);
+    double construct_lat = PrintStepLat(temp_step);
+    avg_performance = avg_performance / 2 + 
+            ((baseline_performance_with_threshold - construct_lat)/baseline_performance_with_threshold * temp_step / construct_step) / 2;
     construct_step += temp_step;
+    perf_count = 2;
+    printf("Average Performance: %.3lf\n", avg_performance);
+    max_performance = std::max(max_performance, avg_performance);
+    printf("Max Performance: %.3lf\n", max_performance);
+    //PrintPerformance((baseline_performance_with_threshold - construct_lat)/baseline_performance_with_threshold * temp_step / construct_step, avg_len, perfs);
   }
 
   printf("\nconstruct step: %lu\n", construct_step);
@@ -948,8 +989,16 @@ CONSTRUCT:
   printf("check interval: %.3lf s\n", check_time/1000/1000);
   performance_depletion = COUNT_THRESHOLD;
   bool first_flag = true;
+  bool deteriorate = false;
+  double deteriorate_percentage = 0.8;
+  double stable_offset = 0.002;
+  size_t stable_count = 20;
+  std::vector<double> recent_perf;
   size_t total_step = 0;
   size_t current_step = 0;
+  int failure_tolerance = 5;
+  int failure_count = 0;
+  double reconstruct_threshold = 0.8;
   
   while(!should_stop) {
     do{
@@ -968,6 +1017,20 @@ CONSTRUCT:
     // TODO @ Ziyue: baseline shall be refreshed periodically?
     // TODO @ Ziyue: how to become 'optimal' instead of only better than baseline
     auto delta = (baseline_performance_with_threshold - performance)/baseline_performance_with_threshold * thput_step / baseline_step;
+    auto last_performance = avg_performance;
+    // TODO @ Hongzhe: how to test averaging
+    if (perf_count < avg_len) {
+      avg_performance = avg_performance * (perf_count + 1 - 2) / (perf_count + 1) + delta * 2 / (perf_count + 1);
+    } else {
+      avg_performance = delta * 2 / (avg_len + 1) + avg_performance * (avg_len + 1 - 2) / (avg_len + 1);
+    }
+    
+    perf_count ++;
+    printf("Average Performance: %.3lf\n", avg_performance);
+    max_performance = std::max(max_performance, avg_performance);
+    printf("Max Performance: %.3lf\n", max_performance);
+    //PrintPerformance(delta, avg_len, perfs);
+
     performance_depletion += delta; // INTEGRATION to help decide whether to stop FH
     
     // Decide whether the FH performance is too bad, and go to baseline
@@ -985,7 +1048,63 @@ CONSTRUCT:
 
     total_step += thput_step;
     current_step += thput_step;
-    if(total_step > construct_step * FROZEN_THRESHOLD){ // Periodic Reconstruction of FH
+
+    if (avg_performance < last_performance && perf_count >= avg_len) {
+      failure_count ++;
+    } else {
+      failure_count = 0;
+    }
+
+    // Detect starting of a down stream with threshold
+    if (!deteriorate && max_performance > 0 && avg_performance < max_performance * deteriorate_percentage) {
+      deteriorate = true;
+    }
+
+    // Update recent performance for general trend detection
+    recent_perf.push_back(avg_performance);
+    if (recent_perf.size() > stable_count) {
+      recent_perf.erase(recent_perf.begin());
+    }
+
+    // Detect stable
+    if (recent_perf.size() >= stable_count) {
+      double old = 0;
+      double near = 0;
+      for (size_t r = 0; r < recent_perf.size(); r++){
+        if (r < stable_count / 2) {
+          old += recent_perf[r];
+        } else {
+          near += recent_perf[r];
+        }
+      }
+
+      old /= (stable_count/2);
+      near /= (stable_count/2);
+      //old = recent_perf[0];
+      //near = recent_perf[recent_perf.size()-1];
+      double diff = abs(old - near);
+
+      if (deteriorate && diff <= stable_offset) {
+        printf("Exceeds averaging tolerance, reconstructing\n");
+        for(size_t i = 0; i < m_numShards; i++) {
+          m_shards[i]->deconstruct();
+        }
+        
+        sleep(1);
+        
+        // printf("\ndata pass %lu\n", print_step_counter++);
+        // PrintFrozenStat();
+        // performance = PrintStepLat(thput_step);
+        // deconstruct_perf = performance;
+        // deconstruct_step = thput_step;
+        // auto delta = (baseline_performance_with_threshold - performance)/baseline_performance_with_threshold * thput_step / baseline_step;
+        goto CONSTRUCT;
+        }
+    }
+    
+
+    // User Determined Periodic Reconstruction of FH, if threshold is 0, no periodic reconstruct
+    if(FROZEN_THRESHOLD > 0 && total_step > construct_step * FROZEN_THRESHOLD){ 
       printf("\nAfter %lu frozen step (> %d * %lu = %lu), need periodically refresh!\n",
         total_step, FROZEN_THRESHOLD, construct_step, construct_step * FROZEN_THRESHOLD);
       for(size_t i = 0; i < m_numShards; i++) {

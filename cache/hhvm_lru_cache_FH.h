@@ -398,8 +398,16 @@ bool LRU_FHCache<TKey, TValue, THash>::construct_tier() {
   std::unique_lock<ListMutex> lock(m_listMutex);
   fast_hash_construct = true;
   tier_no_insert = true;
-  assert(m_fast_head.m_next == &m_fast_tail);
-  assert(m_fast_tail.m_prev == &m_fast_head);
+  //assert(m_fast_head.m_next == &m_fast_tail);
+  //assert(m_fast_tail.m_prev == &m_fast_head);
+  if (m_fast_head.m_next != &m_fast_tail || m_fast_tail.m_prev != &m_fast_head) {
+    size_t count = 0;
+    while (m_fast_head.m_next != &m_fast_tail) {
+      count++;
+    }
+    printf("False count %ld\n", count);
+    assert(false);
+  }
   m_fast_head.m_next = m_head.m_next;
   m_head.m_next->m_prev = &m_fast_head;
   m_fast_tail.m_prev = m_tail.m_prev;
@@ -578,6 +586,7 @@ bool LRU_FHCache<TKey, TValue, THash>::find(TValue& ac,
         node->m_time = SPDK_TIME;
         std::unique_lock<ListMutex> lock(m_listMutex);
         if(node->isInList()) {
+          //printf("delink1\n");
           delink(node);
           pushFront(node);
         }
@@ -597,6 +606,7 @@ bool LRU_FHCache<TKey, TValue, THash>::find(TValue& ac,
       if(fast_hash_construct){
         ;
       } else if (node->isInList()) {
+        //printf("delink2\n");
         delink(node);
         pushFront(node);
       }
