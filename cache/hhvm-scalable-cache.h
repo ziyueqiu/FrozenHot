@@ -210,6 +210,9 @@ private:
   double best_miss = 1;
   double baseline_performance_for_query = 0;
 
+  int MELT_CHUNK_NUM = 5;
+  int melted_chunks_count = 0;
+
   int WAIT_DYNAMIC_SLEEP_INTERVAL_US = 10000000; // 10s
   int WAIT_CLEAN_INTERVAL_US = 500000; // 0.5s
 
@@ -924,6 +927,7 @@ CONSTRUCT:
   // Means all shards fail, pretty bad :(
   if(!should_stop && fail_list.size() == m_numShards){
     // TODO @ Ziyue: goto observation phase or search phase?
+    printf("\n All %lu shards failed\n", m_numShards);
     goto WAIT_STABLE;
   }
 
@@ -969,6 +973,14 @@ CONSTRUCT:
     // TODO @ Ziyue: how to become 'optimal' instead of only better than baseline
     auto delta = (baseline_performance_with_threshold - performance)/baseline_performance_with_threshold * thput_step / baseline_step;
     performance_depletion += delta; // INTEGRATION to help decide whether to stop FH
+
+    printf("thput_step: %lu, ", thput_step);
+    printf("thput_step: %lu, ", thput_step);
+    printf("baseline_step: %lu, ", baseline_step);
+    printf("threshold: %.3lf, ", baseline_performance_with_threshold);
+    printf("performance: %.3lf, ", performance);
+    printf("delta: %.3lf, ", delta);
+    printf("depleted: %.3lf\n", performance_depletion);
     
     // Decide whether the FH performance is too bad, and go to baseline
     if(performance_depletion <= 0){
@@ -1023,6 +1035,21 @@ CONSTRUCT:
         goto CONSTRUCT;
       }
     }
+
+    /**
+     * Trigger to melt next chunk if performance depletion fraction meets next threshold
+     * Ex: Melts chunk 1/5 if performance degrades 1/5 = 20% from starting buffer (COUNT_THRESHOLD)
+     * Importantly last chunk never melted, since if performance_depletion < 0, then deconstruction occurs
+    */
+    double performance_depletion_fraction = 1 - (performance_depletion*1.0 / COUNT_THRESHOLD);
+    double performance_depletion_threshold = (melted_chunks_count + 1)*1.0 / MELT_CHUNK_NUM;
+    if (performance_depletion_fraction > performance_depletion_threshold) {
+      melted_chunks_count++;
+      for(size_t i = 0; i < m_numShards; i++) {
+        // m_shards[i]->melt();
+      }
+    }
+
     fflush(stdout);
   }
   

@@ -19,6 +19,14 @@ No less than 32 CPU cores per socket, and no less than around 100 GiB memory per
 ## Deployment & Usage
 
 ```
+# install packages if starting from blank ubuntu machine
+apt update
+apt install sudo
+sudo apt install git
+sudo apt install build-essential
+sudo apt install python3
+
+# clone repo
 git clone this_repo
 cd this_repo
 git submodule update --init --recursive

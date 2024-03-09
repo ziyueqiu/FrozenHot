@@ -1,4 +1,6 @@
 import os
+from datetime import datetime
+
 Twitter_prefix = "TBF" # for cloud machine
 MSR_prefix = "TBF" # for cloud machine
 
@@ -93,16 +95,16 @@ MSR_size_ratio = {
 }
 cache_types = [
     "LRU_FH",
-    "LRU",
+    # "LRU",
 
     "FIFO_FH",
-    "FIFO",
+    # "FIFO",
 
     "LFU_FH",
-    "LFU",
+    # "LFU",
 
-    "Redis_LRU",
-    "StrictLRU",
+    # "Redis_LRU",
+    # "StrictLRU",
 ]
 zipf = [
     0.99,
@@ -118,6 +120,10 @@ FH_rebuild_freq = [
     20, # by default (most experiments)
     # 10, # only for lifetime factor
 ]
+
+timestamp = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+if not os.path.exists('benchmarks'):
+  os.mkdir('benchmarks')
 
 for thread in thread_num:
     for shard in seg:
@@ -136,8 +142,9 @@ for thread in thread_num:
                         # <threads num> <cache size> <request num> <seg num> <workload type>
                         # <workload file(s) (if not zipf)> <Zipf const (if zipf)> <cache type>
                         # <disk lat>
-                        path_2 = path_1 + workload_type + "_"
-
+                        if not os.path.exists('benchmarks/' + timestamp):
+                          os.mkdir('benchmarks/' + timestamp)
+                        path_2 = 'benchmarks/' + timestamp + '/' + path_1 + workload_type + "_"
                         if workload_type == "Zipf":
                             if thread <= 2:
                                 thread_ = thread * 2
