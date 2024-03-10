@@ -33,3 +33,7 @@
 
 .vscode/*
 build/*
+
+# Log output files
+benchmarks/
+log_16shard*

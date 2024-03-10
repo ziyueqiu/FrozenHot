@@ -204,6 +204,7 @@ private:
   std::queue<int> construct_container; // Note that this is a queue not a stack
   int PASS_THRESHOLD = 3;
 
+  int MELT_CHUNK_FRAC = 0.2;
   int COUNT_THRESHOLD = 2;
   double performance_depletion = COUNT_THRESHOLD;
   double best_sleep = 0;
@@ -271,7 +272,7 @@ ConcurrentScalableCache(size_t maxSize, size_t numShards, Type type, int rebuild
     }
     else if(algType == Type::FIFO_FH) {
       assert(FROZEN_THRESHOLD > 0);
-      m_shards.emplace_back(std::make_shared<Cache::FIFO_FHCache<TKey, TValue, THash>>(s));
+      m_shards.emplace_back(std::make_shared<Cache::FIFO_FHCache<TKey, TValue, THash>>(s, MELT_CHUNK_FRAC));
     }
     else {
       printf("cannot find the cache type\n");
@@ -924,6 +925,7 @@ CONSTRUCT:
   // Means all shards fail, pretty bad :(
   if(!should_stop && fail_list.size() == m_numShards){
     // TODO @ Ziyue: goto observation phase or search phase?
+    printf("\n All %lu shards failed\n", m_numShards);
     goto WAIT_STABLE;
   }
 
@@ -950,6 +952,7 @@ CONSTRUCT:
   bool first_flag = true;
   size_t total_step = 0;
   size_t current_step = 0;
+  int melted_chunks_count = 0;
   
   while(!should_stop) {
     do{
@@ -969,6 +972,14 @@ CONSTRUCT:
     // TODO @ Ziyue: how to become 'optimal' instead of only better than baseline
     auto delta = (baseline_performance_with_threshold - performance)/baseline_performance_with_threshold * thput_step / baseline_step;
     performance_depletion += delta; // INTEGRATION to help decide whether to stop FH
+
+    printf("thput_step: %lu, ", thput_step);
+    printf("thput_step: %lu, ", thput_step);
+    printf("baseline_step: %lu, ", baseline_step);
+    printf("threshold: %.3lf, ", baseline_performance_with_threshold);
+    printf("performance: %.3lf, ", performance);
+    printf("delta: %.3lf, ", delta);
+    printf("depleted: %.3lf\n", performance_depletion);
     
     // Decide whether the FH performance is too bad, and go to baseline
     if(performance_depletion <= 0){
@@ -1021,6 +1032,20 @@ CONSTRUCT:
         }
         sleep(1); // 1 sec for test
         goto CONSTRUCT;
+      }
+    }
+
+    /**
+     * Trigger to melt next chunk if performance depletion fraction meets next threshold
+     * Ex: First chunk melts if performance degrades by more than MELT_CHUNK_FRAC (20%) from COUNT_THRESHOLD (starting buffer)
+     * Importantly last chunk never melted, since if performance_depletion < 0, then deconstruction occurs earlier
+    */
+    double performance_depletion_fraction = 1 - (performance_depletion*1.0 / COUNT_THRESHOLD);
+    double performance_depletion_threshold = (melted_chunks_count + 1) * MELT_CHUNK_FRAC;
+    if (performance_depletion_fraction > performance_depletion_threshold) {
+      melted_chunks_count++;
+      for(size_t i = 0; i < m_numShards; i++) {
+        // m_shards[i]->melt_chunk();
       }
     }
     fflush(stdout);
