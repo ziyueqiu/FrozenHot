@@ -135,7 +135,7 @@ class FIFO_FHCache : public FHCacheAPI<TKey, TValue, THash> {
   /**
    * Create a container with a given maximum size
    */
-  explicit FIFO_FHCache(size_t maxSize, double melt_chunk_frac);
+  explicit FIFO_FHCache(size_t maxSize);
 
   FIFO_FHCache(const FIFO_FHCache& other) = delete;
   FIFO_FHCache& operator=(const FIFO_FHCache&) = delete;
@@ -272,7 +272,7 @@ typename FIFO_FHCache<TKey, TValue, THash>::ListNode* const
     FIFO_FHCache<TKey, TValue, THash>::OutOfListMarker = (ListNode*)-1;
 
 template <class TKey, class TValue, class THash>
-FIFO_FHCache<TKey, TValue, THash>::FIFO_FHCache(size_t maxSize, double melt_chunk_frac)
+FIFO_FHCache<TKey, TValue, THash>::FIFO_FHCache(size_t maxSize)
     : m_maxSize(maxSize),
       m_size(0),
       m_map(std::thread::hardware_concurrency() *

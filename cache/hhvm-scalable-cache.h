@@ -204,7 +204,6 @@ private:
   std::queue<int> construct_container; // Note that this is a queue not a stack
   int PASS_THRESHOLD = 3;
 
-  int MELT_CHUNK_FRAC = 0.2;
   int COUNT_THRESHOLD = 2;
   double performance_depletion = COUNT_THRESHOLD;
   double best_sleep = 0;
@@ -222,6 +221,13 @@ private:
   /* a threhold to do conservative choices, 
    * if not outperform too much, don't do FH */
   double FH_PERFORMANCE_THRESHOLD = 0.2;
+
+  // Dynamic periodic refresh
+  int MIN_REFRESH_PERIOD = 10;
+  int MAX_REFRESH_PERIOD = 100;
+  int REFRESH_THRESHOLD_MARGIN = 0.02;
+
+  double previous_baseline_performance_with_threshold = 0;
 
 #endif
 };
@@ -272,7 +278,7 @@ ConcurrentScalableCache(size_t maxSize, size_t numShards, Type type, int rebuild
     }
     else if(algType == Type::FIFO_FH) {
       assert(FROZEN_THRESHOLD > 0);
-      m_shards.emplace_back(std::make_shared<Cache::FIFO_FHCache<TKey, TValue, THash>>(s, MELT_CHUNK_FRAC));
+      m_shards.emplace_back(std::make_shared<Cache::FIFO_FHCache<TKey, TValue, THash>>(s));
     }
     else {
       printf("cannot find the cache type\n");
@@ -817,6 +823,15 @@ CONSTRUCT:
   printf("FH compare with baseline metric: %.3lf\n", baseline_performance_for_query);
   printf("FH compare with baseline metric with threshold: %.3lf\n", baseline_performance_with_threshold);
 
+  // If new threshold has more than 2% lower latency than previous threshold, reset refresh period to min
+  // Otherwise, 2x the refresh period up to the max, except on first construct (no prev threshold)
+  if (baseline_performance_with_threshold < previous_baseline_performance_with_threshold * (1 - REFRESH_THRESHOLD_MARGIN)) {
+    FROZEN_THRESHOLD = MIN_REFRESH_PERIOD;
+  } else if (FROZEN_THRESHOLD < MAX_REFRESH_PERIOD && previous_baseline_performance_with_threshold != 0) {
+    FROZEN_THRESHOLD = std::min(FROZEN_THRESHOLD * 2, MAX_REFRESH_PERIOD);
+  }
+  previous_baseline_performance_with_threshold = baseline_performance_with_threshold;
+
   stop_sample_stat = false; // enable req_latency_[]
 
   /* req_latency_[] array is used to store the latency of each shard */
@@ -952,7 +967,6 @@ CONSTRUCT:
   bool first_flag = true;
   size_t total_step = 0;
   size_t current_step = 0;
-  int melted_chunks_count = 0;
   
   while(!should_stop) {
     do{
@@ -1032,20 +1046,6 @@ CONSTRUCT:
         }
         sleep(1); // 1 sec for test
         goto CONSTRUCT;
-      }
-    }
-
-    /**
-     * Trigger to melt next chunk if performance depletion fraction meets next threshold
-     * Ex: First chunk melts if performance degrades by more than MELT_CHUNK_FRAC (20%) from COUNT_THRESHOLD (starting buffer)
-     * Importantly last chunk never melted, since if performance_depletion < 0, then deconstruction occurs earlier
-    */
-    double performance_depletion_fraction = 1 - (performance_depletion*1.0 / COUNT_THRESHOLD);
-    double performance_depletion_threshold = (melted_chunks_count + 1) * MELT_CHUNK_FRAC;
-    if (performance_depletion_fraction > performance_depletion_threshold) {
-      melted_chunks_count++;
-      for(size_t i = 0; i < m_numShards; i++) {
-        // m_shards[i]->melt_chunk();
       }
     }
     fflush(stdout);
